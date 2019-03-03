@@ -1,0 +1,148 @@
+<section>
+  <header>
+    <h2>Profile: response_type=code</h2>
+  </header>
+  <section class="tiles">
+    <article class="style1">
+      <%= link_to test_case_path('b2c-rp-response_type-code'), data: {popup: true} do %>
+        <h2>rp-response_type-code</h2>
+        <div class="content">
+          <p>Make an authentication to *** B2C *** request using the Authorization Code Flow.</p>
+        </div>
+      <% end %>
+    </article>
+        <article class="style1">
+      <%= link_to test_case_path('rp-response_type-code'), data: {popup: true} do %>
+        <h2>rp-response_type-code</h2>
+        <div class="content">
+          <p>Make an authentication to request using the Authorization Code Flow.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style2">
+      <%= link_to test_case_path('rp-scope-userinfo-claims'), data: {popup: true} do %>
+        <h2>rp-scope-userinfo-claims</h2>
+        <div class="content">
+          <p>Request claims using scope values.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style3">
+
+      <%= link_to test_case_path('rp-nonce-invalid'), data: {popup: true} do %>
+        <h2>rp-nonce-invalid</h2>
+        <div class="content">
+          <p>Pass a 'nonce' value in the Authentication Request. Verify the 'nonce' value returned in the ID Token.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style4">
+   
+      <%= link_to test_case_path('rp-token_endpoint-client_secret_basic'), data: {popup: true} do %>
+        <h2>rp-token_endpoint-client_secret_basic</h2>
+        <div class="content">
+          <p>Use the 'client_secret_basic' method to authenticate at the Authorization Server when using the token endpoint.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style5">
+   
+      <%= link_to test_case_path('rp-id_token-aud'), data: {popup: true} do %>
+        <h2>rp-id_token-aud</h2>
+        <div class="content">
+          <p>Request an ID token and compare its aud value to the Relying Party's 'client_id'.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style6">
+    
+      <%= link_to test_case_path('rp-id_token-kid-absent-single-jwks'), data: {popup: true} do %>
+        <h2>rp-id_token-kid-absent-single-jwks</h2>
+        <div class="content">
+          <p>Request an ID token and verify its signature using the keys provided by the Issuer.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style2">
+    
+      <%= link_to test_case_path('rp-id_token-sig-none'), data: {popup: true} do %>
+        <h2>rp-id_token-sig-none</h2>
+        <div class="content">
+          <p>Use Code Flow and retrieve an unsigned ID Token.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style3">
+   
+      <%= link_to test_case_path('rp-id_token-issuer-mismatch'), data: {popup: true} do %>
+        <h2>rp-id_token-issuer-mismatch</h2>
+        <div class="content">
+          <p>Request an ID token and verify its 'iss' value.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style1">
+    
+      <%= link_to test_case_path('rp-id_token-kid-absent-multiple-jwks'), data: {popup: true} do %>
+        <h2>rp-id_token-kid-absent-multiple-jwks</h2>
+        <div class="content">
+          <p>Request an ID token and verify its signature using the keys provided by the Issuer.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style5">
+
+      <%= link_to test_case_path('rp-id_token-bad-sig-rs256'), data: {popup: true} do %>
+        <h2>rp-id_token-bad-sig-rs256</h2>
+        <div class="content">
+          <p>Request an ID token and verify its signature using the keys provided by the Issuer.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style6">
+
+      <%= link_to test_case_path('rp-id_token-iat'), data: {popup: true} do %>
+        <h2>rp-id_token-iat</h2>
+        <div class="content">
+          <p>Request an ID token and verify its 'iat' value.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style4">
+
+      <%= link_to test_case_path('rp-id_token-sig-rs256'), data: {popup: true} do %>
+        <h2>rp-id_token-sig-rs256</h2>
+        <div class="content">
+          <p>Request an encrypted ID Token. Decrypt the returned the ID Token and verify its signature using the keys published by the Issuer.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style1">
+  
+      <%= link_to test_case_path('rp-id_token-sub'), data: {popup: true} do %>
+        <h2>rp-id_token-sub</h2>
+        <div class="content">
+          <p>Request an ID token and verify it contains a sub value.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style2">
+  
+      <%= link_to test_case_path('rp-userinfo-bad-sub-claim'), data: {popup: true} do %>
+        <h2>rp-userinfo-bad-sub-claim</h2>
+        <div class="content">
+          <p>Make a UserInfo Request and verify the 'sub' value of the UserInfo Response by comparing it with the ID Token's 'sub' value.</p>
+        </div>
+      <% end %>
+    </article>
+    <article class="style3">
+
+      <%= link_to test_case_path('rp-userinfo-bearer-header'), data: {popup: true} do %>
+        <h2>rp-userinfo-bearer-header</h2>
+        <div class="content">
+          <p>Pass the access token using the "Bearer" authentication scheme while doing the UserInfo Request.</p>
+        </div>
+      <% end %>
+    </article>
+  </section>
+</section>

@@ -1,0 +1,75 @@
+class TestCasesController < ApplicationController
+  
+  layout 'popup'
+  
+  def show
+    # logger.debug '<<<<ID>>>>>&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
+    # logger.debug params[:id]
+    # rp-response_type-code
+
+    # https://github.com/nov/openid_connect/wiki/Client-Init
+    # client = OpenIDConnect::Client.new(
+    #   identifier: YOUR_CLIENT_ID,
+    #   secret: YOUR_CLIENT_SECRET,
+    #   redirect_uri: YOUR_REDIRECT_URI,
+    #   host: 'server.example.com'
+    # )
+    client = TestCase.register_client!(
+      params[:id],
+      redirect_uri: test_case_callback_url(params[:id])
+    )
+
+    # ******************* B2C PATH ****************************  
+    if params[:id] == "b2c-rp-response_type-code"  
+
+      session[:client_id] = Rails.application.secrets.B2C_client_id
+      session[:state] = SecureRandom.hex(16)
+      session[:nonce] = SecureRandom.hex(16)
+      
+      # add client assertion payload, needs signing with assertion key
+      # https://github.com/jwt/ruby-jwt
+   
+      expirey_time = 24.hours.from_now.to_i
+      time_now = Time.now.to_i
+      payload = { LoALevelRequest: 'L2', 
+        iss: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize',
+        aud: 'https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code',
+        exp: expirey_time,
+        iat: time_now,
+        nbf: time_now
+      }
+  
+      
+      token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
+      session[:token] = token
+      
+       redirect_to client.authorization_uri(
+         state: session[:state],
+         nonce: session[:nonce],
+         scope: "openid profile",
+         response_type: "id_token",
+         response_mode: "form_post",
+         client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+         client_assertion: token,
+         ui_locales: "en-GB",
+         prompt: "login"
+       )
+    else
+
+      # ******************* NON-B2C PATH OPENID Dynamic Discovery ****************************  
+      session[:client_id] = client.identifier
+      session[:state] = SecureRandom.hex(16)
+      session[:nonce] = SecureRandom.hex(16)
+
+          redirect_to client.authorization_uri(
+            state: session[:state],
+            nonce: session[:nonce],
+            scope: [:profile, :email, :address, :phone]
+          )
+      end
+  end
+end  
+
+
+
+

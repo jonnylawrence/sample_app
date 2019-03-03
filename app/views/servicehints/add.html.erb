@@ -1,0 +1,23 @@
+<% provide(:title, "Add ServiceHints") %>
+<h1>Add Service Hints</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_tag("/servicehints/new", method: "post") do %>
+        <%= label_tag(:objectid, "Object ID:") %>
+        <%= text_field_tag(:objectid, @objectid_passed) %>
+        <%= label_tag(:policyid, "Policy ID:") %>
+        <%= text_field_tag(:policyid) %>
+        <%= label_tag(:org, "Org:") %>
+        <%= text_field_tag(:org) %>
+        <%= label_tag(:usertype, "UserType:") %>
+        <%= text_field_tag(:usertype) %>
+        <%= label_tag(:systemid, "System ID:") %>
+        <%= text_field_tag(:systemid) %>
+        <%= label_tag(:productid, "Product ID:") %>
+        <%= text_field_tag(:productid) %>
+        <%= submit_tag("Add ServiceHints") %>
+    <% end %>
+
+  </div>
+</div>

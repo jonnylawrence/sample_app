@@ -1,0 +1,26 @@
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+       <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+  </div>
+<% else %>
+<div class="center jumbotron">
+  <h1>B2C OpenID Relying Party</h1>
+
+  <h2>
+    This is the home page for a B2C integration example
+  </h2>
+
+   <%= link_to "B2C Login", test_case_path(@b2clogin), class: "btn btn-lg btn-primary" %>
+   <%= link_to "B2C Test", external_url_builder.B2C_url, class: "btn btn-lg btn-primary" %>
+ 
+</div>
+
+<%= link_to image_tag("rails.png", alt: "Rails logo"),
+            'http://rubyonrails.org/' %>
+<% end %>

@@ -1,0 +1,14 @@
+<% provide(:title, "Search register") %>
+<h1>Search register</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_tag("/b2c_user/show", method: "get") do %>
+       <%= label_tag(:f, "Search for:") %>
+       <%= text_field_tag(:f) %>
+       <%= submit_tag("Search") %>
+    <% end %>
+
+  </div>
+</div>
