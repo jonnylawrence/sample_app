@@ -53,7 +53,7 @@ class TestCaseCallbacksController < ApplicationController
           jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-emailrecovery/oauth2/v2.0/authorize"
         end
 
-        if jwthost # id jwthost is defined
+        if jwthost # id jwthost is defined above
           puts "-----JWTHOST--------" + jwthost
         
           client = OpenIDConnect::Client.new(
