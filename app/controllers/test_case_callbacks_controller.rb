@@ -114,6 +114,7 @@ private
       @sts = @b2cjwt.payload.to_json
       parsed = JSON.parse(@sts)
       jwtemail=parsed["email"].downcase
+      
       #
       # Need to check signature on token !!!!!!!!!!!!!! NOT DONE
       #
