@@ -136,12 +136,12 @@ private
         user = User.find_by(email: jwtemail)
           if user 
             puts '*********************** Logged in as level 2 *******************'
-            log_in user
+            log_in user # session_helper
+            set_jwttoken @b2cjwt # session_helper
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             redirect_to root_path and return
           end
       end   
-      @b2cjwt # return variable so it can be used in test_case controller
     else # no LoA therefore not logged in
       puts '>>>>>>>>>>>INSIDE TOKEN CHECK BUT NOT LOGGED IN<<<<<<<<<<<<<<<<<<<<'
     end # end params

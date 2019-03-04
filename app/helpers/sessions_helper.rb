@@ -5,6 +5,10 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
+  def set_jwttoken(jwttoken)
+    @b2cjwt = jwttoken
+  end
+
   # Remembers a user in a persistent session.
   def remember(user)
     user.remember
