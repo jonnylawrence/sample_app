@@ -114,6 +114,8 @@ private
       @sts = @b2cjwt.payload.to_json
       parsed = JSON.parse(@sts)
       jwtemail=parsed["email"].downcase
+      jwtloa=parsed["loa"]
+      jwtoid=parsed["oid"]
       #
       # Need to check signature on token !!!!!!!!!!!!!! NOT DONE
       #
@@ -137,7 +139,7 @@ private
           if user 
             puts '*********************** Logged in as level 2 *******************'
             log_in user # session_helper
-            session[:jwttoken]=jwt_token{ "email" => jwtemail, "LoA" => parsed["LoA"], "OID" => parsed["oid"]}
+            session[:jwttoken]=jwt_token{ "email": jwtemail, "LoA": jwtloa, "OID": jwtoid}
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             redirect_to root_path and return
           end
