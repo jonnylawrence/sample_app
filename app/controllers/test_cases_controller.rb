@@ -41,7 +41,7 @@ class TestCasesController < ApplicationController
       }
 
       token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
-      #session[:token] = token
+      session[:token] = token
       
        redirect_to client.authorization_uri(
          state: session[:state],
@@ -99,7 +99,7 @@ class TestCasesController < ApplicationController
     }
 
     token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
-    #session[:token] = token
+    session[:token] = token
       # https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainsecurityquestions/oauth2/v2.0/authorize?
       #client_id=222ef181-933b-412d-9a62-c796281d8eaa&
       #redirect_uri=https%3A%2F%2Fneubgdat01buiduat01relyingparty01.azurewebsites.net%2F
