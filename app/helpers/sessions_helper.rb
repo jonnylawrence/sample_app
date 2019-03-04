@@ -8,7 +8,7 @@ module SessionsHelper
   def set_jwttoken(jwttoken)
     puts "in-helper pass var="
     puts jwttoken unless jwttoken.nil?
-    session[:jwt] = jwttoken
+    @jwt_token = jwttoken
   end
 
   # Remembers a user in a persistent session.
