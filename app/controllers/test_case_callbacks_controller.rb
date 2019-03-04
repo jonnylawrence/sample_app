@@ -150,7 +150,7 @@ private
             session[:jwttokenrpname]=parsed["rpName"]
             session[:jwttokenaud]=parsed["aud"]
             session[:jwttokenacr]=parsed["acr"] 
-            session[:jwttokennonce]=parsed["nonce_time"]   
+            session[:jwttokennonce]=parsed["nonce"]   
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             redirect_to root_path and return
           end
