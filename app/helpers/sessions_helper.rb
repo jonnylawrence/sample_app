@@ -6,9 +6,10 @@ module SessionsHelper
   end
 
   def set_jwttoken(jwttoken)
+    $jwt_token = jwttoken
     puts ">>>>>>in-helper set token var="
-    puts jwttoken unless jwttoken.nil?
-    @jwt_token = jwttoken
+    puts @jwttoken 
+    puts "<><<><><><><><><><><><"
   end
 
   def get_jwttoken
