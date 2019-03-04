@@ -106,7 +106,7 @@ private
     puts params[:id_token]
     puts "******************************"
     # check body for a L2 Token, although token needs to be checked below
-    if (params[:LoA] == "L2")       
+    if (params[:LoA] == "L1")       
       puts '*********** checking ID token....'
       @b2cjwt=Decode.new(params[:id_token],Rails.application.secrets.BC2_Assertion_secret)
       @b2cjwt.decode_segments
@@ -114,8 +114,6 @@ private
       @sts = @b2cjwt.payload.to_json
       parsed = JSON.parse(@sts)
       jwtemail=parsed["email"].downcase
-      jwtloa=parsed["loa"]
-      jwtoid=parsed["oid"]
       #
       # Need to check signature on token !!!!!!!!!!!!!! NOT DONE
       #
@@ -134,12 +132,15 @@ private
       puts "ServiceHints> " + parsed["ServiceHints"]
       puts '>>>>>>>>>TOKEN OUTPUT END<<<<<<<<<<<<<'
 
-      if (parsed["LoA"] == "L2")
+      if (parsed["LoA"] == "L1")
         user = User.find_by(email: jwtemail)
           if user 
             puts '*********************** Logged in as level 2 *******************'
             log_in user # session_helper
-            session[:jwttoken]=jwt_token{ "email": jwtemail, "LoA": jwtloa, "OID": jwtoid}
+            session[:jwttokenemail]=jwtemail
+            session[:jwttokenloa]=parsed["loa"]
+            session[:jwttokenoid]=parsed["oid"]
+            
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             redirect_to root_path and return
           end

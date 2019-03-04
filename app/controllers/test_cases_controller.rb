@@ -32,7 +32,7 @@ class TestCasesController < ApplicationController
    
       expirey_time = 24.hours.from_now.to_i
       time_now = Time.now.to_i
-      payload = { LoALevelRequest: 'L2', 
+      payload = { LoALevelRequest: 'L1', 
         iss: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize',
         aud: 'https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code',
         exp: expirey_time,
