@@ -137,8 +137,7 @@ private
           if user 
             puts '*********************** Logged in as level 2 *******************'
             log_in user # session_helper
-            #session[:jwttoken]=params[:id_token]
-            $jwt_token = @sts.to_json
+            session[:jwttoken]=jwt_token{ "email" => jwtemail, "LoA" => parsed["LoA"], "OID" => parsed["oid"]}
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             redirect_to root_path and return
           end
