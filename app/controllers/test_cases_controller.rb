@@ -41,7 +41,7 @@ class TestCasesController < ApplicationController
       }
 
       token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
-      session[:token] = token
+      #session[:token] = token
       
        redirect_to client.authorization_uri(
          state: session[:state],
@@ -99,7 +99,7 @@ class TestCasesController < ApplicationController
     }
 
     token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
-    session[:token] = token
+    #session[:token] = token
       
         redirect_to client.authorization_uri(
           state: session[:state],
