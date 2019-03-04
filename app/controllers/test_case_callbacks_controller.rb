@@ -138,7 +138,7 @@ private
             puts '*********************** Logged in as level 2 *******************'
             log_in user # session_helper
             #session[:jwttoken]=params[:id_token]
-            $jwt_token =  @b2cjwt
+            $jwt_token = @sts.to_json
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             redirect_to root_path and return
           end
