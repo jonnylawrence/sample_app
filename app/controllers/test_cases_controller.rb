@@ -65,53 +65,53 @@ class TestCasesController < ApplicationController
     # need to send back original JWT
     # figure out what need to be done.
 
-    # puts ">>>>>>current JWT obtained from login session helper is :" 
-    # puts session[:jwttokenemail]
-    # puts session[:jwttokenloa]
-    # puts session[:jwttokenoid]
-    # puts session[:jwttokenrpname]
-    # puts session[:jwttokenaud]
-    # puts session[:jwttokenacr]
-    # puts session[:jwttokenexp]
-    # puts session[:jwttokennbf]
-    # puts session[:jwttokeniss]
-    # puts session[:jwttokeniat]
-    # puts session[:jwttokenauth_time]
-    # puts session[:jwttokennonce]
-    # puts ">>>>>>>>> END <<<<<<<<<<<<<<<<"
+    puts ">>>>>>current JWT obtained from login session helper is :" 
+    puts session[:jwttokenemail]
+    puts session[:jwttokenloa]
+    puts session[:jwttokenoid]
+    puts session[:jwttokenrpname]
+    puts session[:jwttokenaud]
+    puts session[:jwttokenacr]
+    puts session[:jwttokenexp]
+    puts session[:jwttokennbf]
+    puts session[:jwttokeniss]
+    puts session[:jwttokeniat]
+    puts session[:jwttokenauth_time]
+    puts session[:jwttokennonce]
+    puts ">>>>>>>>> END <<<<<<<<<<<<<<<<"
    
-    # expirey_time = 24.hours.from_now.to_i
-    # time_now = Time.now.to_i
-    # payload = { 
-    #   exp: expirey_time,
-    #   nbf: time_now,
-    #   ver: "1.0",
-    #   iss: session[:jwttokeniss],
-    #   sub: "Not supported currently. Use oid claim.",
-    #   aud: session[:jwttokenaud],
-    #   acr: session[:jwttokenacr],
-    #   nonce: session[:jwttokennonce],
-    #   iat: time_now,
-    #   auth_time: session[:jwttokenauth_time],
-    #   returnPath: "unspecified",
-    #   rpName: session[:jwttokenrpname],
-    #   LoA: session[:jwttokenloa] 
-    # }
+    expirey_time = 24.hours.from_now.to_i
+    time_now = Time.now.to_i
+    payload = { 
+      exp: expirey_time,
+      nbf: time_now,
+      ver: "1.0",
+      iss: session[:jwttokeniss],
+      sub: "Not supported currently. Use oid claim.",
+      aud: session[:jwttokenaud],
+      acr: session[:jwttokenacr],
+      nonce: session[:jwttokennonce],
+      iat: time_now,
+      auth_time: session[:jwttokenauth_time],
+      returnPath: "unspecified",
+      rpName: session[:jwttokenrpname],
+      LoA: session[:jwttokenloa] 
+    }
 
-    # token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
-    # #session[:token] = token
+    token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
+    #session[:token] = token
       
-    #     redirect_to client.authorization_uri(
-    #       state: session[:state],
-    #       nonce: session[:nonce],
-    #       scope: "openid profile",
-    #       response_type: "id_token",
-    #       response_mode: "form_post",
-    #       client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-    #       client_assertion: token,
-    #       ui_locales: "en-GB",
-    #       prompt: "login"
-    #     )
+        redirect_to client.authorization_uri(
+          state: session[:state],
+          nonce: session[:nonce],
+          scope: "openid profile",
+          response_type: "id_token",
+          response_mode: "form_post",
+          client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+          client_assertion: token,
+          ui_locales: "en-GB",
+          prompt: "login"
+        )
     
     else
       # ******************* NON-B2C PATH OPENID Dynamic Discovery ****************************  

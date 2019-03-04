@@ -139,18 +139,18 @@ private
           if user 
             puts '*********************** Logged in as level 2 *******************'
             log_in user # session_helper
-        # #    session[:jwttokenexp]=parsed["exp"]
-        # #    session[:jwttokennbf]=parsed["nbf"]
-        #     session[:jwttokeniss]=parsed["iss"]
-        #     session[:jwttokeniat]=parsed["iat"]
-        #     session[:jwttokenauth_time]=parsed["auth_time"]
-        #     session[:jwttokenemail]=jwtemail
-        #     session[:jwttokenloa]=parsed["LoA"]
-        #     session[:jwttokenoid]=parsed["oid"]
-        #     session[:jwttokenrpname]=parsed["rpName"]
-        #     session[:jwttokenaud]=parsed["aud"]
-        #     session[:jwttokenacr]=parsed["acr"] 
-        #     session[:jwttokennonce]=parsed["nonce_time"]   
+           session[:jwttokenexp]=parsed["exp"]
+           session[:jwttokennbf]=parsed["nbf"]
+            session[:jwttokeniss]=parsed["iss"]
+            session[:jwttokeniat]=parsed["iat"]
+            session[:jwttokenauth_time]=parsed["auth_time"]
+            session[:jwttokenemail]=jwtemail
+            session[:jwttokenloa]=parsed["LoA"]
+            session[:jwttokenoid]=parsed["oid"]
+            session[:jwttokenrpname]=parsed["rpName"]
+            session[:jwttokenaud]=parsed["aud"]
+            session[:jwttokenacr]=parsed["acr"] 
+            session[:jwttokennonce]=parsed["nonce_time"]   
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             redirect_to root_path and return
           end
