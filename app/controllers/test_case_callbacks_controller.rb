@@ -68,8 +68,15 @@ class TestCaseCallbacksController < ApplicationController
           #session[:state] = SecureRandom.hex(16)
           session[:nonce] = SecureRandom.hex(16)      
           puts 'session variables****************'
-          puts "ID>"+session[:client_id] +"STATE>"+ session[:state] + "NONCE>" +session[:nonce]+"token>"+session[:token]      
-          
+          puts "ID>"
+          puts session[:client_id] 
+          puts "STATE>"
+          puts session[:state]
+          puts "NONCE>" 
+          puts session[:nonce]
+          puts "token>"
+          puts session[:token]      
+          puts "session end*************************"
           redirect_to client.authorization_uri(
             state: params[:state], # params[:state] should equal original session[:state]
             nonce: session[:nonce], # new nonce
