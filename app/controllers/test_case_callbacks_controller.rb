@@ -110,7 +110,7 @@ private
       puts '*********** checking ID token....'
       @b2cjwt=Decode.new(params[:id_token],Rails.application.secrets.BC2_Assertion_secret)
       @b2cjwt.decode_segments
-      # puts @b2cjwt.header
+      puts @b2cjwt.header
       @sts = @b2cjwt.payload.to_json
       parsed = JSON.parse(@sts)
       jwtemail=parsed["email"].downcase
@@ -138,9 +138,11 @@ private
             puts '*********************** Logged in as level 2 *******************'
             log_in user # session_helper
             session[:jwttokenemail]=jwtemail
-            session[:jwttokenloa]=parsed["loa"]
+            session[:jwttokenloa]=parsed["LoA"]
             session[:jwttokenoid]=parsed["oid"]
-            
+            session[:jwttokenrpname]=parsed["rpname"]
+            session[:jwttokenaud]=parsed["aud"]
+            session[:jwttokenacr]=parsed["acr"]
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             redirect_to root_path and return
           end

@@ -69,17 +69,20 @@ class TestCasesController < ApplicationController
     puts session[:jwttokenemail]
     puts session[:jwttokenloa]
     puts session[:jwttokenoid]
+    puts session[:jwttokenrpname]
+    puts session[:jwttokenaud]
+    puts session[:jwttokenacr]
     puts ">>>>>>>>> END <<<<<<<<<<<<<<<<"
    
-      # expirey_time = 24.hours.from_now.to_i
-      # time_now = Time.now.to_i
-      # payload = { LoALevelRequest: 'L2', 
-      #   iss: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize',
-      #   aud: 'https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code',
-      #   exp: expirey_time,
-      #   iat: time_now,
-      #   nbf: time_now
-      # }
+    expirey_time = 24.hours.from_now.to_i
+    time_now = Time.now.to_i
+    payload = { LoALevelRequest: session[:jwttokenloa], 
+      iss: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize',
+      aud: session[:jwttokenaud],
+      exp: expirey_time,
+      iat: time_now,
+      nbf: time_now
+    }
 
       # token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
       # session[:token] = token
