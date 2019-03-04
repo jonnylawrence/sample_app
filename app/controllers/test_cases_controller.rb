@@ -66,7 +66,7 @@ class TestCasesController < ApplicationController
     # figure out what need to be done.
 
     puts ">>>>>>current JWT obtained from login is :" 
-    puts @b2cjwt
+    puts @b2cjwt_pass
     puts ">>>>>>>>> END <<<<<<<<<<<<<<<<"
    
       # expirey_time = 24.hours.from_now.to_i

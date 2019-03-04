@@ -14,7 +14,7 @@ class TestCaseCallbacksController < ApplicationController
     puts params[:id_token] 
     puts "***************"
 
-    @b2cjwt = check_token if params[:id_token].present?
+    @b2cjwt_pass = check_token if params[:id_token].present?
 
     puts "**** logged_in true or false **********" 
     puts logged_in?
