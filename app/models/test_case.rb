@@ -33,14 +33,21 @@ class TestCase < ApplicationRecord
     # logger.debug "------------------identifier---------------------"
 
     if identifier == "b2c-rp-response_type-code"
-        client = OpenIDConnect::Client.new(
+      client = OpenIDConnect::Client.new(
         identifier: Rails.application.secrets.B2C_client_id,
         secret: Rails.application.secrets.B2C_client_secret,
         redirect_uri: 'https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code',
         host: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize',
         authorization_endpoint: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize'
-        )
-
+      )
+    elsif identifier == "maintainsecurity"
+      client = OpenIDConnect::Client.new(
+        identifier: Rails.application.secrets.B2C_client_id,
+        secret: Rails.application.secrets.B2C_client_secret,
+        redirect_uri: 'https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code',
+        host: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize',
+        authorization_endpoint: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize'
+      )
     # all other cases - this is dynamic registration
     else
       client = OpenIDConnect::Client::Registrar.new(
