@@ -68,8 +68,6 @@ class TestCasesController < ApplicationController
     puts ">>>>>>current JWT obtained from login session helper is :" 
     puts "Global>>>>>>"
     puts $jwt_token
-    puts "Session>>>>>"
-    puts session[:jwttoken]
     puts ">>>>>>>>> END <<<<<<<<<<<<<<<<"
    
       # expirey_time = 24.hours.from_now.to_i

@@ -137,8 +137,8 @@ private
           if user 
             puts '*********************** Logged in as level 2 *******************'
             log_in user # session_helper
-            session[:jwttoken]=params[:id_token]
-            set_jwttoken @sts # session_helper
+            #session[:jwttoken]=params[:id_token]
+            $jwt_token =  @b2cjwt
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             redirect_to root_path and return
           end
