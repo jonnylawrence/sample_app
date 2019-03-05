@@ -47,11 +47,11 @@ class B2cApiClass < ApplicationController
         #  Use this site to build the correct REST statement from CURL
         # https://jhawthorn.github.io/curl-to-ruby/
         # *********************************************************
-
+        #curl -X POST "https://neubgdat01buiduat01userprofile01.azurewebsites.net/api/User/SearchByEmail" -H "accept: text/plain" -H "Content-Type: application/json-patch+json" -d "{ \"email\": \"string\", \"correlationId\": \"string\"}"
         @b2cemail=searchemail
         @bc2bearertoken=bearertoken
 
-        uri = URI.parse("https://neubupagiduatuserprofile01.azurewebsites.net/api/User/SearchByEmail")
+        uri = URI.parse("https://neubgdat01buiduat01userprofile01.azurewebsites.net/api/User/SearchByEmail")
         request = Net::HTTP::Post.new(uri)
         request.content_type = "application/json-patch+json"
         request["Accept"] = "text/plain"
@@ -98,7 +98,7 @@ class B2cApiClass < ApplicationController
 
           #logger.debug ">>>>>>>>>>>>>vars>>>>>OBJ"+@b2cobjectId+" POL"+@b2cpolicyId+" ORG"+@b2corg+" UT"+@b2cuserType+" SYS"+@b2csystemId+" PROD"+@b2cproductId
           #logger.debug ">>>>>>>>>secret "+Rails.application.secrets.B2C_api_basic
-          uri = URI.parse("https://neubupagiduatuserprofile01.azurewebsites.net/api/ServiceHintsB2c/AddServiceHint")
+          uri = URI.parse("https://neubgdat01buiduat01userprofile01.azurewebsites.net/api/ServiceHintsB2c/AddServiceHint")
           request = Net::HTTP::Post.new(uri)
           request.content_type = "application/json-patch+json"
           request["Accept"] = "text/plain"
