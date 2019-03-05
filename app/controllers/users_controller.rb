@@ -19,9 +19,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save # && verify_recaptcha(model: @user)
-      log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      # log_in @user
+      flash[:success] = "You have registered, please create an identity!"
+      redirect_to test_case_path("b2c-rp-response_type-code")
+      #redirect_to @user
     else
       render 'new'
     end
@@ -65,7 +66,9 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password,
+      params[:user][:password]="0racle"
+      params[:user][:password_confirmation]="0racle"
+      params.require(:user).permit(:name, :email, :dob, :member, :password,
                                    :password_confirmation)
     end
 

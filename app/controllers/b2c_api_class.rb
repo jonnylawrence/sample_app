@@ -18,7 +18,10 @@ class B2cApiClass < ApplicationController
         #logger.debug ">>>>>>>>>>>>>stripped 2>>>>>"+stripped2_client_secret
         # logger.debug "client_id-"+Rails.application.secrets.B2C_api_client_id
         # logger.debug "api_resource-"+Rails.application.secrets.B2C_api_resource
-        # logger.debug '--------------------------------------'
+        # logger.debug '-----------stripped client secret---------------------------'
+        # logger.debug stripped_client_secret
+        # logger.debug Rails.application.secrets.B2C_api_client_id
+        # logger.debug Rails.application.secrets.B2C_api_resource
         @response = RestClient::Request.new({
             method: :post,
             url: 'https://login.microsoftonline.com/bgmu.onmicrosoft.com/oauth2/token',
@@ -35,6 +38,7 @@ class B2cApiClass < ApplicationController
                 Cache_Control: 'no-cache', 
                 Accept: '*/*' }
                 }).execute
+        logger.debug @response
     end  
 
     def apibody
