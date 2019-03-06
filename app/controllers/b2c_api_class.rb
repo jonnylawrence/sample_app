@@ -101,12 +101,13 @@ class B2cApiClass < ApplicationController
          @b2cproductId=productId
 
           #logger.debug ">>>>>>>>>>>>>vars>>>>>OBJ"+@b2cobjectId+" POL"+@b2cpolicyId+" ORG"+@b2corg+" UT"+@b2cuserType+" SYS"+@b2csystemId+" PROD"+@b2cproductId
-          #logger.debug ">>>>>>>>>secret "+Rails.application.secrets.B2C_api_basic
-          uri = URI.parse("https://neubgdat01buiduat01userprofile01.azurewebsites.net/api/ServiceHintsB2c/AddServiceHint")
+          logger.debug ">>>>>>>>>bear token<<<<<<<<<<<<<< "
+          logger.debug @bc2bearertoken
+          uri = URI.parse("https://neubgdat01buiduat01userprofile01.azurewebsites.net/api/ServiceHints")
           request = Net::HTTP::Post.new(uri)
           request.content_type = "application/json-patch+json"
           request["Accept"] = "text/plain"
-          request["Authorization"] = Rails.application.secrets.B2C_api_basic
+          request["Authorization"] = @bc2bearertoken
           request.body = JSON.dump({
           "objectId" => @b2cobjectId,
           "value" => {},
