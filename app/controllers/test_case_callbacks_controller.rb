@@ -187,7 +187,7 @@ private
   def do_signup
     session[:b2clogin]=true
     puts '>>>>>>>>>>>>b2C USER NEEDS SIGN UP>>>>>>>>>>>>'
-    redirect_to signup_path and return
+    redirect_to signup_url and return
     return
   end
 
