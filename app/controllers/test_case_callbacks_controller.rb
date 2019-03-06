@@ -183,7 +183,6 @@ private
       session[:b2clogin]=false
       redirect_to root_path and return
   end
-
   def do_signup
     session[:b2clogin]=true
     puts '>>>>>>>>>>>>b2C USER NEEDS SIGN UP>>>>>>>>>>>>'
