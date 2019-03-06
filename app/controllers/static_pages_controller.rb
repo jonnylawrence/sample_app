@@ -5,19 +5,19 @@ class StaticPagesController < ApplicationController
     # logger.info external_url_builder.B2C_url.to_str
     # logger.info '*********************'
 
-    puts '<<<b2clogin session and email'
-    puts session[:b2clogin] 
-    puts session[:jwttokenemail]
-    puts '<<<<<<<<<<<<<>>>>>>>>>>'
+    # puts '<<<b2clogin session and email'
+    # puts session[:b2clogin] 
+    # puts session[:jwttokenemail]
+    # puts '<<<<<<<<<<<<<>>>>>>>>>>'
     # to check if these are register
-    if session[:b2clogin] # come from B2C
-      puts "<<<<<<<<<<< FROM B2C >>>>>>>>>>>>"
-      if !User.find_by(email: session[:jwttokenemail].downcase)
-        # not found in the database
-        puts "<<<<<<<<<< B2C NOT FOUND IN DATABASE REDIRECT TO REGISTRATION>>>>>>>"
-        Redirect_to sign_up_path
-      end
-    end
+    # if session[:b2clogin] # come from B2C
+    #   puts "<<<<<<<<<<< FROM B2C >>>>>>>>>>>>"
+    #   if !user = User.find_by(email: jwtemail)
+    #     # not found in the database
+    #     puts "<<<<<<<<<< B2C NOT FOUND IN DATABASE REDIRECT TO REGISTRATION>>>>>>>"
+    #     Redirect_to sign_up_path
+    #   end
+    # end
 
     if logged_in? 
       @micropost  = current_user.microposts.build
