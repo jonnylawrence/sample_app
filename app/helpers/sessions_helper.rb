@@ -43,6 +43,10 @@ def current_user
   end
 end
 
+def b2c_user_logged_in
+  session[:b2clogin] 
+end
+
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
     !current_user.nil?

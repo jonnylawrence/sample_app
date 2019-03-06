@@ -1,7 +1,7 @@
 <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label :name %>
+  <%= f.label :Surname %>
   <%= f.text_field :name, class: 'form-control' %>
 
   <%= f.label :email %>
@@ -12,7 +12,6 @@
 
   <%= f.label :date_of_birth %>
   <%= f.date_select :dob, class: 'form-control' %>
-
  
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

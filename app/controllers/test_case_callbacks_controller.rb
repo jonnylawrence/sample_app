@@ -164,16 +164,19 @@ private
             session[:jwttokenacr]=parsed["acr"] 
             session[:jwttokennonce]=parsed["nonce"]   
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+            session[:b2clogin]=true
             redirect_to root_path and return
           end
       end   
     else # no LoA therefore not logged in
       puts '>>>>>>>>>>>INSIDE TOKEN CHECK BUT NOT LOGGED IN<<<<<<<<<<<<<<<<<<<<'
+      session[:b2clogin]=false
     end # end params
   end # end def
 
   def not_logged_in
     puts '>>>>>>>>>>>>>>>>>NOT LOGGED IN<<<<<<<<<<<<<<<<<<<<'
+      session[:b2clogin]=false
       redirect_to root_path and return
   end
 
