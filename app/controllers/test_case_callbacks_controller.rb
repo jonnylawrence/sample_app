@@ -8,6 +8,8 @@ class TestCaseCallbacksController < ApplicationController
 
   def show
 
+    do_signup if session[:b2clogin]=true
+    
     puts "********show start*******"
     puts params[:LoA]
     puts '-----------'
@@ -180,12 +182,12 @@ private
 
   def not_logged_in
     puts '>>>>>>>>>>>>>>>>>NOT LOGGED IN<<<<<<<<<<<<<<<<<<<<'
-      #session[:b2clogin]=false
+      session[:b2clogin]=false
       redirect_to root_path and return
   end
   def do_signup
-    #session[:b2clogin]=true
+    session[:b2clogin]=true
     puts '>>>>>>>>>>>>b2C USER NEEDS SIGN UP>>>>>>>>>>>>'
-    redirect_to root_path, status: 301 and return
+    redirect_to signup_path, status: 301 and return
   end
 end # end class
