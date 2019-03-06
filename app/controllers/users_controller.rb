@@ -14,11 +14,12 @@ class UsersController < ApplicationController
   end
 
   def new
+    puts '<<<<<< in users create>>>>'
     @user = User.new
   end
 
   def create
-    puts '<<<<<< in users create>>>>'
+    
     @user = User.new(user_params)
     if @user.save # && verify_recaptcha(model: @user)
       # log_in @user
