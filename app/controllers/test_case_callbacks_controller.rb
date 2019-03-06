@@ -8,6 +8,8 @@ class TestCaseCallbacksController < ApplicationController
 
   def show
 
+    puts '-------------------------'
+    puts session[:b2clogin]
     do_signup if session[:b2clogin]=true
 
     puts "********show start*******"
