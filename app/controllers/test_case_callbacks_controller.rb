@@ -168,6 +168,10 @@ private
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             session[:b2clogin]=true
             redirect_to root_path and return
+          else
+            puts "<<<<<<<<<< B2C USER NOT FOUND IN LOCAL REDIRECT TO REGISTRATION>>>>>>>"
+            session[:b2clogin]=true
+            Redirect_to sign_up_path and return
           end
       end   
     else # no LoA therefore not logged in
