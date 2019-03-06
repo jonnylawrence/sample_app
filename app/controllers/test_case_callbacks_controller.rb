@@ -184,7 +184,7 @@ private
       redirect_to root_path and return
   end
   def do_signup
-    session[:b2clogin]=true
+    #session[:b2clogin]=true
     puts '>>>>>>>>>>>>b2C USER NEEDS SIGN UP>>>>>>>>>>>>'
     redirect_to root_path, status: 301 and return
   end
