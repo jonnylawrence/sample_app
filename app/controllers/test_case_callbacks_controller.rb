@@ -180,7 +180,7 @@ private
 
   def not_logged_in
     puts '>>>>>>>>>>>>>>>>>NOT LOGGED IN<<<<<<<<<<<<<<<<<<<<'
-      session[:b2clogin]=false
+      #session[:b2clogin]=false
       redirect_to root_path and return
   end
   def do_signup
