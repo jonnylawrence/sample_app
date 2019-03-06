@@ -168,10 +168,8 @@ private
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             session[:b2clogin]=true
             redirect_to root_path and return
-          else
-            puts "<<<<<<<<<< B2C USER NOT FOUND IN LOCAL REDIRECT TO REGISTRATION>>>>>>>"
-            session[:b2clogin]=true
-            Redirect_to signup_path and return
+          else # local email not found - do signup
+            do_signup
           end
       end   
     else # no LoA therefore not logged in
@@ -184,6 +182,12 @@ private
     puts '>>>>>>>>>>>>>>>>>NOT LOGGED IN<<<<<<<<<<<<<<<<<<<<'
       session[:b2clogin]=false
       redirect_to root_path and return
+  end
+
+  def do_signup
+    puts '>>>>>>>>>>>>b2C USER NEEDS SIGN UP>>>>>>>>>>>>'
+    session[:b2clogin]=true
+    redirect_to signup_path and return
   end
 
 end # end class
