@@ -87,7 +87,7 @@ class B2cApiClass < ApplicationController
         @b2cbearertoken=nil
     end
 
-    def api_add_service_hint(objectId,policyId,org,userType,systemId,productId)
+    def api_add_service_hint(objectId,policyId,org,userType,systemId,productId,bearertoken)
     #     # *********************************************************
     #     #  Use this site to build the correct REST statement from CURL
     #     # https://jhawthorn.github.io/curl-to-ruby/
@@ -99,15 +99,16 @@ class B2cApiClass < ApplicationController
          @b2cuserType=userType
          @b2csystemId=systemId
          @b2cproductId=productId
+         @bearertoken=bearertoken
 
           #logger.debug ">>>>>>>>>>>>>vars>>>>>OBJ"+@b2cobjectId+" POL"+@b2cpolicyId+" ORG"+@b2corg+" UT"+@b2cuserType+" SYS"+@b2csystemId+" PROD"+@b2cproductId
           logger.debug ">>>>>>>>>bear token<<<<<<<<<<<<<< "
-          logger.debug @bc2bearertoken
+          logger.debug @bearertoken
           uri = URI.parse("https://neubgdat01buiduat01userprofile01.azurewebsites.net/api/ServiceHints")
-          request = Net::HTTP::Post.new(uri)
+          request = Net::HTTP::Patch.new(uri)
           request.content_type = "application/json-patch+json"
           request["Accept"] = "text/plain"
-          request["Authorization"] = @bc2bearertoken
+          request["Authorization"] = @bearertoken
           request.body = JSON.dump({
           "objectId" => @b2cobjectId,
           "value" => {},

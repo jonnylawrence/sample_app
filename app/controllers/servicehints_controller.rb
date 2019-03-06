@@ -16,7 +16,7 @@ class ServicehintsController < ApplicationController
        
         @token=B2cApiClass.new
         @token.reset
-        @b2c_service_results=@token.api_add_service_hint(@objectId,@policyId,@org,@userType,@systemId,@productId)
+        @b2c_service_results=@token.api_add_service_hint(@objectId,@policyId,@org,@userType,@systemId,@productId,"Bearer "+@token.apibody)
 
         if @b2c_service_results == '200'
             flash.now[:success] = 'Service Hint added to ' + @objectId

@@ -1,0 +1,14 @@
+# Rails.root/config/sail.yml
+# Setting name with it's information contained inside
+# These values are used for the reset functionality as well
+
+first_setting:
+  description: Level of Access
+  value: L1, L2 or L3
+  cast_type: string
+  group: setting_group_1
+second_setting:
+  description: My second setting, this time a boolean
+  value: false
+  cast_type: boolean
+  group: feature_flags
