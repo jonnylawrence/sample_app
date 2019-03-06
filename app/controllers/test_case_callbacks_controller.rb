@@ -9,7 +9,7 @@ class TestCaseCallbacksController < ApplicationController
   def show
 
     do_signup if session[:b2clogin]=true
-    
+
     puts "********show start*******"
     puts params[:LoA]
     puts '-----------'
@@ -170,8 +170,8 @@ private
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             session[:b2clogin]=true
             redirect_to root_path and return
-          else # local email not found - do signup
-            do_signup
+          # else # local email not found - do signup
+          #   do_signup
           end
       end   
     else # no LoA therefore not logged in
