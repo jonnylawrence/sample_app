@@ -171,7 +171,7 @@ private
           else
             puts "<<<<<<<<<< B2C USER NOT FOUND IN LOCAL REDIRECT TO REGISTRATION>>>>>>>"
             session[:b2clogin]=true
-            Redirect_to sign_up_path and return
+            Redirect_to signup_path and return
           end
       end   
     else # no LoA therefore not logged in
