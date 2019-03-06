@@ -157,6 +157,8 @@ private
             session[:jwttokeniat]=parsed["iat"]
             session[:jwttokenauth_time]=parsed["auth_time"]
             session[:jwttokenemail]=jwtemail
+            puts '<<<<<<<<<EMAIL CHECK>>'
+            puts session[:jwttokenemail]
             session[:jwttokenloa]=parsed["LoA"]
             session[:jwttokenoid]=parsed["oid"]
             session[:jwttokenrpname]=parsed["rpName"]
