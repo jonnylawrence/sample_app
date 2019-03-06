@@ -102,8 +102,8 @@ class B2cApiClass < ApplicationController
          @bearertoken=bearertoken
 
           #logger.debug ">>>>>>>>>>>>>vars>>>>>OBJ"+@b2cobjectId+" POL"+@b2cpolicyId+" ORG"+@b2corg+" UT"+@b2cuserType+" SYS"+@b2csystemId+" PROD"+@b2cproductId
-          logger.debug ">>>>>>>>>bear token<<<<<<<<<<<<<< "
-          logger.debug @bearertoken
+        #   logger.debug ">>>>>>>>>bear token<<<<<<<<<<<<<< "
+        #   logger.debug @bearertoken
           uri = URI.parse("https://neubgdat01buiduat01userprofile01.azurewebsites.net/api/ServiceHints")
           request = Net::HTTP::Patch.new(uri)
           request.content_type = "application/json-patch+json"
