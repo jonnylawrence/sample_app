@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
 
     # Confirms a logged-in user.
     def logged_in_user
+      puts 'logged_in_user check'
       unless logged_in?
         store_location
         flash[:danger] = "Please log in."

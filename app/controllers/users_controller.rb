@@ -77,14 +77,14 @@ class UsersController < ApplicationController
 
     # Confirms the correct user.
     def correct_user
+      puts '<><><><>< correct user check'
       @user = User.find(params[:id])
-      puts '<><><><>< correct user'
-      puts @user
       redirect_to(root_url) unless current_user?(@user)
     end
 
     # Confirms an admin user.
     def admin_user
+      puts '<><><><><admin user'
       redirect_to(root_url) unless current_user.admin?
     end
 end
