@@ -10,7 +10,7 @@ class TestCaseCallbacksController < ApplicationController
 
     puts '-------------------------'
     puts session[:b2clogin]
-    do_signup if session[:b2clogin]=true
+    do_signup if session[:b2clogin]==true
 
     puts "********show start*******"
     puts params[:LoA]
