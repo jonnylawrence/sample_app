@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount Sail::Engine => '/sail'
   get 'sessions/new'
   get 'users/new'
   root 'static_pages#home'

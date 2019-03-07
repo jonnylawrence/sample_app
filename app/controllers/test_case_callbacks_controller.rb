@@ -7,7 +7,7 @@ class TestCaseCallbacksController < ApplicationController
   #before_action :reject_csrf
 
   def show
-
+    sailLoA = Sail.get("LoA")
     # puts '-------------------------'
     # puts session[:b2clogin]
     # do_signup if session[:b2clogin]==true
@@ -22,6 +22,7 @@ class TestCaseCallbacksController < ApplicationController
 
     puts "**** logged_in true or false **********" 
     puts logged_in?
+
     if logged_in? == false 
     
         puts '*********************** callback *******************'
