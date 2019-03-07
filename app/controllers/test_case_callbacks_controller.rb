@@ -122,7 +122,7 @@ private
     puts params[:id_token]
     puts "******************************"
     # check body for a L2 Token, although token needs to be checked below
-    if (params[:LoA] == "L1") || (params[:LoA] == "L2")  
+    if (params[:LoA] == "L1") || (params[:LoA] == "L2")  || (params[:LoA] == "L3")  
       puts '*********** checking ID token....'
       @b2cjwt=Decode.new(params[:id_token],Rails.application.secrets.BC2_Assertion_secret)
       @b2cjwt.decode_segments
@@ -150,7 +150,7 @@ private
       puts "ServiceHints> " + parsed["ServiceHints"]
       puts '>>>>>>>>>TOKEN OUTPUT END<<<<<<<<<<<<<'
 
-      if (parsed["LoA"] == "L1") || (params[:LoA] == "L2")  
+      if (parsed["LoA"] == "L1") || (params[:LoA] == "L2") || (params[:LoA] == "L3")  
         user = User.find_by(email: jwtemail)
           if user 
             puts '*********************** Logged in as' + parsed["LoA"] + '**********'
