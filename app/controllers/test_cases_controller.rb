@@ -119,7 +119,7 @@ class TestCasesController < ApplicationController
           response_type: "id_token",
           response_mode: "form_post",
           client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-       #   client_assertion: token,
+          client_assertion: token,
           ui_locales: "en-GB",
           prompt: "login"
         )

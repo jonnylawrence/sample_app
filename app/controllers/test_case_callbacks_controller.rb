@@ -150,6 +150,7 @@ private
       puts "ServiceHints> " + parsed["ServiceHints"]
       puts '>>>>>>>>>TOKEN OUTPUT END<<<<<<<<<<<<<'
 
+      
       if (parsed["LoA"] == "L1") || (params[:LoA] == "L2") || (params[:LoA] == "L3")  
         user = User.find_by(email: jwtemail)
           if user 
