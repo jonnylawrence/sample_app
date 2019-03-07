@@ -20,6 +20,7 @@
               <li><%= link_to "BUID change username", edit_user_path(current_user) %></li>
               <li><%= link_to "BUID maintain mobile", edit_user_path(current_user) %></li>
                   <% if current_user.admin? %>
+                  <li><%= link_to "Admin", dashboard_path %></li>
                   <li><%= link_to "Search B2C", b2c_user_path %></li>
                   <li><%= link_to "Service Hint", servicehints_path %></li>
                    <% end %>
@@ -29,8 +30,6 @@
               </li>
             </ul>
           </li>
-        <% else %>
-          <li><%= link_to "Register", signup_path %></li>
         <% end %>
       </ul>
     </nav>
