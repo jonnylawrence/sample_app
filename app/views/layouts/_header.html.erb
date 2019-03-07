@@ -15,10 +15,8 @@
               <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li><%= link_to "BUID maintain security questions", test_case_path("maintainsecurity") %></li>
-              <li><%= link_to "BUID delete account", edit_user_path(current_user) %></li>
-              <li><%= link_to "BUID change password", edit_user_path(current_user) %></li>
-              <li><%= link_to "BUID change username", edit_user_path(current_user) %></li>
-              <li><%= link_to "BUID maintain mobile", edit_user_path(current_user) %></li>
+              <li><%= link_to "BUID change password", test_case_path("changepassword") %></li>
+              <li><%= link_to "BUID maintain mobile", test_case_path("maintainmobile") %></li>
                   <% if current_user.admin? %>
        
                   <li><%= link_to "Search B2C", b2c_user_path %></li>
