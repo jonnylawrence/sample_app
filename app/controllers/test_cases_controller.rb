@@ -75,11 +75,11 @@ class TestCasesController < ApplicationController
     puts "rpname:" + session[:jwttokenrpname]
     puts "aud:" + session[:jwttokenaud]
     puts "acr:" + session[:jwttokenacr]
-    puts "exp:" + session[:jwttokenexp]
-    puts "nbf:" + session[:jwttokennbf]
+    puts "exp:" + session[:jwttokenexp].to_s
+    puts "nbf:" + session[:jwttokennbf].to_s
     puts "iss:" + session[:jwttokeniss]
-    puts "iat:" + session[:jwttokeniat]
-    puts "auth_time:" + session[:jwttokenauth_time]
+    puts "iat:" + session[:jwttokeniat].to_s
+    puts "auth_time:" + session[:jwttokenauth_time].to_s
     puts ">>>>>>>>> END <<<<<<<<<<<<<<<<"
    
     expirey_time = 24.hours.from_now.to_i
