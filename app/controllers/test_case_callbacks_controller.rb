@@ -178,6 +178,20 @@ private
             if @user.save 
               log_in @user
               session[:b2clogin]=true
+              session[:jwttokenexp]=parsed["exp"]
+           session[:jwttokennbf]=parsed["nbf"]
+            session[:jwttokeniss]=parsed["iss"]
+            session[:jwttokeniat]=parsed["iat"]
+            session[:jwttokenauth_time]=parsed["auth_time"]
+            session[:jwttokenemail]=jwtemail
+            puts '<<<<<<<<<EMAIL CHECK>>'
+            puts session[:jwttokenemail]
+            session[:jwttokenloa]=parsed["LoA"]
+            session[:jwttokenoid]=parsed["oid"]
+            session[:jwttokenrpname]=parsed["rpName"]
+            session[:jwttokenaud]=parsed["aud"]
+            session[:jwttokenacr]=parsed["acr"] 
+            session[:jwttokennonce]=parsed["nonce"]  
               redirect_to signup_path, email: jwtemail and return
             else
               puts '**** test_callback: create a dummy user record for registration failed ***'
