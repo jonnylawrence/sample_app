@@ -120,7 +120,6 @@ class TestCasesController < ApplicationController
           ui_locales: "en-GB",
           prompt: "login"
         )
-    
     else
       # ******************* NON-B2C PATH OPENID Dynamic Discovery ****************************  
       session[:client_id] = client.identifier
