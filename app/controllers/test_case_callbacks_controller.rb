@@ -173,10 +173,15 @@ private
             session[:b2clogin]=true
             redirect_to root_path and return
           else
-            puts '>>>>>>>>>>>>b2C USER NEEDS SIGN UP>>>>>>>>>>>>'
-            log_in user
-            session[:b2clogin]=true
-            redirect_to signup_path and return
+            puts '>>>>>>>>>>>>b2C USER NEEDS SIGN UP - CREATING DUMMY RECORD >>>>>>>>>>>>'
+            @user = User.new(:name => "Please complete",:member => "Please complete", :email => jwtemail, :password => "0racle", :password_confirmation => "0racle")
+            if @user.save 
+              log_in @user
+              session[:b2clogin]=true
+              redirect_to signup_path and return
+            else
+              puts '**** test_callback: create a dummy user record for registration failed ***'
+            end 
           end
       end   
     else # no LoA therefore not logged in
