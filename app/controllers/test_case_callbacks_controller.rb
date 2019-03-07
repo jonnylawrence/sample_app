@@ -153,8 +153,8 @@ private
       if (parsed["LoA"] == "L1")
         user = User.find_by(email: jwtemail)
           if user 
-            puts '*********************** Logged in as level 2 *******************'
-            log_in user # session_helper
+            puts '*********************** Logged in as' + parsed["LoA"] + '**********'
+           log_in user # session_helper
            session[:jwttokenexp]=parsed["exp"]
            session[:jwttokennbf]=parsed["nbf"]
             session[:jwttokeniss]=parsed["iss"]
@@ -172,6 +172,11 @@ private
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             session[:b2clogin]=true
             redirect_to root_path and return
+          else
+            puts '>>>>>>>>>>>>b2C USER NEEDS SIGN UP>>>>>>>>>>>>'
+            log_in user
+            session[:b2clogin]=true
+            redirect_to signup_path and return
           end
       end   
     else # no LoA therefore not logged in
