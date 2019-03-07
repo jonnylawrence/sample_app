@@ -27,9 +27,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save # && verify_recaptcha(model: @user)
       # log_in @user
-      flash[:success] = "You have registered, please create an identity!"
-      redirect_to test_case_path("b2c-rp-response_type-code")
-      #redirect_to @user
+      # flash[:success] = "You have registered, please create an identity!"
+      redirect_to(root_url)
+      #redirect_to test_case_path("b2c-rp-response_type-code")
     else
       render 'new'
     end
