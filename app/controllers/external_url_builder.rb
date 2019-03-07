@@ -1,14 +1,16 @@
 class ExternalUrlBuilder  < ActionController::Base
 
   B2C_APP_URL = ::Addressable::Template.new("https://neubgdat01buiduat01relyingparty01.azurewebsites.net/")
+  SAIL_URL = ::Addressable::Template.new("https://b2c-ruby.herokuapp.com/sail/")
   
 
   def B2C_url
     B2C_APP_URL.pattern
   end
 
-  
-
+  def SAIL_url
+    SAIL_URL.pattern
+  end
 end
 
 # Addressable::Template.new('http://www.windowsphone.com{/language}/store/app/-{/app_id}')
