@@ -15,8 +15,10 @@ class UsersController < ApplicationController
 
   def new
     puts '<<<<<< in users create>>>>'
-    puts params[:email]
-    puts '<<<<<<<<<<>>>>>>>>>>>>>>>'
+    puts session[:email]
+    puts '<<<<<<<<<<remove dummy email >>>>>>>>>>>>>>>'
+    dummyuser = User.find_by(email: "dummy").destroy
+    puts '<<<<<<<<<< dummy removed >>>>>>>>>>>>>>>'
     @user = User.new
   end
 
