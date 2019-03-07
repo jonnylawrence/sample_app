@@ -56,7 +56,8 @@ class TestCasesController < ApplicationController
          ui_locales: "en-GB",
          prompt: "login"
        )
-    # ******************* RP in menu option  ****************************  
+    # ******************* maintain security  **************************** 
+    # ******************* maintain security  ****************************  
     elsif params[:id] == "maintainsecurity" 
 
     puts "********* in maintainsecurity questions item - params:" + params[:id]
@@ -70,16 +71,15 @@ class TestCasesController < ApplicationController
     puts ">>>>>>current JWT obtained from login session helper is :" 
     puts session[:jwttokenemail]
     puts session[:jwttokenloa]
-    puts session[:jwttokenoid]
-    puts session[:jwttokenrpname]
-    puts session[:jwttokenaud]
-    puts session[:jwttokenacr]
-    puts session[:jwttokenexp]
-    puts session[:jwttokennbf]
-    puts session[:jwttokeniss]
-    puts session[:jwttokeniat]
-    puts session[:jwttokenauth_time]
-    puts session[:jwttokennonce]
+    puts "oid:" + session[:jwttokenoid]
+    puts "rpname:" + session[:jwttokenrpname]
+    puts "aud:" + session[:jwttokenaud]
+    puts "acr:" + session[:jwttokenacr]
+    puts "exp:" + session[:jwttokenexp]
+    puts "nbf:" + session[:jwttokennbf]
+    puts "iss:" + session[:jwttokeniss]
+    puts "iat:" + session[:jwttokeniat]
+    puts "auth_time:" + session[:jwttokenauth_time]
     puts ">>>>>>>>> END <<<<<<<<<<<<<<<<"
    
     expirey_time = 24.hours.from_now.to_i
@@ -90,12 +90,11 @@ class TestCasesController < ApplicationController
       ver: "1.0",
       iss: session[:jwttokeniss],
       sub: "Not supported currently. Use oid claim.",
-      aud: session[:jwttokenaud],
-      acr: session[:jwttokenacr],
+      aud: "https://uat-account.np.bupaglobal.com/",
+      acr: "B2C_1A_BUID_UpdateSecurityQuestions",
       nonce: session[:jwttokennonce],
       iat: time_now,
-      auth_time: session[:jwttokenauth_time],
-      returnPath: "unspecified",
+      returnPath: "https://b2c-ruby.herokuapp.com/test_case_callbacks/maintainsecurity",
       rpName: session[:jwttokenrpname],
       LoA: session[:jwttokenloa] 
     }
@@ -111,7 +110,7 @@ class TestCasesController < ApplicationController
       #client_assertion=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1NTE3MTYyOTQsImV4cCI6MTU1MTcxNjg5NCwiaWF0IjoxNTUxNzE2Mjk0LCJpc3MiOiJodHRwczovL3VhdC1hY2NvdW50Lm5wLmJ1cGFnbG9iYWwuY29tL25ldWJnZGF0MDFhdGx1YXQwMWIyYzAxLm9ubWljcm9zb2Z0LmNvbS9iMmNfMWFfYnVwYS11bmktdWF0LW1haW50YWluc2VjdXJpdHlxdWVzdGlvbnMvb2F1dGgyL3YyLjAvYXV0aG9yaXplIiwiYXVkIjoiaHR0cHM6Ly9uZXViZ2RhdDAxYnVpZHVhdDAxcmVseWluZ3BhcnR5MDEuYXp1cmV3ZWJzaXRlcy5uZXQvc2lnbmluLW9pZGMifQ.NFIxTO1EoTrfWQ6k17Bjzb7TdrzOj35BO_hOqpoQwyI&ui_locales=en-GB&state=CfDJ8IIR0Q9Fx-xIlkx-K2D-8GtWTYs68i2IGt_jlFrxpW52uvrvVRTMrk4kNkl6AjbtHU00LuUCj4jpmAkfD14EfzVil7loWGUabiMPlxFEIOaOP2p90UjMfWQ6kVxsgGcHSFdWeXrX6D0AYk7bTbI5mZiKRgBjzt32YC3c3Y-LqKY6v4iZDZ08yszHxalAwZQiGtP1jKbNIG4M_rAwyzYRT7qObaKwi0aye2fqhAHNf7AkIJICt_1MvwjgycCTxHq1Li_F3IOOnPlj_8xgm_DKv_8CQCHXUVVD9323kyU-kWd1S6p-gkI50eiAKGffPIlvnQXNt04qq-GnUQaS0hwXUWs
       #&x-client-SKU=ID_NETSTANDARD1_4&x-client-ver=5.2.0.0
    
-      puts '******** 2 redirecting to maintain securitu questions ***********'
+      puts '******** 2 redirecting to maintain security questions ***********'
         redirect_to client.authorization_uri(
           state: session[:state],
           nonce: session[:nonce],
