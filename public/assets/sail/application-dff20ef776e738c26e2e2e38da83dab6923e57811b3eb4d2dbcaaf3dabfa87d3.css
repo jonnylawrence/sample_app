@@ -1,0 +1,712 @@
+/* line 3, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/_shared.scss */
+.rounded {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* line 9, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/_shared.scss */
+.border-transition {
+  -webkit-transition: border .25s ease-in;
+  -moz-transition: border .25s ease-in;
+  -o-transition: border .25s ease-in;
+  transition: border .25s ease-in;
+  outline: none;
+}
+/* line 16, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/_shared.scss */
+.border-transition:focus, .border-transition:hover {
+  border-color: #F19F4D;
+  outline: none;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* line 32, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/_shared.scss */
+.fade-in {
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
+}
+/* line 3, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/_shared.scss */
+.rounded, #settings-dashboard .card, #settings-dashboard .card .tag, #settings-dashboard #search-container #search-form #query, #settings-dashboard #search-container .search-button, #settings-dashboard #search-container #sort-menu, #settings-dashboard #search-container #sort-menu button, #settings-dashboard .notice, .btn-sail, #settings-dashboard .card .btn-value-submit {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* line 9, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/_shared.scss */
+.border-transition, #settings-dashboard .card .value-input, #settings-dashboard .card .date-picker, #settings-dashboard #search-container #search-form #query, #settings-dashboard #search-container .search-button {
+  -webkit-transition: border .25s ease-in;
+  -moz-transition: border .25s ease-in;
+  -o-transition: border .25s ease-in;
+  transition: border .25s ease-in;
+  outline: none;
+}
+/* line 16, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/_shared.scss */
+.border-transition:focus, #settings-dashboard .card .value-input:focus, #settings-dashboard .card .date-picker:focus, #settings-dashboard #search-container #search-form #query:focus, #settings-dashboard #search-container .search-button:focus, .border-transition:hover, #settings-dashboard .card .value-input:hover, #settings-dashboard .card .date-picker:hover, #settings-dashboard #search-container #search-form #query:hover, #settings-dashboard #search-container .search-button:hover {
+  border-color: #F19F4D;
+  outline: none;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* line 32, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/_shared.scss */
+.fade-in, #settings-dashboard #search-container #sort-menu, #settings-dashboard .notice {
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
+}
+
+/* line 4, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard {
+  max-height: 100vh;
+  color: #0B0C10;
+}
+/* line 8, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #settings-container {
+  margin-top: 1rem;
+  text-align: center;
+}
+/* line 13, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card {
+  min-height: 230px;
+  background-color: white;
+  margin: 1rem .75rem;
+  display: inline-block;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  padding: 10px;
+  z-index: 2;
+  width: 25rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+@media (min-width: 992px) {
+  /* line 13, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+  #settings-dashboard .card {
+    width: 44%;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 13, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+  #settings-dashboard .card {
+    width: 21%;
+  }
+}
+/* line 30, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card h3 {
+  margin-left: 25px;
+}
+/* line 33, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card h3 .relevancy-score {
+  float: right;
+  color: #cccccc;
+}
+/* line 39, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .card-body-container {
+  display: table;
+  width: 100%;
+}
+/* line 44, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .card-body {
+  height: 80px;
+  width: 100%;
+  display: table-cell;
+  vertical-align: bottom;
+}
+/* line 51, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .tag {
+  font-weight: bold;
+  padding: 10px;
+  color: #0B0C10;
+  font-size: 14px;
+  margin-left: 5px;
+  text-decoration: none;
+}
+/* line 60, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .tag.type-label {
+  background-color: #F9CF00;
+}
+/* line 64, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .tag.group-label {
+  background-color: #4484CE;
+}
+/* line 68, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .tag.stale-label {
+  background-color: #D00000;
+}
+/* line 73, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .label-container {
+  float: right;
+  margin-top: 5px;
+}
+/* line 78, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .setting-description {
+  clear: both;
+  padding: 25px 15px 15px 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #666666;
+}
+/* line 87, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .value-input {
+  width: 98%;
+  margin-bottom: 10px;
+  height: 20px;
+  font-size: 22px;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid #D9D9D9;
+}
+/* line 98, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .date-picker {
+  position: relative;
+  bottom: 10px;
+  border: none;
+  border-bottom: 2px solid #D9D9D9;
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+}
+/* line 109, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .value-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  margin: 0 0 10px 0;
+}
+/* line 121, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .value-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #F19F4D;
+  cursor: pointer;
+}
+/* line 131, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .value-slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #F19F4D;
+  cursor: pointer;
+}
+/* line 140, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .btn-value-submit {
+  width: 100%;
+  height: 35px;
+}
+/* line 146, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-bottom: 10px;
+  float: right;
+}
+/* line 155, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .switch input {
+  display: none;
+}
+/* line 157, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+/* line 168, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+/* line 181, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card input:checked + .slider {
+  background-color: #F19F4D;
+}
+/* line 185, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card input:focus + .slider {
+  box-shadow: 0 0 1px #F19F4D;
+}
+/* line 189, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+/* line 195, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .slider.round {
+  border-radius: 34px;
+}
+/* line 199, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .slider.round:before {
+  border-radius: 50%;
+}
+/* line 203, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .refresh-button {
+  border: none;
+  outline: none;
+  float: left;
+  background: transparent;
+}
+/* line 209, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .refresh-button img {
+  height: 30px;
+}
+/* line 213, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .refresh-button:hover {
+  cursor: pointer;
+}
+/* line 218, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .card .refresh-button.active img {
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* line 232, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #search-container #search-form {
+  text-align: center;
+  padding-top: 25px;
+}
+/* line 236, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #search-container #search-form #query {
+  height: 50px;
+  width: 100%;
+  border: 3px solid transparent;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  font-size: 18px;
+  text-align: center;
+}
+/* line 248, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #search-container .offset-container {
+  float: left;
+  width: 25%;
+  height: 50px;
+}
+/* line 254, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #search-container .inner-container {
+  width: 50%;
+  float: left;
+}
+/* line 259, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #search-container .search-button {
+  float: left;
+  border: 3px solid transparent;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  background: white;
+}
+/* line 267, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #search-container .search-button img {
+  height: 100%;
+}
+/* line 272, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #search-container #btn-order {
+  margin: 25px 0 0 15px;
+  height: 58px;
+}
+/* line 277, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #search-container #sort-menu {
+  background: white;
+  position: absolute;
+  right: 18%;
+  top: 165px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  padding: 10px;
+}
+@media (min-width: 1980px) {
+  /* line 277, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+  #settings-dashboard #search-container #sort-menu {
+    right: 22%;
+  }
+}
+/* line 289, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #search-container #sort-menu button {
+  outline: none;
+  border: none;
+  width: 100%;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  background: transparent;
+  padding: 5px;
+}
+/* line 299, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #search-container #sort-menu button:hover {
+  background-color: #F19F4D;
+}
+/* line 305, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #search-container #main-app-link {
+  margin: 25px 0 0 8px;
+  height: 53px;
+}
+/* line 310, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #search-container #btn-profiles {
+  height: 58px;
+  margin: 25px 0 0 8px;
+}
+/* line 316, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .notice {
+  background-color: white;
+  font-size: 24px;
+  position: fixed;
+  left: 50px;
+  top: 85px;
+  padding: 25px;
+  width: 150px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  display: none;
+}
+/* line 330, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .notice.success {
+  color: #306B34;
+}
+/* line 334, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard .notice.alert {
+  color: #D00000;
+}
+/* line 339, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #progress-container {
+  text-align: center;
+}
+/* line 342, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #progress-container #search-submit-progress {
+  display: none;
+  width: 100%;
+  -webkit-appearance: none;
+  height: 3px;
+  position: relative;
+  bottom: 22px;
+  left: 3px;
+}
+/* line 351, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #progress-container #search-submit-progress::-webkit-progress-bar {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  background-color: white;
+}
+/* line 356, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+#settings-dashboard #progress-container #search-submit-progress::-webkit-progress-value {
+  background-color: #4484CE;
+}
+
+/* line 363, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+.btn-sail, #settings-dashboard .card .btn-value-submit {
+  text-align: center;
+  font-size: 18px;
+  background-color: #F19F4D;
+  border: none;
+  outline: none;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+/* line 376, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+.btn-sail:active, #settings-dashboard .card .btn-value-submit:active {
+  color: #0B0C10;
+  opacity: .8;
+}
+/* line 381, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/settings.scss */
+.btn-sail:hover, #settings-dashboard .card .btn-value-submit:hover {
+  background-color: #c86c10;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+/* line 3, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/_shared.scss */
+.rounded, #pagination a, #profiles-modal {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* line 9, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/_shared.scss */
+.border-transition, #profiles-modal .profile-entry {
+  -webkit-transition: border .25s ease-in;
+  -moz-transition: border .25s ease-in;
+  -o-transition: border .25s ease-in;
+  transition: border .25s ease-in;
+  outline: none;
+}
+/* line 16, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/_shared.scss */
+.border-transition:focus, #profiles-modal .profile-entry:focus, .border-transition:hover, #profiles-modal .profile-entry:hover {
+  border-color: #F19F4D;
+  outline: none;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* line 32, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/_shared.scss */
+.fade-in, #profiles-modal {
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
+}
+
+/* line 21, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+html, body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #4484CE;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* line 29, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+.clearfix {
+  clear: both;
+}
+
+/* line 33, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#nav-bar {
+  background-color: #003049;
+}
+/* line 36, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#nav-bar .home-link {
+  text-decoration: none;
+  color: white;
+  -webkit-transition: color .25s ease-in;
+  -moz-transition: color .25s ease-in;
+  -o-transition: color .25s ease-in;
+  transition: color .25s ease-in;
+}
+/* line 44, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#nav-bar .home-link:visited {
+  color: white;
+}
+/* line 48, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#nav-bar .home-link:hover {
+  color: #F19F4D;
+}
+/* line 52, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#nav-bar .home-link .title {
+  margin: 0;
+  text-align: center;
+  font-size: 3rem;
+  padding: .75rem 0;
+}
+
+/* line 61, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#pagination {
+  text-align: center;
+  margin-top: 2rem;
+}
+/* line 65, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#pagination a {
+  color: #0B0C10;
+  text-decoration: none;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  font-weight: bold;
+}
+/* line 74, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#pagination a.active {
+  background-color: #F19F4D;
+  color: white;
+}
+/* line 81, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#pagination .page-links a {
+  font-size: 1.2rem;
+  margin: 0 2px 0 2px;
+}
+/* line 86, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#pagination .page-links #angle-left-link {
+  background: white url(/assets/sail/angle-left-102ff53b1d4b3350661dac6743a1701ff6d127b46d78b033f9b178131855eb1b.svg) center no-repeat;
+  margin-right: 6px;
+  padding: 20px 24px 20px 24px;
+}
+/* line 92, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#pagination .page-links #angle-right-link {
+  background: white url(/assets/sail/angle-right-3bd1eddbb172527eba585f1f4ed29c3551126bba32a80ebf7c39beda6fe6ed88.svg) center no-repeat;
+  padding: 20px 24px 20px 24px;
+}
+
+/* line 99, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#profiles-modal {
+  position: fixed;
+  height: 50%;
+  width: 50%;
+  top: 25%;
+  left: 25%;
+  background-color: white;
+  z-index: 1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  text-align: center;
+  padding: 15px;
+  overflow: scroll;
+}
+/* line 114, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#profiles-modal h1 {
+  margin-left: 35px;
+}
+/* line 117, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#profiles-modal h1 #response-message {
+  float: right;
+  font-size: 18px;
+  margin-right: 3px;
+  position: relative;
+  top: 5px;
+  min-width: 50px;
+  min-height: 20px;
+  color: #306B34;
+}
+/* line 129, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#profiles-modal .profile-entry {
+  padding: 10px;
+  font-size: 20px;
+  border-bottom: 2px solid transparent;
+  margin-bottom: 15px;
+}
+/* line 136, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#profiles-modal .profile-entry .inline-form {
+  float: right;
+}
+/* line 140, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#profiles-modal .profile-entry button {
+  float: right;
+  margin-left: 5px;
+  padding: 10px;
+}
+/* line 146, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#profiles-modal .profile-entry .entry-name {
+  position: relative;
+  top: 10px;
+}
+@media (max-width: 1199px) {
+  /* line 146, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+  #profiles-modal .profile-entry .entry-name {
+    float: left;
+  }
+}
+@media (min-width: 1200px) {
+  /* line 146, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+  #profiles-modal .profile-entry .entry-name {
+    margin-left: 250px;
+  }
+}
+/* line 153, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#profiles-modal .profile-entry .active-indicator {
+  float: left;
+  position: relative;
+  top: 7px;
+}
+/* line 158, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#profiles-modal .profile-entry .active-indicator.yellow {
+  color: #F9CF00;
+}
+/* line 162, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#profiles-modal .profile-entry .active-indicator.green {
+  color: #44AF69;
+}
+/* line 168, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#profiles-modal #new-profile-input {
+  height: 100%;
+  border: none;
+  font-size: 20px;
+  width: 90%;
+  font-family: 'Raleway', sans-serif;
+  position: relative;
+  top: 10px;
+}
+/* line 177, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+#profiles-modal #new-profile-input:focus {
+  outline: none;
+}
+
+/* line 183, /Users/jonnylawrence/.rvm/gems/ruby-2.6.1/gems/sail-3.0.1/app/assets/stylesheets/sail/application.scss */
+hr {
+  border: 0;
+  height: 1px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
