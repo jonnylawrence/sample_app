@@ -14,15 +14,18 @@ class TestCasesController < ApplicationController
     #   redirect_uri: YOUR_REDIRECT_URI,
     #   host: 'server.example.com'
     # )
-    client = TestCase.register_client!(
-      params[:id],
-      redirect_uri: test_case_callback_url(params[:id])
-    )
+ 
       puts "---------------TEST CASES PARAMS----------"
       puts params[:id]
       puts '-------------------------------'
     # ******************* B2C PATH ****************************  
-    if params[:id] == "b2c-rp-response_type-code"  
+    if params[:id] == "b2c-rp-response_type-code" 
+      
+      client = TestCase.register_client!(
+        params[:id],
+        redirect_uri: test_case_callback_url(params[:id])
+      )
+      
       puts "In generic call case - params:" + params[:id]
 
       session[:client_id] = Rails.application.secrets.B2C_client_id
@@ -87,14 +90,12 @@ class TestCasesController < ApplicationController
     payload = { 
       exp: expirey_time,
       nbf: time_now,
-      ver: "1.0",
       iss: session[:jwttokeniss],
-      sub: "Not supported currently. Use oid claim.",
       aud: "https://uat-account.np.bupaglobal.com/",
       acr: "B2C_1A_BUID_UpdateSecurityQuestions",
       nonce: session[:jwttokennonce],
       iat: time_now,
-      returnPath: "https://b2c-ruby.herokuapp.com/test_case_callbacks/maintainsecurity",
+      returnPath: "https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code",
       rpName: session[:jwttokenrpname],
       LoA: session[:jwttokenloa] 
     }
