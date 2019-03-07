@@ -174,7 +174,7 @@ private
             redirect_to root_path and return
           else
             puts '>>>>>>>>>>>>b2C USER NEEDS SIGN UP - CREATING DUMMY RECORD >>>>>>>>>>>>'
-            @user = User.new(:name => "Please complete",:member => "Please complete", :email => "dummy", :password => "0racle", :password_confirmation => "0racle")
+            @user = User.new(:name => "Please complete",:member => "Please complete", :email => "dummy2", :password => "0racle", :password_confirmation => "0racle")
             if @user.save 
               log_in @user
               session[:b2clogin]=true
