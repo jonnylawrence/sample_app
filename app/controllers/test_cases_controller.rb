@@ -91,7 +91,7 @@ class TestCasesController < ApplicationController
       exp: expirey_time,
       nbf: time_now,
       iss: session[:jwttokeniss],
-      aud: "https://uat-account.np.bupaglobal.com/",
+      aud: 'https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code',
       acr: "B2C_1A_BUID_UpdateSecurityQuestions",
       nonce: session[:jwttokennonce],
       iat: time_now,
@@ -121,7 +121,7 @@ class TestCasesController < ApplicationController
           client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
           client_assertion: token,
           ui_locales: "en-GB",
-          prompt: "login"
+          prompt: "none"
         )
     else
       # ******************* NON-B2C PATH OPENID Dynamic Discovery ****************************  
