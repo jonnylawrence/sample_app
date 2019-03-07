@@ -14,17 +14,17 @@ class TestCasesController < ApplicationController
     #   redirect_uri: YOUR_REDIRECT_URI,
     #   host: 'server.example.com'
     # )
+
+    client = TestCase.register_client!(
+      params[:id],
+      redirect_uri: test_case_callback_url(params[:id])
+    )
  
       puts "---------------TEST CASES PARAMS----------"
       puts params[:id]
       puts '-------------------------------'
     # ******************* B2C PATH ****************************  
     if params[:id] == "b2c-rp-response_type-code" 
-      
-      client = TestCase.register_client!(
-        params[:id],
-        redirect_uri: test_case_callback_url(params[:id])
-      )
       
       puts "In generic call case - params:" + params[:id]
 
@@ -78,11 +78,11 @@ class TestCasesController < ApplicationController
     puts "rpname:" + session[:jwttokenrpname]
     puts "aud:" + session[:jwttokenaud]
     puts "acr:" + session[:jwttokenacr]
-    puts "exp:" + session[:jwttokenexp].to_s
-    puts "nbf:" + session[:jwttokennbf].to_s
+    puts "exp:" + Time.at(session[:jwttokenexp]).to_s 
+    puts "nbf:" + Time.at(session[:jwttokennbf]).to_s 
     puts "iss:" + session[:jwttokeniss]
-    puts "iat:" + session[:jwttokeniat].to_s
-    puts "auth_time:" + session[:jwttokenauth_time].to_s
+    puts "iat:" + Time.at(session[:jwttokeniat]).to_s
+    puts "auth_time:" + Time.at(session[:jwttokeniat]).to_s 
     puts ">>>>>>>>> END <<<<<<<<<<<<<<<<"
    
     expirey_time = 24.hours.from_now.to_i
@@ -95,7 +95,7 @@ class TestCasesController < ApplicationController
       acr: "B2C_1A_BUID_UpdateSecurityQuestions",
       nonce: session[:jwttokennonce],
       iat: time_now,
-      returnPath: "https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code",
+      returnPath: "https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code/",
       rpName: session[:jwttokenrpname],
       LoA: session[:jwttokenloa] 
     }
