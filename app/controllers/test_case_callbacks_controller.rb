@@ -178,7 +178,7 @@ private
             if @user.save 
               log_in @user
               session[:b2clogin]=true
-              redirect_to signup_path and return
+              redirect_to signup_path, email: jwtemail and return
             else
               puts '**** test_callback: create a dummy user record for registration failed ***'
             end 

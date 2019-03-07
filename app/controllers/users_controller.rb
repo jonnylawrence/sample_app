@@ -15,6 +15,8 @@ class UsersController < ApplicationController
 
   def new
     puts '<<<<<< in users create>>>>'
+    puts params[:email]
+    puts '<<<<<<<<<<>>>>>>>>>>>>>>>'
     @user = User.new
   end
 
