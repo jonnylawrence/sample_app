@@ -24,10 +24,10 @@ class SessionsController < ApplicationController
     log_out
     puts 'sc: sending logout to b2c ***********'
     uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/logout")
-    #SECURITY HOLE
-    http.set_debug_output($stdout)  
-    
+  
       request = Net::HTTP::Get.new(uri)
+    #SECURITY HOLE
+      request.set_debug_output($stdout)  
       request.use_ssl = true
       request["post_logout_redirect_uri"] = root_url
       request["state"] = SecureRandom.hex(16)
