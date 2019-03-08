@@ -22,7 +22,8 @@ class SessionsController < ApplicationController
 
     puts 'sc: local logout ********************'
     log_out
-    puts 'sc: sending logout to b2c ***********'
+    redirect_to root_url
+    # puts 'sc: sending logout to b2c ***********'
 
       # state= SecureRandom.hex(16)
       # created_uri= add_params("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/logout",
@@ -44,7 +45,7 @@ class SessionsController < ApplicationController
       # puts response.body
       # puts 'sc: redirecting **********************'
   end
-    #redirect_to root_url
+   
   
     private
   
