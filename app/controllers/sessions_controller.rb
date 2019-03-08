@@ -36,9 +36,6 @@ class SessionsController < ApplicationController
         response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
         http.request(request)
         end
-
-      #response = Net::HTTP.start(uri.hostname, uri.port, use_ssl => true) do |http|
-      response = http.request(request)
     
     puts 'sc: response'
     puts response.code
