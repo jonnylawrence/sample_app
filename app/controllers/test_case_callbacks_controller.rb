@@ -110,6 +110,13 @@ class TestCaseCallbacksController < ApplicationController
           jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize"
           jwtloa="L3"
        
+          client = OpenIDConnect::Client.new(
+            identifier: Rails.application.secrets.B2C_client_id,
+            secret: Rails.application.secrets.B2C_client_secret,
+            redirect_uri: jwtredirect_uri,
+            host: jwthost,
+            authorization_endpoint: jwtauthorization_endpoint
+          )
         
             session[:client_id] = Rails.application.secrets.B2C_client_id
             session[:state] = SecureRandom.hex(16)
