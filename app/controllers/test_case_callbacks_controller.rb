@@ -16,6 +16,10 @@ class TestCaseCallbacksController < ApplicationController
     puts params[:LoA]
     puts '-----------'
     puts params[:id_token] 
+    puts '-----------------------'
+    puts "Request path:"+request.path unless request.path.nil?
+    puts "URI Referer:"+URI(request.referer).path unless URI(request.referer).path.nil?
+    puts "Request.env"+request.env["HTTP_REFERER"] unless request.env["HTTP_REFERER"].nil?
     puts "***************"
 
     @b2cjwt_pass = check_token if params[:id_token].present?
@@ -36,7 +40,7 @@ class TestCaseCallbacksController < ApplicationController
 
         puts "Request path:"+request.path
         puts "URI Referer:"+URI(request.referer).path
-        puts "Request.env":request.env["HTTP_REFERER"]
+        puts "Request.env"+request.env["HTTP_REFERER"]
         #pp=CGI::parse(URI(request.referer).path)
         #if PP["p"] = "B2C_1A_Bupa-Uni-uat-SignInSignUp" then
 
