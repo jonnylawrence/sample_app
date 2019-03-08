@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # B2C end points pages
   get 'identity/help', to: 'static_pages#help'
   get 'identity/forgotusername', to: 'test_case_callbacks#show'
+  get 'identity/signinl3', to: 'test_case_callbacks#show'
   # B2C endpoint redirects
   post 'test_case_callbacks/:id', to: 'test_case_callbacks#show'
   # *********************************

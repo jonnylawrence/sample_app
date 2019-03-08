@@ -101,7 +101,9 @@ class TestCaseCallbacksController < ApplicationController
           else
             not_logged_in
           end # end of jwthost check
-      end     # end if logged_in
+    else # logged in but needing some action potentially
+        puts 'tccc: logged in but needing some action'
+    end     # end if logged_in
   end # end def
   
 
