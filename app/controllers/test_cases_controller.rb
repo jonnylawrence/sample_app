@@ -68,7 +68,7 @@ class TestCasesController < ApplicationController
       if params[:id] == "maintainsecurity"
           menuacr = "B2C_1A_BUID_UpdateSecurityQuestions"
       elsif params[:id] == "changepassword"
-        menuacr = "B2C_1A_BUID_ResetOrChangePassword"
+          menuacr = "B2C_1A_BUID_ResetOrChangePassword"
       end
 
     puts "********* in test cases : menu options item - params:" + params[:id]
