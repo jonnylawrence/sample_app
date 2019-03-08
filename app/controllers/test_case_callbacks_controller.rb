@@ -8,28 +8,28 @@ class TestCaseCallbacksController < ApplicationController
 
   def show
     sailLoA = Sail.get("LoA")
-    # puts '-------------------------'
+    # puts 'tccbc: -------------------------'
     # puts session[:b2clogin]
     # do_signup if session[:b2clogin]==true
 
-    puts "********show start*******"
+    puts "tccbc:********show start*******"
     puts params[:LoA]
-    puts '----------checking token if the value below is present-------'
+    puts 'tccbc:----------checking token if the value below is present-------'
     puts params[:id_token] 
     puts '-----------------------'
     puts "Request path:"+request.path unless request.path.nil?
     puts "URI Referer:"+URI(request.referer).path unless URI(request.referer).path.nil?
     puts "Request.env:"+request.env["HTTP_REFERER"] unless request.env["HTTP_REFERER"].nil?
-    puts "***************"
+    puts "tccbc:***************"
 
     @b2cjwt_pass = check_token if params[:id_token].present?
 
-    puts "**** logged_in true or false **********" 
+    puts "tccbc:**** logged_in true or false **********" 
     puts logged_in?
 
     if logged_in? == false 
     
-        puts '*********************** callback *******************'
+        puts 'tccbc:*********************** callback *******************'
         if params[:state].to_s.nil?
           puts "Params empty! setting state"
           params[:state]=SecureRandom.hex(16)
@@ -38,16 +38,16 @@ class TestCaseCallbacksController < ApplicationController
           puts "Param state from packet:"+params[:state].to_s
         end
 
-        puts "Request path:"+request.path unless request.path.nil?
-        puts "URI Referer:"+URI(request.referer).path unless URI(request.referer).path.nil?
-        puts "Request.env:"+request.env["HTTP_REFERER"] unless request.env["HTTP_REFERER"].nil?
+        puts "tccbc:Request path:"+request.path unless request.path.nil?
+        puts "tccbc:URI Referer:"+URI(request.referer).path unless URI(request.referer).path.nil?
+        puts "tccbc:Request.env:"+request.env["HTTP_REFERER"] unless request.env["HTTP_REFERER"].nil?
     
         ########################################################
         # call back for reset password
         ########################################################
         uri_ref=URI(request.referer).path
         if (uri_ref =~ /forgotPassword/)
-            puts '*********************** forgotten password *******************'
+            puts 'tccbc:*********************** forgotten password *******************'
             jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
             jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-passwordreset/oauth2/v2.0/authorize"
             jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-passwordreset/oauth2/v2.0/authorize"
@@ -61,7 +61,7 @@ class TestCaseCallbacksController < ApplicationController
         end
 
         if jwthost # id jwthost is defined above
-          puts "-----JWTHOST--------" + jwthost
+          puts "tccbc:-----JWTHOST--------" + jwthost
         
           client = OpenIDConnect::Client.new(
             identifier: Rails.application.secrets.B2C_client_id,
@@ -74,7 +74,7 @@ class TestCaseCallbacksController < ApplicationController
           #session[:client_id] = Rails.application.secrets.B2C_client_id
           #session[:state] = SecureRandom.hex(16)
           session[:nonce] = SecureRandom.hex(16)      
-          puts 'session variables****************'
+          puts 'tccbc:session variables****************'
           puts "ID>"
           puts session[:client_id] 
           puts "STATE>"
@@ -83,7 +83,7 @@ class TestCaseCallbacksController < ApplicationController
           puts session[:nonce]
           puts "token>"
           puts session[:token]      
-          puts "session end*************************"
+          puts "tccbc:session end*************************"
           redirect_to client.authorization_uri(
             state: params[:state], # params[:state] should equal original session[:state]
             nonce: session[:nonce], # new nonce
@@ -101,10 +101,10 @@ class TestCaseCallbacksController < ApplicationController
     
     else # logged in but needing some action potentially
         
-      puts 'tccc: logged in but may need some action like elevation'
+      puts 'tccbc: logged in but may need some action like elevation'
 
         if ( request.path =~ /signinl3/)
-          puts '*********************** forgotten username *******************'
+          puts 'tccbc:*********************** forgotten username *******************'
           jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
           jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize"
           jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize"
@@ -168,11 +168,11 @@ private
     ########################################################
     # after returning from B2C check the presence of a token 
     ########################################################
-    puts "********checking token *******"
+    puts "tccbc:********checking token *******"
     puts params[:LoA]
     puts '--------token below-----'
     puts params[:id_token]
-    puts "******************************"
+    puts "tccbc:******************************"
     # check body for a L2 Token, although token needs to be checked below
     if (params[:LoA] == "L1") || (params[:LoA] == "L2")  || (params[:LoA] == "L3")  
       puts '*********** checking ID token....'
@@ -186,7 +186,7 @@ private
       #
       # Need to check signature on token !!!!!!!!!!!!!! NOT DONE
       #
-      puts '>>>>>>>>>TOKEN OUTPUT START<<<<<<<<<<<<<'
+      puts 'tccbc:>>>>>>>>>TOKEN OUTPUT START<<<<<<<<<<<<<'
       puts "LOA> " + parsed["LoA"]
       puts "email> " + jwtemail
       puts "iss> " + parsed["iss"]
@@ -200,13 +200,13 @@ private
       puts "auth_time> " + Time.at(parsed["auth_time"]).to_s
       puts "rpName> " + parsed["rpName"]
       puts "ServiceHints> " + parsed["ServiceHints"]
-      puts '>>>>>>>>>TOKEN OUTPUT END<<<<<<<<<<<<<'
+      puts 'tccbc:>>>>>>>>>TOKEN OUTPUT END<<<<<<<<<<<<<'
 
       
       if (parsed["LoA"] == "L1") || (params[:LoA] == "L2") || (params[:LoA] == "L3")  
         user = User.find_by(email: jwtemail)
           if user 
-            puts '*********************** Logged in as' + parsed["LoA"] + '**********'
+            puts 'tccbc:*********************** Logged in as' + parsed["LoA"] + '**********'
            log_in user # session_helper
            session[:jwttokenexp]=parsed["exp"]
            session[:jwttokennbf]=parsed["nbf"]
@@ -214,7 +214,7 @@ private
             session[:jwttokeniat]=parsed["iat"]
             session[:jwttokenauth_time]=parsed["auth_time"]
             session[:jwttokenemail]=jwtemail
-            puts '<<<<<<<<<EMAIL CHECK>>'
+            puts 'tccbc:<<<<<<<<EMAIL CHECK>>'
             puts session[:jwttokenemail]
             session[:jwttokenloa]=parsed["LoA"]
             session[:jwttokenoid]=parsed["oid"]
@@ -226,7 +226,7 @@ private
             session[:b2clogin]=true
             redirect_to root_path and return
           else
-            puts '>>>>>>>>>>>>b2C USER NEEDS SIGN UP - CREATING DUMMY RECORD >>>>>>>>>>>>'
+            puts 'tccbc:>>>>>>>>>>>>b2C USER NEEDS SIGN UP - CREATING DUMMY RECORD >>>>>>>>>>>>'
             @user = User.new(:name => "Please complete",:member => "Please complete", :email => "dummy@dummy.com", :password => "0racle", :password_confirmation => "0racle")
             if @user.save 
               log_in @user
@@ -237,7 +237,7 @@ private
             session[:jwttokeniat]=parsed["iat"]
             session[:jwttokenauth_time]=parsed["auth_time"]
             session[:jwttokenemail]=jwtemail
-            puts '<<<<<<<<<EMAIL CHECK>>'
+            puts 'tccbc:<<<<<<<<<EMAIL CHECK>>'
             puts session[:jwttokenemail]
             session[:jwttokenloa]=parsed["LoA"]
             session[:jwttokenoid]=parsed["oid"]
@@ -247,24 +247,19 @@ private
             session[:jwttokennonce]=parsed["nonce"]  
               redirect_to signup_path, email: jwtemail and return
             else
-              puts '**** test_callback: create a dummy user record for registration failed ***'
+              puts 'tccbc:**** create a dummy user record for registration failed ***'
             end 
           end
       end   
     else # no LoA therefore not logged in
-      puts '>>>>>>>>>>>INSIDE TOKEN CHECK BUT NOT LOGGED IN<<<<<<<<<<<<<<<<<<<<'
+      puts 'tccbc:>>>>>>>>>>>INSIDE TOKEN CHECK BUT NOT LOGGED IN<<<<<<<<<<<<<<<<<<<<'
       session[:b2clogin]=false
     end # end params
   end # end def
 
   def not_logged_in
-    puts '>>>>>>>>>>>>>>>>>NOT LOGGED IN<<<<<<<<<<<<<<<<<<<<'
+    puts 'tccbc:>>>>>>>>>>>>>>>>>NOT LOGGED IN<<<<<<<<<<<<<<<<<<<<'
       session[:b2clogin]=false
       redirect_to root_path and return
   end
-  # def do_signup
-  #   session[:b2clogin]=true
-  #   puts '>>>>>>>>>>>>b2C USER NEEDS SIGN UP>>>>>>>>>>>>'
-  #   redirect_to signup_path, status: 301 and return
-  # end
 end # end class

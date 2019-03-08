@@ -3,17 +3,6 @@ class TestCasesController < ApplicationController
   layout 'popup'
   
   def show
-    # logger.debug '<<<<ID>>>>>&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
-    # logger.debug params[:id]
-    # rp-response_type-code
-
-    # https://github.com/nov/openid_connect/wiki/Client-Init
-    # client = OpenIDConnect::Client.new(
-    #   identifier: YOUR_CLIENT_ID,
-    #   secret: YOUR_CLIENT_SECRET,
-    #   redirect_uri: YOUR_REDIRECT_URI,
-    #   host: 'server.example.com'
-    # )
     sailLoA = Sail.get("LoA")
 
     client = TestCase.register_client!(
@@ -21,13 +10,13 @@ class TestCasesController < ApplicationController
       redirect_uri: test_case_callback_url(params[:id])
     )
  
-      puts "---------------TEST CASES PARAMS----------"
+      puts "tcc: ---------------TEST CASES PARAMS----------"
       puts params[:id]
-      puts '-------------------------------'
-    # ******************* B2C PATH ****************************  
-    if params[:id] == "b2c-rp-response_type-code" 
+      puts 'tcc:-------------------------------'
+   
+    if params[:id] == "b2c-rp-response_type-code"  # ******************* B2C PATH ****************************  
       
-      puts "In generic call case - params:" + params[:id]
+      puts "tcc: In generic call case - params:" + params[:id]
 
       session[:client_id] = Rails.application.secrets.B2C_client_id
       session[:state] = SecureRandom.hex(16)
@@ -63,7 +52,7 @@ class TestCasesController < ApplicationController
        )
     # ******************* maintain security  **************************** 
     # ******************* maintain security  ****************************  
-    elsif params[:id] == "maintainsecurity" || params[:id] == "changepassword"
+    elsif params[:id] == "maintainsecurity" || params[:id] == "changepassword" || params[:id] == "logout"
 
       if params[:id] == "maintainsecurity"
           menuacr = "B2C_1A_BUID_UpdateSecurityQuestions"
@@ -71,7 +60,7 @@ class TestCasesController < ApplicationController
           menuacr = "B2C_1A_BUID_ResetOrChangePassword"
       end
 
-    puts "********* in test cases : menu options item - params:" + params[:id]
+    puts "tcc: ********* in test cases : menu options item - params:" + params[:id]
       session[:client_id] = Rails.application.secrets.B2C_client_id
       session[:state] = SecureRandom.hex(16)
       session[:nonce] = SecureRandom.hex(16)
@@ -79,7 +68,7 @@ class TestCasesController < ApplicationController
     # need to send back original JWT
     # figure out what need to be done.
 
-    puts ">>>>>>current JWT obtained from login session helper is :" 
+    puts "tcc:>>>>>>current JWT obtained from login session helper is :" 
     puts session[:jwttokenemail]
     puts session[:jwttokenloa]
     puts "oid:" + session[:jwttokenoid]
@@ -91,7 +80,7 @@ class TestCasesController < ApplicationController
     puts "iss:" + session[:jwttokeniss]
     puts "iat:" + Time.at(session[:jwttokeniat]).to_s
     puts "auth_time:" + Time.at(session[:jwttokeniat]).to_s 
-    puts ">>>>>>>>> END <<<<<<<<<<<<<<<<"
+    puts "tcc:>>>>>>>>> END <<<<<<<<<<<<<<<<"
    
     expirey_time = 24.hours.from_now.to_i
     time_now = Time.now.to_i
