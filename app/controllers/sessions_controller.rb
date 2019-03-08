@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
     puts 'sc: sending logout to b2c ***********'
 
       state= SecureRandom.hex(16)
-      created_uri= add_params("https://neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/logout",
+      created_uri= add_params("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/logout",
       post_logout_redirect_uri: "https://b2c-ruby.herokuapp.com/", state: state )
       puts "sc: created uri : " + created_uri
       uri = URI.parse(created_uri)
