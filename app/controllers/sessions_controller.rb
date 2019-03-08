@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   require 'net/http'
   require 'uri'
   require 'json'
+  
   def new
   end
 
@@ -37,7 +38,6 @@ class SessionsController < ApplicationController
     puts 'sc: response'
     puts response
     puts 'sc: redirecting **********************'
-    end
-    #redirect_to root_url
   end
+    #redirect_to root_url
 end
