@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def new
     puts '<<<<<< in users create>>>>'
     puts session[:email]
+    puts session[:oid]
     puts '<<<<<<<<<<remove dummy email >>>>>>>>>>>>>>>'
     dummyuser = User.find_by(email: "dummy@dummy.com").destroy
     puts '<<<<<<<<<< dummy removed >>>>>>>>>>>>>>>'

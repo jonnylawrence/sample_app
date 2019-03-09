@@ -4,8 +4,14 @@
   <%= f.label :Surname %>
   <%= f.text_field :name, class: 'form-control' %>
 
+  <%= f.label :oid %>
+  <%= f.email_field :oid, :value => session[:jwtoid], :readonly => true, class: 'form-control' %>
+
   <%= f.label :email %>
   <%= f.email_field :email, :value => session[:jwttokenemail], :readonly => true, class: 'form-control' %>
+
+   <%= f.label :mobile %>
+  <%= f.email_field :mobile, :value => session[:jwtmobile], :readonly => true, class: 'form-control' %>
 
   <%= f.label :membership_number %>
   <%= f.text_field :member, class: 'form-control' %>

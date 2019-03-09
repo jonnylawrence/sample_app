@@ -187,6 +187,8 @@ private
       @sts = @b2cjwt.payload.to_json
       parsed = JSON.parse(@sts)
       jwtemail=parsed["email"].downcase
+      jwtoid=parsed["oid"]
+      jwtmobile=parse["mobile"]
       
       #
       # Need to check signature on token !!!!!!!!!!!!!! NOT DONE
@@ -195,7 +197,8 @@ private
       puts "LOA> " + parsed["LoA"]
       puts "email> " + jwtemail
       puts "iss> " + parsed["iss"]
-      puts "OID> " + parsed["oid"]
+      puts "OID> " + jwtoid
+      puts "mobile" + jwtmobile unless jwtmobile.nil?
       puts "exp> " + Time.at(parsed["exp"]).to_s
       puts "nbf> " + Time.at(parsed["nbf"]).to_s
       puts "aud> " + parsed["aud"]
@@ -219,6 +222,7 @@ private
             session[:jwttokeniat]=parsed["iat"]
             session[:jwttokenauth_time]=parsed["auth_time"]
             session[:jwttokenemail]=jwtemail
+            session[:jwttokenmobile]=jwtmobile unless jtwmobile.nil?
             puts 'tccbc:<<<<<<<<EMAIL CHECK>>'
             puts session[:jwttokenemail]
             session[:jwttokenloa]=parsed["LoA"]
