@@ -3,7 +3,7 @@ class TestCaseCallbacksController < ApplicationController
   require 'json'
   layout 'popup'
   #protect_from_forgery with: :null_session
-  skip_before_action :verify_authenticity_token
+  #skip_before_action :verify_authenticity_token
   #before_action :reject_csrf
 
   def show
