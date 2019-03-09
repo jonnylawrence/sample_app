@@ -2,4 +2,5 @@
 
 #Rails.application.config.session_store :cookie_store, key: '_sample_app_session'
 #Rails.application.config.session_store :cookie_store, key: '_connect-rp-certified_session'
-Rails.application.config.session_store :active_record_store, key: '_connect-rp-certified_session'
+#Rails.application.config.session_store :active_record_store, key: '_connect-rp-certified_session'
+Rails.application.config.session_store :cookie_store, key: '_connect-rp-certified_session'
