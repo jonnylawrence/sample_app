@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   require 'net/http'
   require 'uri'
   require 'json'
-  skip_before_action :verify_authenticity_token
   
   def new
   end
