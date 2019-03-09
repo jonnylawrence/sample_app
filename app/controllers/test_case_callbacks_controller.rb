@@ -103,12 +103,13 @@ class TestCaseCallbacksController < ApplicationController
         
       puts 'tccbc: logged in but may need some action like elevation'
 
-        if ( request.path =~ /signinl3/)
+        if ( request.path =~ /signinl3/) || ( request.path =~ /signinl2/) 
           puts 'tccbc:*********************** forgotten username *******************'
           jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
           jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize"
           jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize"
-          jwtloa="L3"
+          jwtloa="L3" if ( request.path =~ /signinl3/)
+          jwtloa="L2" if ( request.path =~ /signinl2/)
        
           client = OpenIDConnect::Client.new(
             identifier: Rails.application.secrets.B2C_client_id,
