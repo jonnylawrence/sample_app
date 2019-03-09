@@ -168,6 +168,10 @@ private
     ########################################################
     # after returning from B2C check the presence of a token 
     ########################################################
+    puts 'tccbc; *************** printing cookies ***********'
+    cookies.each do |cookie|
+      puts cookie
+    end
     puts "tccbc:********checking token *******"
     puts params[:LoA]
     puts '--------token below-----'
