@@ -223,10 +223,8 @@ private
             session[:jwttokenauth_time]=parsed["auth_time"]
             session[:jwttokenemail]=jwtemail
             session[:jwttokenmobile]=jwtmobile unless jtwmobile.nil?
-            puts 'tccbc:<<<<<<<<EMAIL CHECK>>'
-            puts session[:jwttokenemail]
             session[:jwttokenloa]=parsed["LoA"]
-            session[:jwttokenoid]=parsed["oid"]
+            session[:jwttokenoid]=jwtoid
             session[:jwttokenrpname]=parsed["rpName"]
             session[:jwttokenaud]=parsed["aud"]
             session[:jwttokenacr]=parsed["acr"] 
