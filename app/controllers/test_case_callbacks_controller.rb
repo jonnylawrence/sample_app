@@ -222,7 +222,7 @@ private
             session[:jwttokeniat]=parsed["iat"]
             session[:jwttokenauth_time]=parsed["auth_time"]
             session[:jwttokenemail]=jwtemail
-            session[:jwttokenmobile]=jwtmobile unless jtwmobile.nil?
+            session[:jwttokenmobile]=jwtmobile unless jwtmobile.nil?
             session[:jwttokenloa]=parsed["LoA"]
             session[:jwttokenoid]=jwtoid
             session[:jwttokenrpname]=parsed["rpName"]
