@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def home  
     puts '****in home static pages controller******'
     # logger.info '*********************'

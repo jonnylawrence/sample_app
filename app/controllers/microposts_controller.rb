@@ -1,4 +1,5 @@
 class MicropostsController < ApplicationController
+  skip_before_action :verify_authenticity_token
     before_action :logged_in_user, only: [:create, :destroy]
     before_action :correct_user,   only: :destroy
   
