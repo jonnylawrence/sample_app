@@ -188,7 +188,7 @@ private
       parsed = JSON.parse(@sts)
       jwtemail=parsed["email"].downcase
       jwtoid=parsed["oid"]
-      jwtmobile=parse["mobile"]
+      jwtmobile=parsed["mobile"]
       
       #
       # Need to check signature on token !!!!!!!!!!!!!! NOT DONE
