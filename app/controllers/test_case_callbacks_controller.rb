@@ -249,7 +249,7 @@ private
       puts "rpName> " + parsed["rpName"]
       puts "ServiceHints> " + parsed["ServiceHints"]
       puts 'tccbc:>>>>>>>>>TOKEN OUTPUT END<<<<<<<<<<<<<'
-      flash.now[:success] = 'Service Hint exists ' + parsed["ServiceHints"] unless parsed["ServiceHints"].nil?
+      #flash.now[:success] = 'Service Hint exists ' + parsed["ServiceHints"] unless parsed["ServiceHints"].nil?
 
       
       if (parsed["LoA"] == "L1") || (params[:LoA] == "L2") || (params[:LoA] == "L3")  
@@ -271,7 +271,8 @@ private
             session[:jwttokenrpname]=parsed["rpName"]
             session[:jwttokenaud]=parsed["aud"]
             session[:jwttokenacr]=parsed["acr"] 
-            session[:jwttokennonce]=parsed["nonce"]   
+            session[:jwttokennonce]=parsed["nonce"]
+            session[:jwtservicehints]=parsed["ServiceHints"]
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             session[:b2clogin]=true
 
