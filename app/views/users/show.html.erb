@@ -20,6 +20,6 @@
       </ol>
       <%= will_paginate @microposts %>
     <% end %>
-     <%= session[:jwtservicehints] %>
+     <%= JSON.pretty_generate(session[:jwtservicehints]).gsub(":", " =>")  %>
   </div>
 </div>
