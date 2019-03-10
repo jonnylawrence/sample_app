@@ -213,7 +213,7 @@ private
       
       if (parsed["LoA"] == "L1") || (params[:LoA] == "L2") || (params[:LoA] == "L3")  
         # check user is registered with local app
-        user = User.find_by(email: jwtoid) #user = User.find_by(email: jwtemail)
+        user = User.find_by(oid: jwtoid) #user = User.find_by(email: jwtemail)
        
         if user 
             puts 'tccbc:*********************** Logged in as' + parsed["LoA"] + '**********'
