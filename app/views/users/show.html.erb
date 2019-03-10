@@ -21,7 +21,7 @@
       <%= will_paginate @microposts %>
     <% end %>
     <pre>
-     <%= ap((session[:jwtservicehints], indent: 0).html_safe )  %>
+     <%= ap session[:jwtservicehints], indent: 0 %>
      </pre>
   </div>
 </div>
