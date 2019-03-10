@@ -212,8 +212,10 @@ private
 
       
       if (parsed["LoA"] == "L1") || (params[:LoA] == "L2") || (params[:LoA] == "L3")  
-        user = User.find_by(email: jwtemail)
-          if user 
+        # check user is registered with local app
+        user = User.find_by(email: jwtoid) #user = User.find_by(email: jwtemail)
+       
+        if user 
             puts 'tccbc:*********************** Logged in as' + parsed["LoA"] + '**********'
            log_in user # session_helper
            session[:jwttokenexp]=parsed["exp"]
