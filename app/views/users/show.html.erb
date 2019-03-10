@@ -21,10 +21,8 @@
       <%= will_paginate @microposts %>
     <% end %>
     <pre>
-     <%= ap session[:jwtservicehints], plain: true, indent: 0 %>
-     <%= raw JSON.pretty_generate(hash).gsub(" ","&nbsp;") %>
+     <%= @beautifiedJson %>
  </pre>
-  <%= ap session[:jwtservicehints], plain: true, indent: 0 %>
-     <%= raw JSON.pretty_generate(hash).gsub(" ","&nbsp;") %>
+
   </div>
 </div>
