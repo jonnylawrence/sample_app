@@ -139,7 +139,10 @@ class TestCaseCallbacksController < ApplicationController
     else # logged in but needing some action potentially
         
       puts 'tccbc: logged in but may need some action like elevation'
-
+      puts "tccbc:Request path:"+request.path unless request.path.nil?
+      puts "tccbc:URI Referer:"+URI(request.referer).path unless URI(request.referer).path.nil?
+      puts "tccbc:Request.env:"+request.env["HTTP_REFERER"] unless request.env["HTTP_REFERER"].nil?
+      
         if ( request.path =~ /signinl3/) || ( request.path =~ /signinl2/) 
           puts 'tccbc:*********************** forgotten username *******************'
           jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
