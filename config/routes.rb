@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   get 'identity/forgotusername', to: 'test_case_callbacks#show'
   get 'identity/signinl3', to: 'test_case_callbacks#show'
   get 'identity/signinl2', to: 'test_case_callbacks#show'
+  # if you're using the aggregate profile management page
+  get 'identity/maintainmobile', to: 'test_case_callbacks#show'
+  get 'identity/changeusername', to: 'test_case_callbacks#show'
+  get 'identity/changepassword', to: 'test_case_callbacks#show'
+  get 'identity/maintainquestions', to: 'test_case_callbacks#show'
+  get 'identity/deleteaccount', to: 'test_case_callbacks#show'
   # B2C endpoint redirects
   post 'test_case_callbacks/:id', to: 'test_case_callbacks#show'
   # *********************************
