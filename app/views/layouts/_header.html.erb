@@ -1,6 +1,7 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
+  <%= Sail.get("LoA") %>
   <div class="container">
-    <%= Sail.get("LoA") %><%= link_to " Relying Party", root_path, id: "logo" %>
+    <%= link_to " Relying Party", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
