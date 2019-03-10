@@ -53,14 +53,18 @@ class TestCasesController < ApplicationController
          ui_locales: "en-GB",
          prompt: "login"
        )
-    # ******************* maintain security  **************************** 
+
     # ******************* maintain security  ****************************  
-    elsif params[:id] == "maintainsecurity" || params[:id] == "changepassword" || params[:id] == "logout"
+    elsif params[:id] == "maintainsecurity" || params[:id] == "changepassword" || params[:id] == "profile" || params[:id] == "username"|| params[:id] == "logout"
 
       if params[:id] == "maintainsecurity"
           menuacr = "B2C_1A_BUID_UpdateSecurityQuestions"
       elsif params[:id] == "changepassword"
           menuacr = "B2C_1A_BUID_ResetOrChangePassword"
+        elsif params[:id] == "username"
+          menuacr = "B2C_1A_BUID_ChangeUsername"
+        elsif params[:id] == "profile"
+          menuacr = "B2C_1A_BUID_ProfileManagement"
       end
 
     puts "tcc: ********* in test cases : menu options item - params:" + params[:id]
