@@ -142,7 +142,7 @@ class TestCaseCallbacksController < ApplicationController
       puts "tccbc:Request path:"+request.path unless request.path.nil?
       puts "tccbc:URI Referer:"+URI(request.referer).path unless URI(request.referer).path.nil?
       puts "tccbc:Request.env:"+request.env["HTTP_REFERER"] unless request.env["HTTP_REFERER"].nil?
-      
+
         if ( request.path =~ /signinl3/) || ( request.path =~ /signinl2/) 
           puts 'tccbc:*********************** forgotten username *******************'
           jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
@@ -320,5 +320,15 @@ private
   end
   def update_user_email
     puts 'tccbc:>>>>>>>>>>>>>>>>>UPATING LOCAL USER EMAIL :' +  session[:jwttokenemail]
+    puts 'tcbc>> check if email already exists'
+    userchk = User.find_by(email:  session[:jwttokenemail].downcase)
+    if user
+      puts 'tcbc>> local email already exists, cant use this email: ' +session[:jwttokenemail]
+    else
+      userchk = User.find_by(oid:  session[:oid])
+      userchk.update_column(:email, session[:jwttokenemail])
+      puts 'tcbc>> local email updated to ' + session[:jwttokenemail]
+    end
+
   end
 end # end class
