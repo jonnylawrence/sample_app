@@ -322,13 +322,12 @@ private
     puts 'tccbc:>>>>>>>>>>>>>>>>>UPATING LOCAL USER EMAIL :' +  session[:jwttokenemail]
     puts 'tcbc>> check if email already exists'
     userchk = User.find_by(email:  session[:jwttokenemail].downcase)
-    if user
-      puts 'tcbc>> local email already exists, cant use this email: ' +session[:jwttokenemail]
+    if userchk
+      puts 'tcbc>> local email already exists, cant use this email: ' + session[:jwttokenemail]
     else
       userchk = User.find_by(oid:  session[:oid])
       userchk.update_column(:email, session[:jwttokenemail])
       puts 'tcbc>> local email updated to ' + session[:jwttokenemail]
     end
-
   end
 end # end class
