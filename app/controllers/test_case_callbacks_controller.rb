@@ -249,7 +249,7 @@ private
       puts "rpName> " + parsed["rpName"]
       puts "ServiceHints> " + parsed["ServiceHints"]
       puts 'tccbc:>>>>>>>>>TOKEN OUTPUT END<<<<<<<<<<<<<'
-      flash.now[:success] = 'Service Hint exist ' + parsed["ServiceHints"] if parsed["ServiceHints"].nil?
+      flash.now[:success] = 'Service Hint exists ' + parsed["ServiceHints"] unless parsed["ServiceHints"].nil?
 
       
       if (parsed["LoA"] == "L1") || (params[:LoA] == "L2") || (params[:LoA] == "L3")  
