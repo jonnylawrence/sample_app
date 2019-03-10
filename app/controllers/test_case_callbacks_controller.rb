@@ -325,8 +325,9 @@ private
     if userchk
       puts 'tcbc>> local email already exists, cant use this email: ' + session[:jwttokenemail]
     else
-      userchk = User.find_by(oid:  session[:oid])
+      userchk = User.find_by(oid:  session[:jwttokenoid])
       userchk.update_column(:email, session[:jwttokenemail])
+      puts 'tcbc>> related to oid >>>' + session[:jwttokenoid]
       puts 'tcbc>> local email updated to ' + session[:jwttokenemail]
     end
   end
