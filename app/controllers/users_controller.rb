@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   #skip_before_action :verify_authenticity_token
+  require 'json'
 
 
   def index
