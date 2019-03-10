@@ -66,10 +66,14 @@ end
 
   # Logs out the current user.
   def log_out
-    forget(current_user)
+   
     puts ">>>>>>>>>>>> session delete for :" 
-    puts :user_id
-    puts current_user
+    puts "1usid" + user.id unless user.id.nil?
+    puts "2:usid" + :user_id unless :user_id.nil?
+    puts "3cu" + current_user unless current_user.nil?
+    puts "4s" + session[:user_id] unless session[:user_id].nil?
+
+    forget(current_user)
     session.delete(:user_id)
     @current_user = nil
   end
