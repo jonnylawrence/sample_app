@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       puts "uc: oid: " + session[:jwttokenoid]
       puts "uc: policy: " + params[:user][:member] unless params[:user][:member].nil?
       @objectId=session[:jwttokenoid]
-      @policyId=params[:user][:policyid]
+      @policyId=params[:user][:member]
       @org="ANZ"
       @userType="Member"
       @systemId="Ruby-B2C"
