@@ -29,9 +29,27 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save # && verify_recaptcha(model: @user)
       log_in @user
-      # flash[:success] = "You have registered, please create an identity!"
+     
+      # add service hint here
+      puts "uc: oid: " + session[:jwttokenoid]
+      puts "uc: policy: " + params[:user][:policyid]
+      @objectId=session[:jwttokenoid]
+      @policyId=params[:user][:policyid]
+      @org="ANZ"
+      @userType="Member"
+      @systemId="Ruby-B2C"
+      @productId="InsuranceZZZZ"
+     
+      @token=B2cApiClass.new
+      @token.reset
+      @b2c_service_results=@token.api_add_service_hint(@objectId,@policyId,@org,@userType,@systemId,@productId,"Bearer "+@token.apibody)
+
+      if @b2c_service_results == '200'
+          flash.now[:success] = 'Service Hint added to ' + @objectId
+      else
+          flash.now[:danger] = 'Service Hint failed to be added for ' + @objectId + ' with return code ' + @b2c_service_results
+      end
       redirect_to(root_url)
-      #redirect_to test_case_path("b2c-rp-response_type-code")
     else
       render 'new'
     end

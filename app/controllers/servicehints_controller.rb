@@ -33,23 +33,3 @@ class ServicehintsController < ApplicationController
     end
 
 end
-#redirect_to :controller => 'b2c_api', :action => 'show' 
-#logger.debug ">>>>>>>"+params[:email_field]
-        # @token=B2cApiClass.new
-        # @token.reset
-        # @b2c_email_results=@token.api_search_by_email("jonnylawrences@googlemail.com","Bearer "+@token.apibody)
-         # logger.debug '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.>>>'+params[:email_field]
-        # logger.debug '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.>>>'
-        # logger.debug '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.>>>'
-        # logger.debug '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.>>>'
-        # redirect_to :controller => 'b2c_api', :action => 'show' 
-        #logger.debug ">>>>>>>"+params[:email_field]
-        # @token=B2cApiClass.new
-        # @token.reset
-        # @b2c_email_results=@token.api_search_by_email("jonnylawrences@googlemail.com","Bearer "+@token.apibody)
-
-        # @token=B2cApiClass.new
-        # @token.reset
-        # @b2c_email_results=@token.api_search_by_email(params[:id],"Bearer "+@token.apibody)
-
-
