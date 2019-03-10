@@ -20,8 +20,8 @@
       </ol>
       <%= will_paginate @microposts %>
     <% end %>
-    <pre>
-     <%= ap session[:jwtservicehints], indent: 0 %>
-     </pre>
+    
+     <%= ap (session[:jwtservicehints], indent: 0).html_safe %>
+ 
   </div>
 </div>
