@@ -3,6 +3,8 @@ module SessionsHelper
   # Logs in the given user.
   def log_in(user)
     session[:user_id] = user.id
+    puts "sh: log_in: session user id is :"
+    puts session[:user_id]
   end
 
   def set_jwttoken(jwttoken)
@@ -69,7 +71,7 @@ end
    
     puts ">>>>>>>>>>>> session delete for :" 
     puts :user_id 
-    puts @current_user 
+    puts current_user 
     puts session[:user_id] 
 
     forget(current_user)
