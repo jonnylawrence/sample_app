@@ -75,7 +75,7 @@ end
     puts session[:user_id] 
 
     forget(current_user)
-    session.delete(:user_id)
+    session.delete(session[:user_id])
     @current_user = nil
   end
 
