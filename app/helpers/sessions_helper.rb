@@ -67,6 +67,7 @@ end
   # Logs out the current user.
   def log_out
     forget(current_user)
+    puts ">>>>>>>>>>>> session delete for :" + :user_id
     session.delete(:user_id)
     @current_user = nil
   end
