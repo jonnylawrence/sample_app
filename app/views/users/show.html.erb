@@ -20,6 +20,8 @@
       </ol>
       <%= will_paginate @microposts %>
     <% end %>
-     <%= JSON.pretty_generate(session[:jwtservicehints]).gsub(": null", ": nil").gsub(/(^\s*)"([a-zA-Z][a-zA-Z\d_]*)":/, "\\1\\2:").gsub(/(^\s*)(".*?"):/, "\\1\\2 =>")  %>
+    <pre>
+     <%= JSON.pretty_generate(session[:jwtservicehints])  %>
+     </pre>
   </div>
 </div>
