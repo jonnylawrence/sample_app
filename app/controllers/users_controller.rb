@@ -32,7 +32,7 @@ class UsersController < ApplicationController
      
       # add service hint here
       puts "uc: oid: " + session[:jwttokenoid]
-      puts "uc: policy: " + params[:user][:policyid]
+      puts "uc: policy: " + params[:user][:member] unless params[:user][:member].nil?
       @objectId=session[:jwttokenoid]
       @policyId=params[:user][:policyid]
       @org="ANZ"
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
     def user_params
       params[:user][:password]="0racle"
       params[:user][:password_confirmation]="0racle"
-      params.require(:user).permit(:name, :email, :dob, :member, :password,
+      params.require(:user).permit(:name, :email, :dob, :member, :password, 
                                    :password_confirmation, :oid, :mobile)
     end
 
