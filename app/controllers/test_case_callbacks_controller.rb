@@ -252,6 +252,7 @@ private
             session[:jwttokenaud]=parsed["aud"]
             session[:jwttokenacr]=parsed["acr"] 
             session[:jwttokennonce]=parsed["nonce"]  
+            session[:b2clogin]=true
               redirect_to signup_path, email: jwtemail and return
             else
               puts 'tccbc:**** create a dummy user record for registration failed ***'

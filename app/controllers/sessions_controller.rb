@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    puts 'sc: *********** B2C Logged in status: ' + session[:b2clogin] unless session[:b2clogin].nil?
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in user
@@ -19,7 +20,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-
+    session[:b2clogin]=false
     puts 'sc: local logout ********************'
     log_out
     redirect_to root_url
