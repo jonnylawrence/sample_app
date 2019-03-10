@@ -78,7 +78,7 @@ class UsersController < ApplicationController
       params[:user][:password]="0racle"
       params[:user][:password_confirmation]="0racle"
       params.require(:user).permit(:name, :email, :dob, :member, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :oid, :mobile)
     end
 
     # Confirms the correct user.
