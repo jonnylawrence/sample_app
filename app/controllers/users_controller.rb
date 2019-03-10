@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   #skip_before_action :verify_authenticity_token
   require 'json'
+  require 'awesome_print'
 
 
   def index
