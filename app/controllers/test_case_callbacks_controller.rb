@@ -216,7 +216,7 @@ private
         user = User.find_by(oid: jwtoid) #user = User.find_by(email: jwtemail)
        
         if user 
-            puts 'tccbc:*********************** Logged in as' + parsed["LoA"] + '**********'
+            puts 'tccbc:*********************** Logged in as : ' + parsed["LoA"] + '**********'
            log_in user # session_helper
            session[:jwttokenexp]=parsed["exp"]
            session[:jwttokennbf]=parsed["nbf"]
@@ -233,6 +233,12 @@ private
             session[:jwttokennonce]=parsed["nonce"]   
             #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             session[:b2clogin]=true
+
+            # if referral is change user name, we need to check and update local email
+            if ( URI(request.referer).path =~ /B2C_1A_Bupa-Uni-uat-UpdateUserEmail\/api\/SelfAsserted\/confirmed/)
+              update_user_email
+            end
+
             redirect_to root_path and return
           else
             puts 'tccbc:>>>>>>>>>>>>b2C USER NEEDS SIGN UP - CREATING DUMMY RECORD >>>>>>>>>>>>'
@@ -271,5 +277,8 @@ private
     puts 'tccbc:>>>>>>>>>>>>>>>>>NOT LOGGED IN<<<<<<<<<<<<<<<<<<<<'
       session[:b2clogin]=false
       redirect_to root_path and return
+  end
+  def update_user_email
+    puts 'tccbc:>>>>>>>>>>>>>>>>>UPATING LOCAL USER EMAIL :' + jwtemail
   end
 end # end class
