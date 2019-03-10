@@ -68,9 +68,8 @@ end
   def log_out
    
     puts ">>>>>>>>>>>> session delete for :" 
-    puts user.id 
     puts :user_id 
-    puts current_user 
+    puts @current_user 
     puts session[:user_id] 
 
     forget(current_user)
