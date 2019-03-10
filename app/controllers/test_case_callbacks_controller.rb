@@ -279,6 +279,6 @@ private
       redirect_to root_path and return
   end
   def update_user_email
-    puts 'tccbc:>>>>>>>>>>>>>>>>>UPATING LOCAL USER EMAIL :' + jwtemail
+    puts 'tccbc:>>>>>>>>>>>>>>>>>UPATING LOCAL USER EMAIL :' +  session[:jwttokenemail]
   end
 end # end class
