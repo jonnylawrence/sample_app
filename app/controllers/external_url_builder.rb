@@ -11,6 +11,11 @@ class ExternalUrlBuilder  < ActionController::Base
   def SAIL_url
     SAIL_URL.pattern
   end
+
+  def SWAG_url
+    SWAG_URL.pattern
+  end
+
 end
 
 # Addressable::Template.new('http://www.windowsphone.com{/language}/store/app/-{/app_id}')
