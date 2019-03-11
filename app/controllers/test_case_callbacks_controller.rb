@@ -90,6 +90,8 @@ class TestCaseCallbacksController < ApplicationController
           jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainsecurityquestions/oauth2/v2.0/authorize"
         end
 
+
+
         # if ( request.path =~ /deleteaccount/)
         #   puts '*********************** forgotten username *******************'
         #   jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
@@ -142,6 +144,11 @@ class TestCaseCallbacksController < ApplicationController
       puts "tccbc:Request path:"+request.path unless request.path.nil?
       puts "tccbc:URI Referer:"+URI(request.referer).path unless URI(request.referer).path.nil?
       puts "tccbc:Request.env:"+request.env["HTTP_REFERER"] unless request.env["HTTP_REFERER"].nil?
+
+        if ( URI(request.referer).path =~ /cancelled/)
+          puts '>>>>>>  action cancelled, try a redirect to root'
+          redirect_to root_path and return
+        end
 
         if ( request.path =~ /signinl3/) || ( request.path =~ /signinl2/) 
           puts 'tccbc:*********************** forgotten username *******************'
