@@ -150,6 +150,11 @@ class TestCaseCallbacksController < ApplicationController
           redirect_to root_path and return
         end
 
+        if ( request.path =~ /changeusername/)
+          puts '*********************** this is profile menu clicking on update username, redirecting *******************'
+          redirect_to test_case_path("username") and return
+        end
+
         if ( request.path =~ /signinl3/) || ( request.path =~ /signinl2/) 
           puts 'tccbc:*********************** forgotten username *******************'
           jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
