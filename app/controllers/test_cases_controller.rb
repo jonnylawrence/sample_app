@@ -55,7 +55,7 @@ class TestCasesController < ApplicationController
        )
 
     # ******************* maintain security  ****************************  
-    elsif params[:id] == "maintainsecurity" || params[:id] == "changepassword" || params[:id] == "profile" || params[:id] == "username"|| params[:id] == "logout"
+    elsif params[:id] == "maintainsecurity" || params[:id] == "changepassword" || params[:id] == "profile" || params[:id] == "username" || params[:id] == "logout" || params[:id] == "deleteuser"
 
       if params[:id] == "maintainsecurity"
           menuacr = "B2C_1A_BUID_UpdateSecurityQuestions"
@@ -65,6 +65,8 @@ class TestCasesController < ApplicationController
           menuacr = "B2C_1A_BUID_ChangeUsername"
         elsif params[:id] == "profile"
           menuacr = "B2C_1A_BUID_ProfileManagement"
+        elsif params[:id] == "deleteuser"
+          menuacr = "B2C_1A_BUID_DeleteAccount"
       end
 
     puts "tcc: ********* in test cases : menu options item - params:" + params[:id]
