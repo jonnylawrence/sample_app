@@ -165,7 +165,7 @@ class TestCaseCallbacksController < ApplicationController
           redirect_to test_case_path("maintainmobile") and return
         end
 
-        if ( request.path =~ /maintainsecurity/)
+        if ( request.path =~ /maintainquestions/)
           puts '*********************** this is profile menu clicking on update security questions, redirecting *******************'
           redirect_to test_case_path("maintainsecurity") and return
         end
