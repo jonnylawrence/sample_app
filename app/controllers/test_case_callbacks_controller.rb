@@ -151,7 +151,8 @@ class TestCaseCallbacksController < ApplicationController
         end
 
         if ( URI(request.referer).path =~ /B2C_1A_Bupa-Uni-uat-DeleteAccount/)
-          puts '>>>>>>  delete account, logout and try a redirect to root'
+          puts '>>>>>>  deleting account, logging out and then redirect to root'
+          User.find_by(oid:  session[:jwttokenoid]).destroy
           log_out
           redirect_to root_path and return
         end
