@@ -150,6 +150,12 @@ class TestCaseCallbacksController < ApplicationController
           redirect_to root_path and return
         end
 
+        if ( URI(request.referer).path =~ /B2C_1A_Bupa-Uni-uat-DeleteAccount/)
+          puts '>>>>>>  delete account, logout and try a redirect to root'
+          log_out
+          redirect_to root_path and return
+        end
+
         if ( request.path =~ /changeusername/)
           puts '*********************** this is profile menu clicking on update username, redirecting *******************'
           redirect_to test_case_path("username") and return
