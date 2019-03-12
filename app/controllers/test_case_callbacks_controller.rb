@@ -177,7 +177,7 @@ class TestCaseCallbacksController < ApplicationController
           redirect_to test_case_path("maintainsecurity") and return
         end
 
-        if ( request.path =~ /deleteuser/)
+        if ( request.path =~ /deleteaccount/)
           puts '*********************** this is profile menu clicking on update security questions, redirecting *******************'
           redirect_to test_case_path("deleteuser") and return
         end
