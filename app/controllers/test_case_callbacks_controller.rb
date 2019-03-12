@@ -62,33 +62,33 @@ class TestCaseCallbacksController < ApplicationController
 
         # for aggreate profile management page
 
-        if ( request.path =~ /maintainmobile/)
-          puts '*********************** maintain mobile *******************'
-          jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
-          jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainmobilenumber/oauth2/v2.0/authorize"
-          jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainmobilenumber/oauth2/v2.0/authorize"
-        end
+        # if ( request.path =~ /maintainmobile/)
+        #   puts '*********************** maintain mobile *******************'
+        #   jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
+        #   jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainmobilenumber/oauth2/v2.0/authorize"
+        #   jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainmobilenumber/oauth2/v2.0/authorize"
+        # end
 
-        if ( request.path =~ /changeusername/)
-          puts '*********************** update username *******************'
-          jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
-          jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-updateuseremail/oauth2/v2.0/authorize"
-          jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-updateuseremail/oauth2/v2.0/authorize"
-        end
+        # if ( request.path =~ /changeusername/)
+        #   puts '*********************** update username *******************'
+        #   jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
+        #   jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-updateuseremail/oauth2/v2.0/authorize"
+        #   jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-updateuseremail/oauth2/v2.0/authorize"
+        # end
 
-        if ( request.path =~ /changepassword/)
-          puts '*********************** change password *******************'
-          jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
-          jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-passwordreset/oauth2/v2.0/authorize"
-          jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-passwordreset/oauth2/v2.0/authorize"
-        end
+        # if ( request.path =~ /changepassword/)
+        #   puts '*********************** change password *******************'
+        #   jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
+        #   jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-passwordreset/oauth2/v2.0/authorize"
+        #   jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-passwordreset/oauth2/v2.0/authorize"
+        # end
 
-        if ( request.path =~ /maintainquestions/)
-          puts '*********************** maintain security questions *******************'
-          jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
-          jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainsecurityquestions/oauth2/v2.0/authorize"
-          jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainsecurityquestions/oauth2/v2.0/authorize"
-        end
+        # if ( request.path =~ /maintainquestions/)
+        #   puts '*********************** maintain security questions *******************'
+        #   jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
+        #   jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainsecurityquestions/oauth2/v2.0/authorize"
+        #   jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainsecurityquestions/oauth2/v2.0/authorize"
+        # end
 
 
 
@@ -153,6 +153,21 @@ class TestCaseCallbacksController < ApplicationController
         if ( request.path =~ /changeusername/)
           puts '*********************** this is profile menu clicking on update username, redirecting *******************'
           redirect_to test_case_path("username") and return
+        end
+
+        if ( request.path =~ /changepassword/)
+          puts '*********************** this is profile menu clicking on update password, redirecting *******************'
+          redirect_to test_case_path("changepassword") and return
+        end
+
+        if ( request.path =~ /maintainmobile/)
+          puts '*********************** this is profile menu clicking on update mobile, redirecting *******************'
+          redirect_to test_case_path("maintainmobile") and return
+        end
+
+        if ( request.path =~ /maintainsecurity/)
+          puts '*********************** this is profile menu clicking on update security questions, redirecting *******************'
+          redirect_to test_case_path("maintainsecurity") and return
         end
 
         if ( request.path =~ /signinl3/) || ( request.path =~ /signinl2/) 
