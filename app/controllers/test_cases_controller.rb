@@ -107,7 +107,7 @@ class TestCasesController < ApplicationController
     token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
     session[:token] = token
    
-      puts '******** 2 redirecting ***********'
+      puts '******** 2 redirecting - no prompt login ***********'
         redirect_to client.authorization_uri(
           state: session[:state],
           nonce: session[:nonce],
@@ -116,8 +116,7 @@ class TestCasesController < ApplicationController
           response_mode: "form_post",
           client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
           client_assertion: token,
-          ui_locales: "en-GB",
-          prompt: "none"
+          ui_locales: "en-GB"
         )
     else
       # ******************* NON-B2C PATH OPENID Dynamic Discovery ****************************  
