@@ -4,3 +4,8 @@ LoA:
   value: L1
   group: setting_group_1
   cast_type: string
+SiteName:
+  description: Demo site name
+  value: myBupa ANZ
+  group: setting_group_2
+  cast_type: string
