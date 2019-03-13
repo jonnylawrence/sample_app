@@ -158,7 +158,7 @@ class TestCaseCallbacksController < ApplicationController
         end
 
        # if ( URI(request.referer).path.downcase =~ /maintainmobilenumber\/api\/phonefactor\/confirmed/)
-        if ( URI(request.referer).path.downcase =~ /maintainmobilenumber/)
+        if ( URI(request.referer).path.downcase =~ /maintainmobilenumber/) && ( request.path !~ /signin/)
           puts '>>>>>>  maintain mobile or mobile phone changed, redirect to root'
           redirect_to root_path and return
         end
