@@ -40,8 +40,8 @@ class UsersController < ApplicationController
       @policyId=params[:user][:member]
       @org="ANZ"
       @userType="Member"
-      @systemId="Ruby-B2C"
-      @productId="InsuranceZZZZ"
+      @systemId="myBupa ANZ"
+      @productId="HealthP3435"
      
       @token=B2cApiClass.new
       @token.reset
