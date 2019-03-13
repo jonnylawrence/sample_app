@@ -157,7 +157,7 @@ class TestCaseCallbacksController < ApplicationController
           redirect_to root_path and return
         end
 
-        if ( URI(request.referer).path =~ /Phonefactor\/confirmed/)
+        if ( URI(request.referer).path =~ /B2C_1A_Bupa-Uni-uat-MaintainMobileNumber\/api\/Phonefactor\/confirmed/)
           puts '>>>>>>  mobile phone changed, redirect to root'
           redirect_to root_path and return
         end
