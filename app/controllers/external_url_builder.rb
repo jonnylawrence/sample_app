@@ -3,6 +3,7 @@ class ExternalUrlBuilder  < ActionController::Base
   B2C_APP_URL = ::Addressable::Template.new("https://neubgdat01buiduat01relyingparty01.azurewebsites.net/")
   SAIL_URL = ::Addressable::Template.new("https://b2c-ruby.herokuapp.com/sail/")
   SWAG_URL = ::Addressable::Template.new("https://neubgdat01buiduat01userprofile01.azurewebsites.net/")
+  CSA_URL = ::Addressable::Template.new("https://neubgdat01buiduat01customerservice01.azurewebsites.net/")
 
   def B2C_url
     B2C_APP_URL.pattern
@@ -14,6 +15,10 @@ class ExternalUrlBuilder  < ActionController::Base
 
   def SWAG_url
     SWAG_URL.pattern
+  end
+
+  def CSA_url
+    CSA_URL.pattern
   end
 
 end
