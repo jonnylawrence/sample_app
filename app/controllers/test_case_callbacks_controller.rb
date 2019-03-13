@@ -299,7 +299,7 @@ private
            log_in user # session_helper
            # update mobile
            puts 'tbccc: *********************** updating mobile passed from JWT **************'
-           User.where(oid: jwtoid).update(:mobile jwtmobile) 
+           User.where(oid: jwtoid).update(mobile: jwtmobile) 
            # unless jwtmobile.nil?
            puts 'tbccc: ******* session values'
            session[:jwttokenexp]=parsed["exp"]
