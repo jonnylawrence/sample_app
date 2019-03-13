@@ -157,6 +157,11 @@ class TestCaseCallbacksController < ApplicationController
           redirect_to root_path and return
         end
 
+        if ( URI(request.referer).path =~ /Phonefactor\/confirmed/)
+          puts '>>>>>>  mobile phone changed, redirect to root'
+          redirect_to root_path and return
+        end
+
         if ( request.path =~ /changeusername/)
           puts '*********************** this is profile menu clicking on update username, redirecting *******************'
           redirect_to test_case_path("username") and return
