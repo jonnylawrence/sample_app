@@ -145,19 +145,19 @@ class TestCaseCallbacksController < ApplicationController
       puts "tccbc:URI Referer:"+URI(request.referer).path unless URI(request.referer).path.nil?
       puts "tccbc:Request.env:"+request.env["HTTP_REFERER"] unless request.env["HTTP_REFERER"].nil?
 
-        if ( URI(request.referer).path =~ /cancelled/)
+        if ( URI(request.referer).path.downcase =~ /cancelled/)
           puts '>>>>>>  action cancelled, try a redirect to root'
           redirect_to root_path and return
         end
 
-        if ( URI(request.referer).path =~ /B2C_1A_Bupa-Uni-uat-DeleteAccount/)
+        if ( URI(request.referer).path.downcase =~ /deleteaccount/)
           puts '>>>>>>  deleting account, logging out and then redirect to root'
           User.find_by(oid:  session[:jwttokenoid]).destroy
           log_out
           redirect_to root_path and return
         end
 
-        if ( URI(request.referer).path =~ /B2C_1A_Bupa-Uni-uat-MaintainMobileNumber\/api\/Phonefactor\/confirmed/)
+        if ( URI(request.referer).path.downcase =~ /maintainmobilenumber\/api\/phonefactor\/confirmed/)
           puts '>>>>>>  mobile phone changed, redirect to root'
           redirect_to root_path and return
         end
@@ -324,7 +324,7 @@ private
             session[:b2clogin]=true
 
             # if referral is change user name, we need to check and update local email
-            if ( URI(request.referer).path =~ /B2C_1A_Bupa-Uni-uat-UpdateUserEmail\/api\/SelfAsserted\/confirmed/)
+            if ( URI(request.referer).path.downcase =~ /updateuseremail\/api\/selfasserted\/confirmed/)
               update_user_email
             end
 
