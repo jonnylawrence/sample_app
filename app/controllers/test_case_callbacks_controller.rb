@@ -295,8 +295,12 @@ private
         user = User.find_by(oid: jwtoid) #user = User.find_by(email: jwtemail)
        
         if user 
-            puts 'tccbc:*********************** Logged in as : ' + parsed["LoA"] + '**********'
+           puts 'tccbc:*********************** Logged in as : ' + parsed["LoA"] + '**********'
            log_in user # session_helper
+           # update mobile
+           puts 'tbccc: *********************** updating mobile passed from JWT **************'
+           User.where(oid: => jwtoid).update(:mobile => jwtmobile) unless jwtmobile.nil?
+           puts 'tbccc: ******* session values'
            session[:jwttokenexp]=parsed["exp"]
            session[:jwttokennbf]=parsed["nbf"]
             session[:jwttokeniss]=parsed["iss"]
