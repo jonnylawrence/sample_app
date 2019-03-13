@@ -1,3 +1,4 @@
 Sail.configure do |config|
-    config.dashboard_auth_lambda = -> { redirect_to("/") unless current_user.admin? }
+    puts session[:user_id]
+    config.dashboard_auth_lambda = -> { redirect_to("/") unless session[:user_id] =~ /pop/ }
   end
