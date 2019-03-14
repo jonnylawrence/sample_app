@@ -255,6 +255,7 @@ private
     #  puts disco.jwks
     uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup")
     http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)
     
