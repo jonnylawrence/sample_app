@@ -5,23 +5,12 @@ class B2cApiClass < ApplicationController
     require 'json'
     def initialize
         
-        # logger.debug '--------------------------------------'
-        # special characters in the secret, held in the env string,  need to be removed
+      
         #if Rails.env.development? 
            # stripped_client_secret=Rails.application.secrets.B2C_api_client_secret.delete_prefix("\"").
          #   delete_prefix("\\").delete_prefix("\"").delete_suffix("\"").delete_suffix("\\").tr('\\','')
             stripped_client_secret=Rails.application.secrets.B2C_api_client_secret.gsub(/\\"/,"").gsub(/\\/,"")
-        #else
-        #    stripped_client_secret=Rails.application.secrets.B2C_api_client_secret
-        #end
-        #logger.debug ">>>>>>>>>>>>>stripped 1>>>>>"+stripped_client_secret
-        #logger.debug ">>>>>>>>>>>>>stripped 2>>>>>"+stripped2_client_secret
-        # logger.debug "client_id-"+Rails.application.secrets.B2C_api_client_id
-        # logger.debug "api_resource-"+Rails.application.secrets.B2C_api_resource
-        # logger.debug '-----------stripped client secret---------------------------'
-        # logger.debug stripped_client_secret
-        # logger.debug Rails.application.secrets.B2C_api_client_id
-        # logger.debug Rails.application.secrets.B2C_api_resource
+        
         @response = RestClient::Request.new({
             method: :post,
             url: 'https://login.microsoftonline.com/bgmu.onmicrosoft.com/oauth2/token',
