@@ -253,15 +253,17 @@ private
     #  puts @disco
     #  puts disco.userinfo_endpoint
     #  puts disco.jwks
-    uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup")
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    request = Net::HTTP::Get.new(uri.request_uri)
-    response = http.request(request)
-    
-    puts response.code             # => 301
-    puts response.body             # => The body (HTML, XML, blob, whatever)
-
+    if !session[:b2ckid]
+      uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+      parsed = JSON.parse(response.body)
+      session[:kid]=parsed["kid"]
+      session[:n]=parsed["n"]
+      puts 'b2ckid: ' + session[:b2ckid] unless session[:b2ckid].nil?
+      puts 'b2cn:' + session[:b2cn] unless session[:b2cn].nil?
   end
 
   def reject_csrf
