@@ -259,8 +259,8 @@ private
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)
     
-    response.code             # => 301
-    response.body             # => The body (HTML, XML, blob, whatever)
+    puts response.code             # => 301
+    puts response.body             # => The body (HTML, XML, blob, whatever)
 
   end
 
