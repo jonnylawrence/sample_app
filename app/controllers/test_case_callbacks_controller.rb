@@ -245,7 +245,7 @@ class TestCaseCallbacksController < ApplicationController
 
 private
   def discover
-     @disco ||= OpenIDConnect::Discovery::Provider::Config.discover! 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1a_bupa-uni-uat-signinsignup'
+     @disco ||= OpenIDConnect::Discovery::Provider::Config.discover! 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/'
      puts '*******************discovery info***********************'
      puts @disco
      puts disco.userinfo_endpoint

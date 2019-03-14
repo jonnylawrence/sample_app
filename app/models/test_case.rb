@@ -38,8 +38,7 @@ class TestCase < ApplicationRecord
         secret: Rails.application.secrets.B2C_client_secret,
         redirect_uri: 'https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code',
         host: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize',
-        authorization_endpoint: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize',
-        userinfo_endpoint: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1a_bupa-uni-uat-signinsignup'
+        authorization_endpoint: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize'
       )
     elsif identifier == "maintainsecurity"
       client = OpenIDConnect::Client.new(
