@@ -264,8 +264,10 @@ private
       puts response.body.to_json
       session[:b2ckid]=parsed["keys"]["kid"]
       session[:b2cn]=parsed["keys"]["n"]
-      puts 'b2ckid: ' + session[:b2ckid] unless session[:b2ckid].nil?
-      puts 'b2cn:' + session[:b2cn] unless session[:b2cn].nil?
+      puts 'b2ckid: '
+      puts session[:b2ckid] 
+      puts 'b2cn:'
+      puts session[:b2cn] 
     else
       puts 'already got kid: ' + session[:b2ckid]
     end
