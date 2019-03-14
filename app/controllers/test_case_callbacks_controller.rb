@@ -254,8 +254,12 @@ private
     #  puts disco.userinfo_endpoint
     #  puts disco.jwks
     uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup")
-    request = Net::HTTP::Get.new(uri)
-    puts request
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+    
+    response.code             # => 301
+    response.body             # => The body (HTML, XML, blob, whatever)
 
   end
 
