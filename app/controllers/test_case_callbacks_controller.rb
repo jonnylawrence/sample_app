@@ -244,6 +244,14 @@ class TestCaseCallbacksController < ApplicationController
   
 
 private
+  def discover
+     @disco ||= OpenIDConnect::Discovery::Provider::Config.discover! 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1a_bupa-uni-uat-signinsignup'
+     puts '*******************discovery info***********************'
+     puts @disco
+     puts disco.userinfo_endpoint
+     puts disco.jwks
+
+  end
 
   def reject_csrf
     unless params[:state] == session[:state]
