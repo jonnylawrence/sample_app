@@ -262,8 +262,8 @@ private
       response = http.request(request)
       parsed = JSON.parse(response.body.to_json)
       puts response.body.to_json
-      session[:kid]=parsed["kid"]
-      session[:n]=parsed["n"]
+      session[:b2ckid]=parsed["keys"]["kid"]
+      session[:b2cn]=parsed["keys"]["n"]
       puts 'b2ckid: ' + session[:b2ckid] unless session[:b2ckid].nil?
       puts 'b2cn:' + session[:b2cn] unless session[:b2cn].nil?
     else
