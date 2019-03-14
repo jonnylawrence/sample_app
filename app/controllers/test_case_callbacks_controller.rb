@@ -254,6 +254,7 @@ private
     #  puts disco.userinfo_endpoint
     #  puts disco.jwks
     if !session[:b2ckid]
+      puts 'getting kid'
       uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
@@ -264,6 +265,9 @@ private
       session[:n]=parsed["n"]
       puts 'b2ckid: ' + session[:b2ckid] unless session[:b2ckid].nil?
       puts 'b2cn:' + session[:b2cn] unless session[:b2cn].nil?
+    else
+      puts 'already got kid: ' + session[:b2ckid]
+    end
   end
 
   def reject_csrf
