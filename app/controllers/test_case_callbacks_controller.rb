@@ -260,14 +260,12 @@ private
       http.use_ssl = true
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
-      parsed = JSON.parse(response.body.to_json)
+      parsed = JSON.parse(response.body)
       puts response.body.to_json
-      session[:b2ckid]=parsed["keys"]["kid"]
-      session[:b2cn]=parsed["keys"]["n"]
-      puts 'b2ckid: '
-      puts session[:b2ckid] 
-      puts 'b2cn:'
-      puts session[:b2cn] 
+      session[:b2ckid]=parsed["keys"][0]["kid"]
+      session[:b2cn]=parsed["keys"][0]["n"]
+      puts 'b2ckid: ' + session[:b2ckid] unless session[:b2ckid].nil?
+      puts 'b2cn:' + session[:b2cn] unless session[:b2ckid].nil?
     else
       puts 'already got kid: ' + session[:b2ckid]
     end
