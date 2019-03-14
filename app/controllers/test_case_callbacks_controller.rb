@@ -1,6 +1,8 @@
 class TestCaseCallbacksController < ApplicationController
   require 'jwt'
   require 'json'
+  require 'net/http'
+  require 'uri'
   layout 'popup'
   #protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
