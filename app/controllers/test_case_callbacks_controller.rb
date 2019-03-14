@@ -304,7 +304,8 @@ private
       puts "ServiceHints> " + parsed["ServiceHints"]
       puts 'tccbc:>>>>>>>>>TOKEN OUTPUT END<<<<<<<<<<<<<'
       #flash.now[:success] = 'Service Hint exists ' + parsed["ServiceHints"] unless parsed["ServiceHints"].nil?
-
+      puts 'try discover.....'
+      discover
       
       if (parsed["LoA"] == "L1") || (params[:LoA] == "L2") || (params[:LoA] == "L3")  
         # check user is registered with local app
