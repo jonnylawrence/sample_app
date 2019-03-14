@@ -271,7 +271,8 @@ private
 
     id_token_jwt = JSON::JWT.decode params[:id_token], :skip_verification
     puts id_token_jwt
-    OpenIDConnect::ResponseObject::IdToken.decode params[:id_token], session[:b2cn]
+    id_token = OpenIDConnect::ResponseObject::IdToken.decode params[:id_token], session[:b2cn]
+    id_token.verify! expected
   end
 
   def reject_csrf
