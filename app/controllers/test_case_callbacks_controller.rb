@@ -245,11 +245,16 @@ class TestCaseCallbacksController < ApplicationController
 
 private
   def discover
-     @disco ||= OpenIDConnect::Discovery::Provider::Config.discover! 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1a_bupa-uni-uat-signinsignup'
-     puts '*******************discovery info***********************'
-     puts @disco
-     puts disco.userinfo_endpoint
-     puts disco.jwks
+     # https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup
+    #  @disco ||= OpenIDConnect::Discovery::Provider::Config.discover! 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1a_bupa-uni-uat-signinsignup'
+    #  puts '*******************discovery info***********************'
+    #  puts @disco
+    #  puts disco.userinfo_endpoint
+    #  puts disco.jwks
+    uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup")
+    request = Net::HTTP::Get.new(uri)
+    response = http.request request # Net::HTTPResponse object 
+    puts response
 
   end
 
