@@ -254,21 +254,24 @@ private
     #  puts disco.userinfo_endpoint
     #  puts disco.jwks
     if !session[:b2ckid]
-      puts 'getting kid'
+      puts 'tccc: getting kid'
       uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
       parsed = JSON.parse(response.body)
-      puts response.body.to_json
       session[:b2ckid]=parsed["keys"][0]["kid"]
       session[:b2cn]=parsed["keys"][0]["n"]
-      puts 'b2ckid: ' + session[:b2ckid] unless session[:b2ckid].nil?
-      puts 'b2cn:' + session[:b2cn] unless session[:b2ckid].nil?
+      puts 'tccc: b2ckid: ' + session[:b2ckid] unless session[:b2ckid].nil?
+      puts 'tccc: b2cn:' + session[:b2cn] unless session[:b2ckid].nil?
     else
       puts 'already got kid: ' + session[:b2ckid]
     end
+
+    id_token_jwt = JSON::JWT.decode params[:id_token], :skip_verification
+    puts id_token_jwt
+    OpenIDConnect::ResponseObject::IdToken.decode id_token_string, session[:b2cn]
   end
 
   def reject_csrf
