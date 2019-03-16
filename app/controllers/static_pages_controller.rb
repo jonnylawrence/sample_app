@@ -31,7 +31,13 @@ class StaticPagesController < ApplicationController
   def help
   end
 
+  def elevate
+  end
+
   def confidential
+    unless session[:jwttokenloa] == "L3"
+      render elevate 
+    end
   end
 
 end
