@@ -279,6 +279,7 @@ private
     jwt = JSON::JWT.decode params[:id_token], public_key
     if jwt.verify! public_key
       puts 'tccb: ***** JWT SIGNATURE IS GOOD! *******'
+      render text: 'JWT signature is good!'
     else
       puts 'tccb: !!!!!!!!!!!! JWT SIGNATURE IS BAD !!!!!!!!!!!!!'
       render text: 'JWT signature is bad!'
