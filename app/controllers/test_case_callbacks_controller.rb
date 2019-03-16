@@ -204,13 +204,13 @@ class TestCaseCallbacksController < ApplicationController
         puts 'end 2'
     end     # end if logged_in
     puts 'end 3'
-    puts 'redirect session : ' + session[:redirect] unless session[:redirect].nil?
-      # reroute based on return from signl3 elevate and who asked for it
-      if session[:redirect] == "confidential" 
-        session[:redirect] = ""
-        puts 'redirecting to confidential'
-        redirect_to confidential_path and return
-      end
+    # puts 'redirect session : ' + session[:redirect] unless session[:redirect].nil?
+    #   # reroute based on return from signl3 elevate and who asked for it
+    #   if session[:redirect] == "confidential" 
+    #     session[:redirect] = ""
+    #     puts 'redirecting to confidential'
+    #     redirect_to confidential_path and return
+    #   end
   end # end def
 
   
