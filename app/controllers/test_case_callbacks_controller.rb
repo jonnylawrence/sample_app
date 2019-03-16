@@ -247,6 +247,18 @@ class TestCaseCallbacksController < ApplicationController
   
 
 private
+  def do_IDPmetadatadiscovery
+    if !session[:b2cissuer]
+      puts 'tccb: getting meta data from B2C OID discovery endpoint...'
+      uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1a_bupa-uni-uat-signinsignup")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+      parsed = JSON.parse(response.body)
+      session[:b2cissuer]=parsed["issuer"]
+  end
+
   def check_JWTsignature
     # HOW TO VALIDATE A TOKEN
     # https://connect2id.com/blog/how-to-validate-an-openid-connect-id-token
@@ -280,9 +292,9 @@ private
     # check alg
     case session[:b2calg]
     when /RS/
-      puts 'Good news - match for RSA'
+      puts 'tccb: Good news - match for RSA'
     else 
-      puts 'Bad news - match for JWT alogorithm !!!!!'
+      puts 'tccb: Bad news - no match for JWT alogorithm !!!!!'
     end
 
     # check kid
@@ -340,10 +352,23 @@ private
       jwtoid=parsed["oid"]
       jwtmobile=parsed["mobile"]
      
+      
+
       puts 'tccbc:>>>>>>>>>TOKEN OUTPUT START<<<<<<<<<<<<<'
       puts "LOA> " + parsed["LoA"]
       puts "email> " + jwtemail
       puts "iss - does the token originate from the expected IdP? > " + parsed["iss"]
+      # Need to validate issuer using discovery endpoint and return JWT issuer
+      #
+      do_IDPmetadatadiscovery
+      puts session[:b2cissuer]
+      if parsed["iss"] == session[:b2cissuer]
+        puts 'Good news Issuer matches'
+      else
+        puts 'Bad news Issuer Does NOT match!!!!!!!!!'
+      end
+      #
+      #
       puts "OID> " + jwtoid
       puts "mobile" + jwtmobile unless jwtmobile.nil?
       puts "exp - is the token within its validity window? > " + Time.at(parsed["exp"]).to_s
@@ -364,6 +389,8 @@ private
       #
       check_JWTsignature
       #
+   
+
       if (parsed["LoA"] == "L1") || (params[:LoA] == "L2") || (params[:LoA] == "L3")  
         # check user is registered with local app
         user = User.find_by(oid: jwtoid) #user = User.find_by(email: jwtemail)
