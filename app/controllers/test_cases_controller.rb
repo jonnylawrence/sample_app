@@ -41,7 +41,12 @@ class TestCasesController < ApplicationController
 
       token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
       session[:token] = token
-      
+      puts 'tcc: ******* 1x Sending the following in the initial request ****************'
+      puts "ID>" + session[:client_id] unless session[:client_id].nil?
+      puts "STATE>" + session[:state] unless session[:state].nil?
+      puts "NONCE>" + session[:nonce] unless session[:nonce].nil?
+      #puts "token>" + session[:token] unless session[:token].nil?
+      puts "tccbc:session end*************************"
        redirect_to client.authorization_uri(
          state: session[:state],
          nonce: session[:nonce],
@@ -109,7 +114,12 @@ class TestCasesController < ApplicationController
     token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
     session[:token] = token
    
-      puts '******** 2 redirecting - no prompt login ***********'
+    puts 'tcc: ******* 2x Sending the following in the menu requests ****************'
+    puts "ID>" + session[:client_id] unless session[:client_id].nil?
+    puts "STATE>" + session[:state] unless session[:state].nil?
+    puts "NONCE>" + session[:nonce] unless session[:nonce].nil?
+    puts "tccbc:session end*************************"
+
         redirect_to client.authorization_uri(
           state: session[:state],
           nonce: session[:nonce],

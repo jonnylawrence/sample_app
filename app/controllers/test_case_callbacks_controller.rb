@@ -77,7 +77,7 @@ class TestCaseCallbacksController < ApplicationController
           #session[:client_id] = Rails.application.secrets.B2C_client_id
           #session[:state] = SecureRandom.hex(16)
           session[:nonce] = SecureRandom.hex(16)      
-          puts 'tccbc: Sending the following in the call back request ****************'
+          puts 'tccbc: ******* Sending the following in the call back request ****************'
           puts "ID>" + session[:client_id] unless session[:client_id].nil?
           puts "STATE using old state>" + params[:state] unless params[:state].nil?
           puts "NONCE>" + session[:nonce] unless session[:nonce].nil?
