@@ -253,7 +253,7 @@ private
     # https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup
     # https://github.com/nov/json-jwt/wiki/JWS
      if !session[:b2ckid]
-      puts 'tccb: getting kid'
+      puts 'tccb: getting kid from B2C OID discovery endpoint for keys....'
       uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
@@ -276,6 +276,12 @@ private
       e: session[:b2ce],
       n: session[:b2cn]
     )
+    puts 'tccb: Does kid match from discovery endpoint and returned JWT'
+    if session[:jwttokenkid] == session[:b2ckid]
+      puts 'tccb: token kid matches with discovery keys kid'
+    else
+      puts 'tccb: !!!!!!!!!! kid does not match between discovery keys and JWT token !!!!!!!'
+    end
     jwt = JSON::JWT.decode params[:id_token], public_key
     if jwt.verify! public_key
       puts 'tccb: ***** JWT SIGNATURE IS GOOD! *******'
@@ -312,7 +318,10 @@ private
       @b2cjwt=Decode.new(params[:id_token],Rails.application.secrets.BC2_Assertion_secret)
       @b2cjwt.decode_segments
       puts '************ header of token *****************'
-      puts @b2cjwt.header
+      @sts_header =@b2cjwt.header.to_json
+      puts @sts_header
+      session[:jwttokenkid]=parsed["kid"]
+      puts '************ payload *****************'
       @sts = @b2cjwt.payload.to_json
       parsed = JSON.parse(@sts)
       jwtemail=parsed["email"].downcase
