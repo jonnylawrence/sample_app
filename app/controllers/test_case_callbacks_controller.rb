@@ -199,9 +199,11 @@ class TestCaseCallbacksController < ApplicationController
             client_assertion: token,
             ui_locales: "en-GB"
           )
+        puts 'end 1'
         end
-
+        puts 'end 2'
     end     # end if logged_in
+    puts 'end 3'
   end # end def
   
 
