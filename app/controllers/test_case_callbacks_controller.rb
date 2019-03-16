@@ -397,7 +397,15 @@ private
               update_user_email
             end
 
-            redirect_to root_path and return
+            # reroute based on return from signl3 elevate and who asked for it
+            if session[:redirect] == "confidential" 
+              redirect_to confidential_path and return
+            else
+              redirect_to root_path and return
+            end
+
+
+            
           else
             puts 'tccbc:>>>>>>>>>>>>b2C USER NEEDS SIGN UP - CREATING DUMMY RECORD >>>>>>>>>>>>'
             @user = User.new(:name => "Please complete",:member => "Please complete", :email => "dummy@dummy.com", :password => "0racle", :password_confirmation => "0racle")

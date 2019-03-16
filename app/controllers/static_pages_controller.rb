@@ -32,13 +32,11 @@ class StaticPagesController < ApplicationController
   end
 
   def elevate
+    session[:redirect] = "confidential"
   end
 
   def confidential
-    puts 'loa'
-    puts  session[:jwttokenloa] 
     unless session[:jwttokenloa] == "L3"
-      puts 'elevate'
       render 'elevate'
     end
   end
