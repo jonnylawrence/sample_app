@@ -32,6 +32,7 @@ class StaticPagesController < ApplicationController
   end
 
   def elevate
+    puts '@@@@@@@@@@ setting redirect = confidential '
     session[:redirect] = "confidential"
   end
 
