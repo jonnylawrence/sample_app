@@ -248,8 +248,11 @@ class TestCaseCallbacksController < ApplicationController
 
 private
   def check_JWTsignature
-     # https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup
-    if !session[:b2ckid]
+    # discovery page
+    # https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1a_bupa-uni-uat-signinsignup
+    # https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup
+    # https://github.com/nov/json-jwt/wiki/JWS
+     if !session[:b2ckid]
       puts 'tccb: getting kid'
       uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup")
       http = Net::HTTP.new(uri.host, uri.port)
@@ -275,15 +278,11 @@ private
     )
     jwt = JSON::JWT.decode params[:id_token], public_key
     if jwt.verify! public_key
-      puts 'tccb: JWT SIGNATURE IS GOOD!'
+      puts 'tccb: ***** JWT SIGNATURE IS GOOD! *******'
     else
-      puts 'tccb: JWT SIGNATURE IS BAD!!!!'
+      puts 'tccb: !!!!!!!!!!!! JWT SIGNATURE IS BAD !!!!!!!!!!!!!'
+      # need to redirect to login page, but won't bother!
     end
-
-    # id_token_jwt = JSON::JWT.decode params[:id_token], :skip_verification
-    # puts id_token_jwt
-    # id_token = OpenIDConnect::ResponseObject::IdToken.decode params[:id_token], session[:b2cn]
-    # id_token.verify! expected
   end
 
   def reject_csrf
