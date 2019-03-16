@@ -267,6 +267,7 @@ private
       puts 'tccc: b2cn:' + session[:b2cn] unless session[:b2ckid].nil?
     else
       puts 'already got kid: ' + session[:b2ckid]
+      puts 'already got key: ' + session[:n]
     end
 
     # id_token_jwt = JSON::JWT.decode params[:id_token], :skip_verification
