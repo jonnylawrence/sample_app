@@ -63,45 +63,6 @@ class TestCaseCallbacksController < ApplicationController
           jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-emailrecovery/oauth2/v2.0/authorize"
         end
 
-        # for aggreate profile management page
-
-        # if ( request.path =~ /maintainmobile/)
-        #   puts '*********************** maintain mobile *******************'
-        #   jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
-        #   jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainmobilenumber/oauth2/v2.0/authorize"
-        #   jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainmobilenumber/oauth2/v2.0/authorize"
-        # end
-
-        # if ( request.path =~ /changeusername/)
-        #   puts '*********************** update username *******************'
-        #   jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
-        #   jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-updateuseremail/oauth2/v2.0/authorize"
-        #   jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-updateuseremail/oauth2/v2.0/authorize"
-        # end
-
-        # if ( request.path =~ /changepassword/)
-        #   puts '*********************** change password *******************'
-        #   jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
-        #   jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-passwordreset/oauth2/v2.0/authorize"
-        #   jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-passwordreset/oauth2/v2.0/authorize"
-        # end
-
-        # if ( request.path =~ /maintainquestions/)
-        #   puts '*********************** maintain security questions *******************'
-        #   jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
-        #   jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainsecurityquestions/oauth2/v2.0/authorize"
-        #   jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-maintainsecurityquestions/oauth2/v2.0/authorize"
-        # end
-
-
-
-        # if ( request.path =~ /deleteaccount/)
-        #   puts '*********************** forgotten username *******************'
-        #   jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
-        #   jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-emailrecovery/oauth2/v2.0/authorize"
-        #   jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-emailrecovery/oauth2/v2.0/authorize"
-        # end
-
         if jwthost # id jwthost is defined above
           puts "tccbc:-----JWTHOST--------" + jwthost
         
@@ -116,15 +77,11 @@ class TestCaseCallbacksController < ApplicationController
           #session[:client_id] = Rails.application.secrets.B2C_client_id
           #session[:state] = SecureRandom.hex(16)
           session[:nonce] = SecureRandom.hex(16)      
-          puts 'tccbc:session variables****************'
-          puts "ID>"
-          puts session[:client_id] 
-          puts "STATE>"
-          puts session[:state]
-          puts "NONCE>" 
-          puts session[:nonce]
-          puts "token>"
-          puts session[:token]      
+          puts 'tccbc: Sending the following in the call back request ****************'
+          puts "ID>" + session[:client_id] unless session[:client_id].nil?
+          puts "STATE using old state>" + params[:state] unless params[:state].nil?
+          puts "NONCE>" + session[:nonce] unless session[:nonce].nil?
+          puts "token>" + session[:token] unless session[:token].nil?
           puts "tccbc:session end*************************"
           redirect_to client.authorization_uri(
             state: params[:state], # params[:state] should equal original session[:state]
