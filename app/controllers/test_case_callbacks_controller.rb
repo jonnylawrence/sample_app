@@ -257,6 +257,9 @@ private
       response = http.request(request)
       parsed = JSON.parse(response.body)
       session[:b2cissuer]=parsed["issuer"]
+    else
+      puts 'tccc: issuer : ' + session[:b2cissuer]
+    end
   end
 
   def check_JWTsignature
@@ -389,8 +392,6 @@ private
       #
       check_JWTsignature
       #
-   
-
       if (parsed["LoA"] == "L1") || (params[:LoA] == "L2") || (params[:LoA] == "L3")  
         # check user is registered with local app
         user = User.find_by(oid: jwtoid) #user = User.find_by(email: jwtemail)
