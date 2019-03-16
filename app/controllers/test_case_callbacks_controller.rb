@@ -350,9 +350,9 @@ private
       else 
         puts '!!!! Bad news, Nonce does not tie back to the request'
       end
-      puts "params state is " + params[:state].to_s
-      puts "session state is " + session[:state].to_s
-       if  puts params[:state] == session[:state]
+      #puts "params state is " + params[:state].to_s
+      #puts "session state is " + session[:state].to_s
+       if params[:state].to_s == session[:state].to_s
         puts '**** Good news state [in the packet body] matches the returned value'
       else
         puts '!!!! Bad news state does NOT match returned value CSRF Attack !!!!!!!!!'
