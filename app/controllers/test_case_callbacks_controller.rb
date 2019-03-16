@@ -105,6 +105,14 @@ class TestCaseCallbacksController < ApplicationController
       puts "tccbc:URI Referer:"+URI(request.referer).path unless URI(request.referer).path.nil?
       puts "tccbc:Request.env:"+request.env["HTTP_REFERER"] unless request.env["HTTP_REFERER"].nil?
 
+      puts 'redirect session : ' + session[:redirect] unless session[:redirect].nil?
+      # reroute based on return from signl3 elevate and who asked for it
+      if session[:redirect] == "confidential" 
+        session[:redirect] = ""
+        puts 'redirecting to confidential'
+        redirect_to confidential_path and return
+      end
+
         if ( URI(request.referer).path.downcase =~ /cancelled/)
           puts '>>>>>>  action cancelled, try a redirect to root'
           redirect_to root_path and return
@@ -120,18 +128,7 @@ class TestCaseCallbacksController < ApplicationController
        # if ( URI(request.referer).path.downcase =~ /maintainmobilenumber\/api\/phonefactor\/confirmed/)
         if ( URI(request.referer).path.downcase =~ /maintainmobilenumber/) && ( request.path !~ /signin/)
           puts '>>>>>>  maintain mobile or mobile phone changed, redirect to root'
-
-          puts 'redirect session : ' + session[:redirect] unless session[:redirect].nil?
-          # reroute based on return from signl3 elevate and who asked for it
-          if session[:redirect] == "confidential" 
-            session[:redirect] = ""
-            puts 'redirecting to confidential'
-            redirect_to confidential_path and return
-          else
-            puts 'redirecting to root'
-            redirect_to root_path and return
-          end
-        
+          redirect_to root_path and return
         end
 
         
