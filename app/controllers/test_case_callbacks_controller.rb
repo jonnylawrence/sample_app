@@ -263,11 +263,14 @@ private
       parsed = JSON.parse(response.body)
       session[:b2ckid]=parsed["keys"][0]["kid"]
       session[:b2cn]=parsed["keys"][0]["n"]
+      session[:b2ce]=parsed["keys"][0]["e"]
       puts 'tccc: b2ckid: ' + session[:b2ckid] unless session[:b2ckid].nil?
-      puts 'tccc: b2cn:' + session[:b2cn] unless session[:b2ckid].nil?
+      puts 'tccc: b2cn:' + session[:b2cn] unless session[:b2cn].nil?
+      puts 'tccc: b2ce:' + session[:b2ce] unless session[:b2ce].nil?
     else
       puts 'already got kid: ' + session[:b2ckid]
       puts 'already got key: ' + session[:b2cn]
+      puts 'already got key: ' + session[:b2ce]
     end
 
     # id_token_jwt = JSON::JWT.decode params[:id_token], :skip_verification
