@@ -276,11 +276,11 @@ private
       e: session[:b2ce],
       n: session[:b2cn]
     )
-    puts 'tccb: Does kid match from discovery endpoint and returned JWT'
+
     if session[:jwttokenkid] == session[:b2ckid]
-      puts 'tccb: token kid matches with discovery keys kid'
+      puts 'tccb: Good news, kid token  matches with discovery keys kid'
     else
-      puts 'tccb: !!!!!!!!!! kid does not match between discovery keys and JWT token !!!!!!!'
+      puts 'tccb: Bad news, kid does not match between discovery keys and JWT token !!!!!!!'
     end
     jwt = JSON::JWT.decode params[:id_token], public_key
     if jwt.verify! public_key
