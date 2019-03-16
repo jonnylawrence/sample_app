@@ -39,7 +39,7 @@ class StaticPagesController < ApplicationController
     puts  session[:jwttokenloa] 
     unless session[:jwttokenloa] == "L3"
       puts 'elevate'
-      render elevate 
+      render 'elevate'
     end
   end
 
