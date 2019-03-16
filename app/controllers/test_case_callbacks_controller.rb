@@ -3,6 +3,7 @@ class TestCaseCallbacksController < ApplicationController
   require 'json'
   require 'net/http'
   require 'uri'
+  require 'json/jwt'
   layout 'popup'
   #protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
@@ -246,15 +247,10 @@ class TestCaseCallbacksController < ApplicationController
   
 
 private
-  def discover
+  def check_JWTsignature
      # https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup
-    #  @disco ||= OpenIDConnect::Discovery::Provider::Config.discover! 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1a_bupa-uni-uat-signinsignup'
-    #  puts '*******************discovery info***********************'
-    #  puts @disco
-    #  puts disco.userinfo_endpoint
-    #  puts disco.jwks
     if !session[:b2ckid]
-      puts 'tccc: getting kid'
+      puts 'tccb: getting kid'
       uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
@@ -268,9 +264,20 @@ private
       puts 'tccc: b2cn:' + session[:b2cn] unless session[:b2cn].nil?
       puts 'tccc: b2ce:' + session[:b2ce] unless session[:b2ce].nil?
     else
-      puts 'already got kid: ' + session[:b2ckid]
-      puts 'already got key: ' + session[:b2cn]
-      puts 'already got key: ' + session[:b2ce]
+      puts 'tccb: already got kid: ' + session[:b2ckid]
+      puts 'tccb: already got key: ' + session[:b2cn]
+      puts 'tccb: already got key: ' + session[:b2ce]
+    end
+    public_key = JSON::JWK.new(
+      kty: 'RSA',
+      e: session[:b2ce],
+      n: session[:b2cn]
+    )
+    jwt = JSON::JWT.decode params[:id_token], public_key
+    if jwt.verify! public_key
+      puts 'tccb: JWT SIGNATURE IS GOOD!'
+    else
+      puts 'tccb: JWT SIGNATURE IS BAD!!!!'
     end
 
     # id_token_jwt = JSON::JWT.decode params[:id_token], :skip_verification
@@ -295,14 +302,14 @@ private
     # end
     puts "tccbc:********checking token *******"
     puts params[:LoA]
-    puts '--------token below-----'
-    puts params[:id_token]
+    #puts '--------token below-----'
+    #puts params[:id_token]
     puts "tccbc:******************************"
     # check body for a L2 Token, although token needs to be checked below
     if (params[:LoA] == "L1") || (params[:LoA] == "L2")  || (params[:LoA] == "L3")  
       puts '*********** checking ID token....'
-      puts 'all of the token >>>>>>>>>.'
-      puts params[:id_token]
+     # puts 'all of the token >>>>>>>>>.'
+     # puts params[:id_token]
       @b2cjwt=Decode.new(params[:id_token],Rails.application.secrets.BC2_Assertion_secret)
       @b2cjwt.decode_segments
       puts '************ header of token *****************'
@@ -312,10 +319,7 @@ private
       jwtemail=parsed["email"].downcase
       jwtoid=parsed["oid"]
       jwtmobile=parsed["mobile"]
-      
-      #
-      # Need to check signature on token !!!!!!!!!!!!!! NOT DONE
-      #
+     
       puts 'tccbc:>>>>>>>>>TOKEN OUTPUT START<<<<<<<<<<<<<'
       puts "LOA> " + parsed["LoA"]
       puts "email> " + jwtemail
@@ -333,9 +337,13 @@ private
       puts "ServiceHints> " + parsed["ServiceHints"]
       puts 'tccbc:>>>>>>>>>TOKEN OUTPUT END<<<<<<<<<<<<<'
       #flash.now[:success] = 'Service Hint exists ' + parsed["ServiceHints"] unless parsed["ServiceHints"].nil?
-      puts 'try discover.....'
-      discover
       
+      puts '<><><><>< validating token signature <><><><><><><'
+      #
+      # Need to check signature for token
+      #
+      check_JWTsignature
+      #
       if (parsed["LoA"] == "L1") || (params[:LoA] == "L2") || (params[:LoA] == "L3")  
         # check user is registered with local app
         user = User.find_by(oid: jwtoid) #user = User.find_by(email: jwtemail)
