@@ -287,45 +287,41 @@ private
     # cookies.each do |cookie|
     #   puts cookie
     # end
-    puts "tccbc:********checking token *******"
+    puts "tccbc: ******************    checking token ******************************"
     puts params[:LoA]
-    #puts '--------token below-----'
-    #puts params[:id_token]
-    puts "tccbc:******************************"
+    puts "tccbc: Checking body for the token........"
     # check body for a L2 Token, although token needs to be checked below
     if (params[:LoA] == "L1") || (params[:LoA] == "L2")  || (params[:LoA] == "L3")  
-      puts '*********** checking ID token....'
+      puts '*********** OK L1, L2, L3 found in the body therefore now checking ID token validity....'
      # puts 'all of the token >>>>>>>>>.'
      # puts params[:id_token]
       @b2cjwt=Decode.new(params[:id_token],Rails.application.secrets.BC2_Assertion_secret)
       @b2cjwt.decode_segments
-      puts '************ header of token *****************'
+      puts '************ loading header of token *****************'
       @sts_header =@b2cjwt.header.to_json
       puts @sts_header
       parsed_header = JSON.parse(@sts_header)
       session[:jwttokenkid]=parsed_header["kid"]
       session[:jwttokenalg]=parsed_header["alg"]
-      puts '************ payload *****************'
+      puts '************ loading payload *****************'
       @sts = @b2cjwt.payload.to_json
       parsed = JSON.parse(@sts)
       jwtemail=parsed["email"].downcase
       jwtoid=parsed["oid"]
       jwtmobile=parsed["mobile"]
-     
-      
-
+  
       puts 'tccbc:>>>>>>>>>TOKEN OUTPUT START<<<<<<<<<<<<<'
       puts "LOA> " + parsed["LoA"]
       puts "email> " + jwtemail
-      puts "iss - does the token originate from the expected IdP? > " + parsed["iss"]
+      puts "iss - does the token originate from IdP? > " + parsed["iss"]
       # Need to validate issuer using discovery endpoint and return JWT issuer
       #
 
       do_IDPmetadatadiscovery
       if parsed["iss"] == session[:b2cissuer]
-        puts 'Good news Issuer matches'
+        puts '**** Good news Issuer matches'
       else
-        puts 'Bad news Issuer Does NOT match!!!!!!!!!'
+        puts '!!!! Bad news Issuer Does NOT match!!!!!!!!!'
       end
       
       puts "OID> " + jwtoid
@@ -335,13 +331,19 @@ private
       puts "aud -  is the token intended for me and it matches my client id?> " + parsed["aud"]
 
       if parsed["aud"] == Rails.application.secrets.B2C_client_id
-        puts 'Good news audience matches my client_id'
+        puts '**** Good news audience matches my client_id'
       else
-        puts 'Bad news audience does NOT match my client_id !!!!!!!!!'
+        puts '!!!! Bad news audience does NOT match my client_id !!!!!!!!!'
       end
 
       puts "acr> " + parsed["acr"]
       puts "nonce - if set, does it tie to a request of my own?> " + parsed["nonce"]
+
+      if session[:nonce] == parsed["nonce"]
+        puts '**** Good new, Nonce ties back to the request'
+      else 
+        puts '!!!! Bad news, Nonce does not tie back to the request'
+      end
       puts "iat> " + Time.at(parsed["iat"]).to_s
       puts "auth_time> " + Time.at(parsed["auth_time"]).to_s
       puts "rpName> " + parsed["rpName"]
