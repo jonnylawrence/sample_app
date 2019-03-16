@@ -399,6 +399,7 @@ private
 
             # reroute based on return from signl3 elevate and who asked for it
             if session[:redirect] == "confidential" 
+              session[:redirect] = ""
               redirect_to confidential_path and return
             else
               redirect_to root_path and return
