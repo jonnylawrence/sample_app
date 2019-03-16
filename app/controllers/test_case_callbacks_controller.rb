@@ -320,7 +320,8 @@ private
       puts '************ header of token *****************'
       @sts_header =@b2cjwt.header.to_json
       puts @sts_header
-      session[:jwttokenkid]=parsed["kid"]
+      parsed_header = JSON.parse(@sts_header)
+      session[:jwttokenkid]=parsed_header["kid"]
       puts '************ payload *****************'
       @sts = @b2cjwt.payload.to_json
       parsed = JSON.parse(@sts)
