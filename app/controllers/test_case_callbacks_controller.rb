@@ -289,10 +289,10 @@ private
     ########################################################
     # after returning from B2C check the presence of a token 
     ########################################################
-    puts 'tccbc; *************** printing cookies ***********'
-    cookies.each do |cookie|
-      puts cookie
-    end
+    # puts 'tccbc; *************** printing cookies ***********'
+    # cookies.each do |cookie|
+    #   puts cookie
+    # end
     puts "tccbc:********checking token *******"
     puts params[:LoA]
     puts '--------token below-----'
@@ -301,8 +301,11 @@ private
     # check body for a L2 Token, although token needs to be checked below
     if (params[:LoA] == "L1") || (params[:LoA] == "L2")  || (params[:LoA] == "L3")  
       puts '*********** checking ID token....'
+      puts 'all of the token >>>>>>>>>.'
+      puts params[:id_token]
       @b2cjwt=Decode.new(params[:id_token],Rails.application.secrets.BC2_Assertion_secret)
       @b2cjwt.decode_segments
+      puts '************ header of token *****************'
       puts @b2cjwt.header
       @sts = @b2cjwt.payload.to_json
       parsed = JSON.parse(@sts)
