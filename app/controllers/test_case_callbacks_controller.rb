@@ -397,11 +397,14 @@ private
               update_user_email
             end
 
+            puts 'redirect session : ' + session[:redirect] unless session[:redirect].nil?
             # reroute based on return from signl3 elevate and who asked for it
             if session[:redirect] == "confidential" 
               session[:redirect] = ""
+              puts 'redirecting to confidential'
               redirect_to confidential_path and return
             else
+              puts 'redirecting to root'
               redirect_to root_path and return
             end
 
