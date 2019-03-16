@@ -316,41 +316,35 @@ private
       puts "iss - does the token originate from IdP? > " + parsed["iss"]
       # Need to validate issuer using discovery endpoint and return JWT issuer
       #
-
       do_IDPmetadatadiscovery
-      if parsed["iss"] == session[:b2cissuer]
-        puts '**** Good news Issuer matches'
-      else
-        puts '!!!! Bad news Issuer Does NOT match!!!!!!!!!'
-      end
-      
+ 
       puts "OID> " + jwtoid
       puts "mobile" + jwtmobile unless jwtmobile.nil?
       puts "exp - is the token within its validity window? > " + Time.at(parsed["exp"]).to_s
       puts "nbf - is the token within its validity window?> " + Time.at(parsed["nbf"]).to_s
       puts "aud -  is the token intended for me and it matches my client id?> " + parsed["aud"]
-
-      if parsed["aud"] == Rails.application.secrets.B2C_client_id
-        puts '**** Good news audience matches my client_id'
-      else
-        puts '!!!! Bad news audience does NOT match my client_id !!!!!!!!!'
-      end
-
       puts "acr> " + parsed["acr"]
       puts "nonce - if set, does it tie to a request of my own?> " + parsed["nonce"]
-
+      puts "iat> " + Time.at(parsed["iat"]).to_s
+      puts "auth_time> " + Time.at(parsed["auth_time"]).to_s
+      puts "rpName> " + parsed["rpName"]
+      puts "ServiceHints> " + parsed["ServiceHints"]
+      if parsed["iss"] == session[:b2cissuer]
+        puts '**** Good news Issuer matches'
+      else
+        puts '!!!! Bad news Issuer Does NOT match!!!!!!!!!'
+      end
       if session[:nonce] == parsed["nonce"]
         puts '**** Good new, Nonce ties back to the request'
       else 
         puts '!!!! Bad news, Nonce does not tie back to the request'
       end
-      puts "iat> " + Time.at(parsed["iat"]).to_s
-      puts "auth_time> " + Time.at(parsed["auth_time"]).to_s
-      puts "rpName> " + parsed["rpName"]
-      puts "ServiceHints> " + parsed["ServiceHints"]
-      puts 'tccbc:>>>>>>>>>TOKEN OUTPUT END<<<<<<<<<<<<<'
-      #flash.now[:success] = 'Service Hint exists ' + parsed["ServiceHints"] unless parsed["ServiceHints"].nil?
-      
+      if parsed["aud"] == Rails.application.secrets.B2C_client_id
+        puts '**** Good news audience matches my client_id'
+      else
+        puts '!!!! Bad news audience does NOT match my client_id !!!!!!!!!'
+      end
+      puts 'tccbc:>>>>>>>>>TOKEN OUTPUT END<<<<<<<<<<<<<'      
       puts '<><><><>< validating token signature <><><><><><><'
       #
       # Need to check signature for token
