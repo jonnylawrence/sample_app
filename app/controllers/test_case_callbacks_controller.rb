@@ -248,6 +248,8 @@ class TestCaseCallbacksController < ApplicationController
 
 private
   def check_JWTsignature
+    # HOW TO VALIDATE A TOKEN
+    # https://connect2id.com/blog/how-to-validate-an-openid-connect-id-token
     # discovery page
     # https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1a_bupa-uni-uat-signinsignup
     # https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup
@@ -278,9 +280,9 @@ private
     # check alg
     case session[:b2calg]
     when /RS/
-      'Good match for RSA'
+      puts 'Good news - match for RSA'
     else 
-      '!!!!! Bad match for JWT alogorithm !!!!!'
+      puts 'Bad news - match for JWT alogorithm !!!!!'
     end
 
     # check kid
