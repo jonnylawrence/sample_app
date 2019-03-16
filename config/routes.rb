@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   # B2C end points pages
   get 'identity/help', to: 'static_pages#help'
+  get 'identity/confidential', to: 'static_pages#confidential'
   get 'identity/forgotusername', to: 'test_case_callbacks#show'
   get 'identity/signinl3', to: 'test_case_callbacks#show'
   get 'identity/signinl2', to: 'test_case_callbacks#show'
