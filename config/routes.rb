@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   # B2C end points pages
   get 'identity/help', to: 'static_pages#help'
-  get 'identity/confidential', to: 'static_pages#confidential'
   get 'identity/forgotusername', to: 'test_case_callbacks#show'
   get 'identity/signinl3', to: 'test_case_callbacks#show'
   get 'identity/signinl2', to: 'test_case_callbacks#show'
@@ -19,6 +18,7 @@ Rails.application.routes.draw do
   # B2C endpoint redirects
   post 'test_case_callbacks/:id', to: 'test_case_callbacks#show'
   # *********************************
+  get '/confidential', to: 'static_pages#confidential'
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
