@@ -104,7 +104,7 @@ class TestCasesController < ApplicationController
       iss: session[:jwttokeniss],
       aud: 'https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code',
       acr: menuacr,
-      nonce: session[:jwttokennonce],
+      nonce: session[:nonce],
       iat: time_now,
       returnPath: "https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code/",
       rpName: session[:jwttokenrpname],
