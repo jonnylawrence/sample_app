@@ -276,7 +276,7 @@ private
       n: session[:b2cn]
     )
     # check alg
-    expected_kty = case session[:b2calg]
+    case session[:b2calg]
     when /RS/
       'Good match for RSA'
     else 
