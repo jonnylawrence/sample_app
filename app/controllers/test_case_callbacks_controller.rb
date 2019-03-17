@@ -343,7 +343,7 @@ private
         puts '******* Good news, token is within the window '
       else
         puts '!!!!!! Bad new, token is NOT within the window '
-      fi
+      end
 
       if parsed["iss"] == session[:b2cissuer]
         puts '**** Good news Issuer [in assertion token] matches'
