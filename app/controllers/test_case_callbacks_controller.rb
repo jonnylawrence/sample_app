@@ -337,6 +337,14 @@ private
       puts "auth_time> " + Time.at(parsed["auth_time"]).to_s
       puts "rpName> " + parsed["rpName"]
       puts "ServiceHints> " + parsed["ServiceHints"]
+
+      t0 = Time.now
+      if t0 > Time.at(parsed["nbf"]) and t0 < Time.at(parsed["exp"])
+        puts '******* Good news, token is within the window '
+      else
+        puts '!!!!!! Bad new, token is NOT within the window '
+      fi
+
       if parsed["iss"] == session[:b2cissuer]
         puts '**** Good news Issuer [in assertion token] matches'
       else
