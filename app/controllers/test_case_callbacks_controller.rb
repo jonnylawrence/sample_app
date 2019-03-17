@@ -405,7 +405,6 @@ private
             # check_confidentialaccess
             if session[:redirect] == "confidential" && (URI(request.referer).path.downcase =~ /phonefactor\/confirmed/) 
               session[:redirect] = ""
-              puts 'LoA: ' + session[:jwttokenloa]
               puts 'redirecting to confidential'
               redirect_to confidential_path and return
             else
@@ -449,18 +448,6 @@ private
     puts 'tccbc:>>>>>>>>>>>>>>>>>NOT LOGGED IN<<<<<<<<<<<<<<<<<<<<'
       session[:b2clogin]=false
       redirect_to root_path and return
-  end
-
-  def check_confidentialaccess
-    puts 'redirect session should be [confidential] : ' 
-    puts session[:redirect] unless session[:redirect].nil?
-    # reroute based on return from signl3 elevate and who asked for it
-      if session[:redirect] == "confidential" && (URI(request.referer).path.downcase =~ /phonefactor\/confirmed/) 
-        session[:redirect] = ""
-        puts 'LoA: ' + session[:jwttokenloa]
-        puts 'redirecting to confidential'
-        redirect_to confidential_path and return
-      end
   end
 
   def update_user_email
