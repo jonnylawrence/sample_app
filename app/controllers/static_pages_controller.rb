@@ -8,11 +8,14 @@ class StaticPagesController < ApplicationController
   def home  
     puts '****in home static pages controller******'
 
-    puts '<<<<starting threads for discovery IDP>>>>'
-    Thread.new{discovery_idp()}
-    Thread.new{discovery_issuer()}
+ 
     
     if logged_in? 
+
+      puts '<<<<starting threads for discovery IDP>>>>'
+      Thread.new{discovery_idp()}
+      Thread.new{discovery_issuer()}
+      
       @micropost  = current_user.microposts.build
       @feed_items = current_user.feed.paginate(page: params[:page])
     end
@@ -56,7 +59,7 @@ class StaticPagesController < ApplicationController
 
   def discovery_issuer
     if !session[:b2cissuer]
-      puts 'spc: getting meta data from B2C OID discovery endpoint...'
+      puts 'spc: threaded.....getting meta data from B2C OID discovery endpoint...'
       uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1a_bupa-uni-uat-signinsignup")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
