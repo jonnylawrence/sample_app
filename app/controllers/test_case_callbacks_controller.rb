@@ -129,6 +129,8 @@ class TestCaseCallbacksController < ApplicationController
         if session[:redirect] == "confidential" && (URI(request.referer).path.downcase =~ /phonefactor\/confirmed/) 
           session[:redirect] = ""
           puts '>>>>>>>> redirecting to confidential'
+          self.response_body = nil
+          render(nothing: true, status: 400)
           redirect_to confidential_path and return
         end
         
