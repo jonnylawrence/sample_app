@@ -339,10 +339,10 @@ private
       puts "ServiceHints> " + parsed["ServiceHints"]
 
       t0 = Time.now
-      if t0 > Time.at(parsed["nbf"]) and t0 < Time.at(parsed["exp"])
-        puts '******* Good news, token is within the window '
+      if t0 > Time.at(parsed["nbf"]) && t0 < Time.at(parsed["exp"])
+        puts '******* Good news, token is within the time window '
       else
-        puts '!!!!!! Bad new, token is NOT within the window '
+        puts '!!!!!! Bad new, token is NOT within the time window '
       end
 
       if parsed["iss"] == session[:b2cissuer]
