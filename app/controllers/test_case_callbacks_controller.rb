@@ -451,14 +451,14 @@ private
     # reroute based on return from signl3 elevate and who asked for it
       if session[:redirect] == "confidential" && (URI(request.referer).path.downcase =~ /phonefactor\/confirmed/) 
         session[:redirect] = ""
-        puts 'LoA: ' + session[:LoA]
+        puts 'LoA: ' + session[:jwttokenloa]
         puts 'redirecting to confidential'
         redirect_to confidential_path and return
       end
   end
 
   def update_user_email
-    puts 'tccbc:>>>>>>>>>>>>>>>>>UPATING LOCAL USER EMAIL :' +  session[:jwttokenemail]
+    puts 'tccbc:>>>>>>>>>>>>>>>>>MAY UPDATE LOCAL USER EMAIL :' +  session[:jwttokenemail]
     puts 'tcbc>> check if email already exists'
     userchk = User.find_by(email:  session[:jwttokenemail].downcase)
     if userchk
