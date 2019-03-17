@@ -11,10 +11,7 @@ class TestCaseCallbacksController < ApplicationController
 
   def show
     sailLoA = Sail.get("LoA")
-    # puts 'tccbc: -------------------------'
-    # puts session[:b2clogin]
-    # do_signup if session[:b2clogin]==true
-
+  
     puts "tccbc:********show start*******"
     puts params[:LoA]
     puts 'tccbc:----------checking token if the value below is present-------'
@@ -30,7 +27,7 @@ class TestCaseCallbacksController < ApplicationController
     puts "tccbc:**** logged_in true or false **********" 
     puts logged_in?
 
-    if logged_in? == false 
+    if logged_in? == false # not logged in, at login page needing forgot password or username
     
         puts 'tccbc:*********************** callback *******************'
         if params[:state].to_s.nil?
@@ -125,8 +122,6 @@ class TestCaseCallbacksController < ApplicationController
           redirect_to root_path and return
         end
 
-        
-
         if ( request.path =~ /changeusername/)
           puts '*********************** this is profile menu clicking on update username, redirecting *******************'
           redirect_to test_case_path("username") and return
@@ -153,7 +148,7 @@ class TestCaseCallbacksController < ApplicationController
         end
 
         if ( request.path =~ /signinl3/) || ( request.path =~ /signinl2/) 
-          puts 'tccbc:*********************** forgotten username *******************'
+          puts 'tccbc:*********************** siginl3 or signinl2 *******************'
           jwtredirect_uri="https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code"
           jwthost="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize"
           jwtauthorization_endpoint="https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize"
@@ -199,12 +194,8 @@ class TestCaseCallbacksController < ApplicationController
             client_assertion: token,
             ui_locales: "en-GB"
           )
-        puts 'end 1'
         end
-        puts 'end 2'
     end     # end if logged_in
-    # check_confidentialaccess
-    puts '<><><end of callback - show definition<><><'
   end # end def
 
 private
@@ -287,18 +278,15 @@ private
     ########################################################
     # after returning from B2C check the presence of a token 
     ########################################################
-    # puts 'tccbc; *************** printing cookies ***********'
-    # cookies.each do |cookie|
-    #   puts cookie
-    # end
-    puts "tccbc: ******************    checking token ******************************"
+
+    puts "tccbc: ****************** checking token ******************************"
     puts params[:LoA]
     puts "tccbc: Checking body for the token........"
     puts "Checking for state in the body..."
     puts params[:state]
     puts "-----------------------------------------------------------------------"
 
-    # check body for a L2 Token, although token needs to be checked below
+    # check body for LoA
     if (params[:LoA] == "L1") || (params[:LoA] == "L2")  || (params[:LoA] == "L3")  
       puts '*********** OK L1, L2, L3 found in the body therefore now checking ID token validity....'
      # puts 'all of the token >>>>>>>>>.'
@@ -342,7 +330,7 @@ private
       if t0 > Time.at(parsed["nbf"]) && t0 < Time.at(parsed["exp"])
         puts '******* Good news, token is within the time window '
       else
-        puts '!!!!!! Bad new, token is NOT within the time window '
+        puts '!!!!!! Bad news, token is NOT within the time window '
       end
 
       if parsed["iss"] == session[:b2cissuer]
