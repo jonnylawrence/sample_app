@@ -451,6 +451,7 @@ private
     # reroute based on return from signl3 elevate and who asked for it
       if session[:redirect] == "confidential" && (URI(request.referer).path.downcase =~ /phonefactor\/confirmed/) 
         session[:redirect] = ""
+        puts 'LoA: ' + session[:LoA]
         puts 'redirecting to confidential'
         redirect_to confidential_path and return
       end
