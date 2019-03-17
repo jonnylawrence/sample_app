@@ -125,14 +125,6 @@ class TestCaseCallbacksController < ApplicationController
           redirect_to root_path and return
         end
 
-         # reroute based on return from signl3 elevate and who asked for it
-        if session[:redirect] == "confidential" && (URI(request.referer).path.downcase =~ /phonefactor\/confirmed/) 
-          session[:redirect] = ""
-          puts '>>>>>>>> redirecting to confidential'
-          self.response_body = nil
-          render(nothing: true, status: 400)
-          redirect_to confidential_path and return
-        end
         
 
         if ( request.path =~ /changeusername/)
@@ -408,6 +400,9 @@ private
             if ( URI(request.referer).path.downcase =~ /updateuseremail\/api\/selfasserted\/confirmed/)
               update_user_email
             end
+
+            # reroute based on return from signl3 elevate and who asked for it
+            check_confidentialaccess
 
             redirect_to root_path and return
             
