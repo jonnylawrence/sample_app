@@ -10,6 +10,7 @@ class StaticPagesController < ApplicationController
 
     puts '<<<<starting thread to discovery IDP>>>>'
     t1 = Thread.new{discovery_idp()}
+    puts 'spc: t1 output' + t1 unless t1.nil?
 
     if logged_in? 
       @micropost  = current_user.microposts.build
@@ -50,7 +51,7 @@ class StaticPagesController < ApplicationController
     session[:b2cn]=parsed["keys"][0]["n"]
     session[:b2ce]=parsed["keys"][0]["e"]
     session[:b2calg]=parsed["keys"][0]["kty"]
-    put "spc: kid set>" + session[:b2ckid] unless session[:b2ckid].nil?
+    puts "spc: kid set>" + session[:b2ckid] unless session[:b2ckid].nil?
    end
 
   end
