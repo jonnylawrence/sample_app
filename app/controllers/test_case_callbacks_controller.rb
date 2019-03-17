@@ -203,13 +203,9 @@ class TestCaseCallbacksController < ApplicationController
         end
         puts 'end 2'
     end     # end if logged_in
-    check_confidentialaccess
+    # check_confidentialaccess
     puts 'end 3'
-  
   end # end def
-
-  puts 'end 4'
-  
 
 private
   def do_IDPmetadatadiscovery
