@@ -7,15 +7,11 @@ class StaticPagesController < ApplicationController
 
   def home  
     puts '****in home static pages controller******'
-
+    puts '<<<<starting threads for discovery IDP>>>>'
+    Thread.new{discovery_idp()}
+    Thread.new{discovery_issuer()}
  
-    
     if logged_in? 
-
-      puts '<<<<starting threads for discovery IDP>>>>'
-      Thread.new{discovery_idp()}
-      Thread.new{discovery_issuer()}
-      
       @micropost  = current_user.microposts.build
       @feed_items = current_user.feed.paginate(page: params[:page])
     end
