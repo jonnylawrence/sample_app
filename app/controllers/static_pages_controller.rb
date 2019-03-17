@@ -9,9 +9,8 @@ class StaticPagesController < ApplicationController
     puts '****in home static pages controller******'
 
     puts '<<<<starting thread to discovery IDP>>>>'
-    t1 = Thread.new{discovery_idp()}
-    puts 'spc: t1 output' + t1 unless t1.nil?
-
+    Thread.new{discovery_idp()}
+    
     if logged_in? 
       @micropost  = current_user.microposts.build
       @feed_items = current_user.feed.paginate(page: params[:page])
