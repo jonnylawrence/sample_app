@@ -75,16 +75,17 @@ class TestCaseCallbacksController < ApplicationController
           )
 
           #session[:client_id] = Rails.application.secrets.B2C_client_id
-          #session[:state] = SecureRandom.hex(16)
+          session[:state] = SecureRandom.hex(16)
           session[:nonce] = SecureRandom.hex(16)      
           puts 'tccbc: ******* Sending the following in the call back request ****************'
           puts "ID>" + session[:client_id] unless session[:client_id].nil?
-          puts "STATE using old state>" + params[:state] unless params[:state].nil?
+          puts "STATE>" + session[:state] unless session[:state].nil?
           puts "NONCE>" + session[:nonce] unless session[:nonce].nil?
           puts "token>" + session[:token] unless session[:token].nil?
           puts "tccbc:session end*************************"
+
           redirect_to client.authorization_uri(
-            state: params[:state], # params[:state] should equal original session[:state]
+            state: session[:state], # params[:state] should equal original session[:state]
             nonce: session[:nonce], # new nonce
             scope: "openid profile",
             response_type: "id_token",
@@ -105,7 +106,6 @@ class TestCaseCallbacksController < ApplicationController
       puts "tccbc:URI Referer:"+URI(request.referer).path unless URI(request.referer).path.nil?
       puts "tccbc:Request.env:"+request.env["HTTP_REFERER"] unless request.env["HTTP_REFERER"].nil?
 
-      
 
         if ( URI(request.referer).path.downcase =~ /cancelled/)
           puts '>>>>>>  action cancelled, try a redirect to root'
@@ -125,6 +125,12 @@ class TestCaseCallbacksController < ApplicationController
           redirect_to root_path and return
         end
 
+         # reroute based on return from signl3 elevate and who asked for it
+        if session[:redirect] == "confidential" && (URI(request.referer).path.downcase =~ /phonefactor\/confirmed/) 
+          session[:redirect] = ""
+          puts '>>>>>>>> redirecting to confidential'
+          redirect_to confidential_path and return
+        end
         
 
         if ( request.path =~ /changeusername/)
@@ -204,7 +210,7 @@ class TestCaseCallbacksController < ApplicationController
         puts 'end 2'
     end     # end if logged_in
     # check_confidentialaccess
-    puts 'end 3'
+    puts '<><><end of callback - show definition<><><'
   end # end def
 
 private
@@ -441,16 +447,18 @@ private
       session[:b2clogin]=false
       redirect_to root_path and return
   end
+
   def check_confidentialaccess
     puts 'redirect session should be [confidential] : ' 
     puts session[:redirect] unless session[:redirect].nil?
-#   # reroute based on return from signl3 elevate and who asked for it
+    # reroute based on return from signl3 elevate and who asked for it
       if session[:redirect] == "confidential" && (URI(request.referer).path.downcase =~ /phonefactor\/confirmed/) 
         session[:redirect] = ""
         puts 'redirecting to confidential'
         redirect_to confidential_path and return
       end
   end
+
   def update_user_email
     puts 'tccbc:>>>>>>>>>>>>>>>>>UPATING LOCAL USER EMAIL :' +  session[:jwttokenemail]
     puts 'tcbc>> check if email already exists'
