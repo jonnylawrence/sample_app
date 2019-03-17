@@ -1,24 +1,15 @@
 class StaticPagesController < ApplicationController
-  
+  require 'jwt'
+  require 'json'
+  require 'net/http'
+  require 'uri'
+  require 'json/jwt'
+
   def home  
     puts '****in home static pages controller******'
-    # logger.info '*********************'
-    # logger.info external_url_builder.B2C_url.to_str
-    # logger.info '*********************'
 
-    # puts '<<<b2clogin session and email'
-    # puts session[:b2clogin] 
-    # puts session[:jwttokenemail]
-    # puts '<<<<<<<<<<<<<>>>>>>>>>>'
-    # to check if these are register
-    # if session[:b2clogin] # come from B2C
-    #   puts "<<<<<<<<<<< FROM B2C >>>>>>>>>>>>"
-    #   if !user = User.find_by(email: jwtemail)
-    #     # not found in the database
-    #     puts "<<<<<<<<<< B2C NOT FOUND IN DATABASE REDIRECT TO REGISTRATION>>>>>>>"
-    #     Redirect_to sign_up_path
-    #   end
-    # end
+    puts '<<<<starting thread to discovery IDP>>>>'
+    t1 = Thread.new{discovery_idp()}
 
     if logged_in? 
       @micropost  = current_user.microposts.build
@@ -41,6 +32,27 @@ class StaticPagesController < ApplicationController
       session[:redirect] = "confidential"
       render 'elevate'
     end
+  end
+
+  private
+
+  def discovery_idp
+
+  if !session[:b2ckid]
+    puts 'spc: threaded.....getting kid from B2C OID discovery endpoint for keys....'
+    uri = URI.parse("https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1a_bupa-uni-uat-signinsignup")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+    parsed = JSON.parse(response.body)
+    session[:b2ckid]=parsed["keys"][0]["kid"]
+    session[:b2cn]=parsed["keys"][0]["n"]
+    session[:b2ce]=parsed["keys"][0]["e"]
+    session[:b2calg]=parsed["keys"][0]["kty"]
+    put "spc: kid set>" + session[:b2ckid] unless session[:b2ckid].nil?
+   end
+
   end
 
 end
