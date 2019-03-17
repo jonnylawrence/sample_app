@@ -402,9 +402,15 @@ private
             end
 
             # reroute based on return from signl3 elevate and who asked for it
-            check_confidentialaccess
-
-            redirect_to root_path and return
+            # check_confidentialaccess
+            if session[:redirect] == "confidential" && (URI(request.referer).path.downcase =~ /phonefactor\/confirmed/) 
+              session[:redirect] = ""
+              puts 'LoA: ' + session[:jwttokenloa]
+              puts 'redirecting to confidential'
+              redirect_to confidential_path and return
+            else
+              redirect_to root_path and return
+            end
             
           else
             puts 'tccbc:>>>>>>>>>>>>b2C USER NEEDS SIGN UP - CREATING DUMMY RECORD >>>>>>>>>>>>'
