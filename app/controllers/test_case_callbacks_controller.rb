@@ -259,7 +259,7 @@ private
       puts 'tccb: Bad news, kid does not match between discovery keys and JWT token !!!!!!!'
     end
     # check signatire
-    jwt = JSON::JWT.decode params[:id_token], public_key
+    #jwt = JSON::JWT.decode params[:id_token], public_key
     if jwt.verify! public_key
       puts 'tccb: ***** JWT SIGNATURE IS GOOD! *******'
     else
