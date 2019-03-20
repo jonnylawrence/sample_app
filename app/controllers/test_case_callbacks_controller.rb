@@ -260,12 +260,12 @@ private
     end
     # check signatire
     #jwt = JSON::JWT.decode params[:id_token], public_key
-    if jwt.verify! public_key
-      puts 'tccb: ***** JWT SIGNATURE IS GOOD! *******'
-    else
-      puts 'tccb: !!!!!!!!!!!! JWT SIGNATURE IS BAD !!!!!!!!!!!!!'
-      # need to redirect to login page, but won't bother!
-    end
+    #if jwt.verify! public_key
+    #  puts 'tccb: ***** JWT SIGNATURE IS GOOD! *******'
+    #else
+    #  puts 'tccb: !!!!!!!!!!!! JWT SIGNATURE IS BAD !!!!!!!!!!!!!'
+    #  # need to redirect to login page, but won't bother!
+    #end
   end
 
   def reject_csrf
