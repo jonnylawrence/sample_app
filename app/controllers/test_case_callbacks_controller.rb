@@ -420,6 +420,7 @@ private
             session[:jwttokeniat]=parsed["iat"]
             session[:jwttokenauth_time]=parsed["auth_time"]
             session[:jwttokenemail]=jwtemail
+            
             puts 'tccbc:<<<<<<<<<EMAIL CHECK>>'
             puts session[:jwttokenemail]
             session[:jwttokenmobile]=jwtmobile unless jwtmobile.nil?
