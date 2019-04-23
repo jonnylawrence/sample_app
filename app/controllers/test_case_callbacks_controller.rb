@@ -309,6 +309,7 @@ private
       puts 'tccbc:>>>>>>>>>TOKEN OUTPUT START<<<<<<<<<<<<<'
       puts "LOA> " + parsed["LoA"]
       puts "email> " + jwtemail
+      puts "mobile> " + jwtmobile
       puts "iss - does the token originate from IdP? > " + parsed["iss"]
       # Need to validate issuer using discovery endpoint and return JWT issuer
       #
@@ -421,6 +422,9 @@ private
             session[:jwttokenemail]=jwtemail
             puts 'tccbc:<<<<<<<<<EMAIL CHECK>>'
             puts session[:jwttokenemail]
+            session[:jwttokenmobile]=jwtmobile unless jwtmobile.nil?
+            puts 'tccbc:<<<<<<<<<MOBILE CHECK>>'
+            puts session[:jwttokenmobile]
             session[:jwttokenloa]=parsed["LoA"]
             session[:jwttokenoid]=parsed["oid"]
             session[:jwttokenrpname]=parsed["rpName"]
