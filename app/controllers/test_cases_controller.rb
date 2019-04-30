@@ -45,7 +45,7 @@ class TestCasesController < ApplicationController
       puts "ID>" + session[:client_id] unless session[:client_id].nil?
       puts "STATE>" + session[:state] unless session[:state].nil?
       puts "NONCE>" + session[:nonce] unless session[:nonce].nil?
-      #puts "token>" + session[:token] unless session[:token].nil?
+      puts "token>" + session[:token] unless session[:token].nil?
       puts "tccbc:session end*************************"
        redirect_to client.authorization_uri(
          state: session[:state],

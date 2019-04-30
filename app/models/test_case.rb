@@ -34,8 +34,10 @@ class TestCase < ApplicationRecord
 
     if identifier == "b2c-rp-response_type-code"
       client = OpenIDConnect::Client.new(
-        identifier: Rails.application.secrets.B2C_client_id,
-        secret: Rails.application.secrets.B2C_client_secret,
+        #identifier: Rails.application.secrets.B2C_client_id,
+        identifier: "8514ac6a-922e-45cb-bdc0-0d6f2407edce",
+        #secret: Rails.application.secrets.B2C_client_secret,
+        secret:  %Q{e`^D~]Q+8F2r#Y+P\28&?eMN},
         redirect_uri: 'https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code',
         host: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize',
         authorization_endpoint: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize'
