@@ -36,7 +36,7 @@ class TestCase < ApplicationRecord
       client = OpenIDConnect::Client.new(
         identifier: "8514ac6a-922e-45cb-bdc0-0d6f2407edce"
         #identifier: Rails.application.secrets.B2C_client_id,
-        secret: "v;Eq?mY49H0Ewu;q9Y:9:)&h"
+        secret: "v;Eq?mY49H0Ewu;q9Y:9:)&h",
         #secret: Rails.application.secrets.B2C_client_secret,
         redirect_uri: 'https://bupa-hk-qa.healthtap.com/member/oauth/login/redirect'
         #redirect_uri: 'https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code',
