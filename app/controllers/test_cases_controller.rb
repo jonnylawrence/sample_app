@@ -40,7 +40,7 @@ class TestCasesController < ApplicationController
         nbf: time_now
       }
 
-      token = JWT.encode payload, "v;Eq?mY49H0Ewu;q9Y:9:)&h", 'HS256'
+      token = JWT.encode payload, %Q{v;Eq?mY49H0Ewu;q9Y:9:)&h}, 'HS256'
       #token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
       
       session[:token] = token
