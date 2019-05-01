@@ -40,7 +40,9 @@ class TestCasesController < ApplicationController
         nbf: time_now
       }
 
-      token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
+      token = JWT.encode payload, "v;Eq?mY49H0Ewu;q9Y:9:)&h", 'HS256'
+      #token = JWT.encode payload, Rails.application.secrets.BC2_Assertion_secret, 'HS256'
+      
       session[:token] = token
       puts 'tcc: ******* 1x Sending the following in the initial request ****************'
       puts "ID>" + session[:client_id] unless session[:client_id].nil?
