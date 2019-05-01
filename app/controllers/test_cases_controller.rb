@@ -33,7 +33,8 @@ class TestCasesController < ApplicationController
         LoALevelRequest: sailLoA, 
         iss: 'https://uat-account.np.bupaglobal.com/neubgdat01atluat01b2c01.onmicrosoft.com/b2c_1a_bupa-uni-uat-signinsignup/oauth2/v2.0/authorize',
         #aud: 'https://b2c-ruby.herokuapp.com/test_case_callbacks/b2c-rp-response_type-code',
-        aud: 'https://b2c-ruby.herokuapp.com',
+        aud:  'https://bupa-hk-qa.healthtap.com/'
+        #aud: 'https://b2c-ruby.herokuapp.com',
         exp: expirey_time,
         iat: time_now,
         nbf: time_now
