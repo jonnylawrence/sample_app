@@ -16,7 +16,7 @@ class TestCasesController < ApplicationController
       puts params[:id]
       puts 'tcc:-------------------------------'
    
-    if params[:id] == "b2c-rp-response_type-code"  # ******************* B2C PATH ****************************  
+    if params[:id] == "b2c-rp-response_type-code"  # ******************** B2C PATH ****************************  
       
       puts "tcc: In generic call case - params:" + params[:id]
 
@@ -58,7 +58,8 @@ class TestCasesController < ApplicationController
          client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
          client_assertion: token,
          ui_locales: "en-GB",
-         prompt: "login"
+         prompt: "login",
+         rp-app: "hongkong"
        )
 
     # ******************* maintain security  ****************************  
@@ -130,7 +131,8 @@ class TestCasesController < ApplicationController
           response_mode: "form_post",
           client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
           client_assertion: token,
-          ui_locales: "en-GB"
+          ui_locales: "en-GB",
+          rp-app: "hongkong"
         )
     else
       # ******************* NON-B2C PATH OPENID Dynamic Discovery ****************************  

@@ -90,7 +90,8 @@ class TestCaseCallbacksController < ApplicationController
             client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
             client_assertion: session[:token], # original token request
             ui_locales: "en-GB",
-            prompt: "login"
+            prompt: "login",
+            rp-app: "hongkong"
             ) and return            
           else
             not_logged_in
@@ -192,7 +193,8 @@ class TestCaseCallbacksController < ApplicationController
             response_mode: "form_post",
             client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
             client_assertion: token,
-            ui_locales: "en-GB"
+            ui_locales: "en-GB",
+            rp-app: "hongkong"
           )
         end
     end     # end if logged_in
